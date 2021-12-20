@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.hardware.RobotHardware;
 import frc.robot.programs.MecanumDrive;
-import frc.robot.programs.MecanumDriveBeta;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -20,7 +19,6 @@ import frc.robot.programs.MecanumDriveBeta;
 public class Robot extends TimedRobot {
   private final SendableChooser<String> program = new SendableChooser<>();
   private MecanumDrive mecanumDrive = new MecanumDrive();
-  private MecanumDriveBeta mecanumDriveBeta = new MecanumDriveBeta();
   private RobotHardware robot = new RobotHardware();
 
   /**
@@ -68,7 +66,6 @@ public class Robot extends TimedRobot {
       mecanumDrive.AutoInit();
         break;
         case "MecanumDriveBeta":
-      mecanumDriveBeta.AutoInit();
         break;
     }
   }
@@ -81,7 +78,6 @@ public class Robot extends TimedRobot {
       mecanumDrive.AutoLoop();
         break;
         case "MecanumDriveBeta":
-      mecanumDriveBeta.AutoLoop();
         break;
     }
   }
@@ -94,7 +90,6 @@ public class Robot extends TimedRobot {
       mecanumDrive.TeleopInit();
         break;
         case "MecanumDriveBeta":
-      mecanumDriveBeta.TeleopInit();
         break;
     }
   }
@@ -107,23 +102,13 @@ public class Robot extends TimedRobot {
       mecanumDrive.TeleopLoop();
         break;
         case "MecanumDriveBeta":
-      mecanumDriveBeta.TeleopLoop();
         break;
     }
   }
 
   /** This function is called once when the robot is disabled. */
   @Override
-  public void disabledInit() {
-    switch (program.getSelected()) {
-      case "MecanumDrive":
-      mecanumDrive.Stop();
-        break;
-        case "MecanumDriveBeta":
-      mecanumDriveBeta.Stop();
-        break;
-    }
-  }
+  public void disabledInit() {}
 
   /** This function is called periodically when disabled. */
   @Override
