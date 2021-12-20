@@ -4,7 +4,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
 public class RobotHardware {
     public MecanumDrive drivetrain;
@@ -23,4 +22,7 @@ public class RobotHardware {
 
     }
 
+    public double clip(double value, double min, double max) {
+        return value > max ? max : value < min ? min : value;
+    }
 }
