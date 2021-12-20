@@ -3,6 +3,7 @@ package frc.robot.hardware;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
 public class RobotHardware {
@@ -11,6 +12,7 @@ public class RobotHardware {
     public CANSparkMax rearLeft = new CANSparkMax(0, MotorType.kBrushless);
     public CANSparkMax frontRight = new CANSparkMax(0, MotorType.kBrushless);
     public CANSparkMax rearRight = new CANSparkMax(0, MotorType.kBrushless);
+    public AnalogGyro gyro = new AnalogGyro(0);
 
     public void init() {
         // Invert the left side motors.

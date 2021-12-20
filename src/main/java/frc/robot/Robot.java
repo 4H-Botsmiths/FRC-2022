@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.hardware.RobotHardware;
+import frc.robot.hardware.Limelight;
 import frc.robot.programs.CustomMecanumTeleop;
 import frc.robot.programs.ProvidedMecanumTeleop;
 
@@ -25,6 +26,7 @@ public class Robot extends TimedRobot {
   private RobotHardware robot = new RobotHardware();
   private CustomMecanumTeleop customMecanumTeleop = new CustomMecanumTeleop();
   private ProvidedMecanumTeleop providedMecanumTeleop = new ProvidedMecanumTeleop();
+  private Limelight limelight = new Limelight();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -56,6 +58,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Right Front Temperature", robot.frontRight.getMotorTemperature());
     SmartDashboard.putNumber("Left Rear Temperature", robot.rearLeft.getMotorTemperature());
     SmartDashboard.putNumber("Right Rear Temperature", robot.rearRight.getMotorTemperature());
+    limelight.updateData();
   }
 
   /**
