@@ -2,7 +2,13 @@ package frc.robot.hardware;
 
 import edu.wpi.first.wpilibj.XboxController;
 
+/**
+ * Use this for reading inputs from Xbox controller 1
+ */
 public class Gamepad2 extends XboxController {
+  /**
+   * Use this for reading inputs from Xbox controller 1
+   */
   public Gamepad2() {
     super(1);
   }

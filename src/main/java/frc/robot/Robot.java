@@ -37,7 +37,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    robot.init();
     teleopPrograms.setDefaultOption("Custom Teleop Program", CustomMecanumTeleop.name);
     teleopPrograms.addOption("Provided Mecanum Teleop", ProvidedMecanumTeleop.name);
     SmartDashboard.putData("Please Select A Teleop Program", teleopPrograms);

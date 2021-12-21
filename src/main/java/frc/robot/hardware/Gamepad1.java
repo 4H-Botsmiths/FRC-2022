@@ -2,11 +2,17 @@ package frc.robot.hardware;
 
 import edu.wpi.first.wpilibj.XboxController;
 
+/**
+ * Use this for reading inputs from Xbox controller 0
+ */
 public class Gamepad1 extends XboxController {
+  /**
+   * Use this for reading inputs from Xbox controller 0
+   */
   public Gamepad1() {
     super(0);
   }
-  
+
   /**
    * Get the inverted Y axis value of left side of the controller.
    *

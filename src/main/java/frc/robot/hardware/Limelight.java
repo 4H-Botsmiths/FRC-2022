@@ -6,21 +6,47 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * this class contains all of the code and functions required for using a limelight
+ * this class contains all of the code and functions required for using a
+ * limelight
  */
 public class Limelight {
+    /** update the limelight network table */
     public NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    /** Whether the limelight has any valid targets (0 or 1) */
     public NetworkTableEntry tv = table.getEntry("tv");
+    /**
+     * Horizontal Offset From Crosshair To Target (LL1: -27 degrees to 27 degrees |
+     * LL2: -29.8 to 29.8 degrees)
+     */
     public NetworkTableEntry tx = table.getEntry("tx");
+    /**
+     * Vertical Offset From Crosshair To Target (LL1: -20.5 degrees to 20.5 degrees
+     * | LL2: -24.85 to 24.85 degrees)
+     */
     public NetworkTableEntry ty = table.getEntry("ty");
+    /** Target Area (0% of image to 100% of image) */
     public NetworkTableEntry ta = table.getEntry("ta");
+    /** Skew or rotation (-90 degrees to 0 degrees) */
     public NetworkTableEntry ts = table.getEntry("ts");
+    /**
+     * The pipeline’s latency contribution (ms) Add at least 11ms for image capture
+     * latency.
+     */
     public NetworkTableEntry tl = table.getEntry("tl");
+    /** Sidelength of shortest side of the fitted bounding box (pixels) */
     public NetworkTableEntry tshort = table.getEntry("tshort");
+    /** Sidelength of longest side of the fitted bounding box (pixels) */
     public NetworkTableEntry tlong = table.getEntry("tlong");
+    /** Horizontal sidelength of the rough bounding box (0 - 320 pixels) */
     public NetworkTableEntry thor = table.getEntry("thor");
+    /** Vertical sidelength of the rough bounding box (0 - 320 pixels) */
     public NetworkTableEntry tvert = table.getEntry("tvert");
+    /** True active pipeline index of the camera (0 .. 9) */
     public NetworkTableEntry getpipe = table.getEntry("getpipe");
+    /**
+     * Results of a 3D position solution, 6 numbers: Translation (x,y,y)
+     * Rotation(pitch,yaw,roll)
+     */
     public NetworkTableEntry camtran = table.getEntry("camtran");
 
     // =================================================================
@@ -37,39 +63,24 @@ public class Limelight {
      * | LL2: -24.85 to 24.85 degrees)
      */
     public double y = ty.getDouble(0);
-    /**
-     * Target Area (0% of image to 100% of image)
-     */
+    /** Target Area (0% of image to 100% of image) */
     public double a = ta.getDouble(0);
-    /**
-     * Skew or rotation (-90 degrees to 0 degrees)
-     * 
-     */
+    /** Skew or rotation (-90 degrees to 0 degrees) */
     public double s = ts.getDouble(0);
     /**
      * The pipeline’s latency contribution (ms) Add at least 11ms for image capture
      * latency.
      */
     public double l = tl.getDouble(0);
-    /**
-     * Sidelength of shortest side of the fitted bounding box (pixels)
-     */
+    /** Sidelength of shortest side of the fitted bounding box (pixels) */
     public double short_ = tshort.getDouble(0);
-    /**
-     * Sidelength of longest side of the fitted bounding box (pixels)
-     */
+    /** Sidelength of longest side of the fitted bounding box (pixels) */
     public double long_ = tlong.getDouble(0);
-    /**
-     * Horizontal sidelength of the rough bounding box (0 - 320 pixels)
-     */
+    /** Horizontal sidelength of the rough bounding box (0 - 320 pixels) */
     public double hor = thor.getDouble(0);
-    /**
-     * Vertical sidelength of the rough bounding box (0 - 320 pixels)
-     */
+    /** Vertical sidelength of the rough bounding box (0 - 320 pixels) */
     public double vert = tvert.getDouble(0);
-    /**
-     * True active pipeline index of the camera (0 .. 9)
-     */
+    /** True active pipeline index of the camera (0 .. 9) */
     public double pipe = getpipe.getDouble(0);
     /**
      * Results of a 3D position solution, 6 numbers: Translation (x,y,y)
@@ -78,6 +89,9 @@ public class Limelight {
     public double tran = camtran.getDouble(0);
 
     // ----------------------------------------------------------------
+    /**
+     * This updates all of the Limelight values then updates the smartdashboard
+     */
     public void updateData() {
         v = tv.getDouble(0) == 1;
         x = tx.getDouble(0);
