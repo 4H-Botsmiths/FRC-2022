@@ -6,7 +6,8 @@
         {
             "label": "Update Javadock",
             "type": "shell",
-            "command": "sh /Users/Kolton/Documents/FRC-2022/Javadoc.command"
+            "command": "sh /Users/Kolton/Documents/FRC-2022/Javadoc.command",
+            "problemMatcher": []
         }
     ]
 }
