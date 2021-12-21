@@ -8,8 +8,12 @@ import frc.robot.programs.interfaces.TeleopInterface;
  * This program performs a basic mecanum drive using the provided algorithim
  */
 public class ProvidedMecanumTeleop implements TeleopInterface {
+    private RobotHardware robot;
+
+    public ProvidedMecanumTeleop(RobotHardware r){
+        robot = r;
+    }
     public static final String name = "Provided Mecanum Teleop";
-    private RobotHardware robot = new RobotHardware();
     private Gamepad1 gamepad1 = new Gamepad1();
 
     @Override

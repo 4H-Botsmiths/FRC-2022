@@ -20,12 +20,15 @@ import frc.robot.programs.ProvidedMecanumTeleop;
  * project.
  */
 public class Robot extends TimedRobot {
+  /*public Robot() {
+    super(0.03); // Periodic methods will now be called every 30 ms.
+  }*/
   private final SendableChooser<String> teleopPrograms = new SendableChooser<>();
   private final SendableChooser<String> autonomousPrograms = new SendableChooser<>();
   private final SendableChooser<String> testPrograms = new SendableChooser<>();
   private RobotHardware robot = new RobotHardware();
-  private CustomMecanumTeleop customMecanumTeleop = new CustomMecanumTeleop();
-  private ProvidedMecanumTeleop providedMecanumTeleop = new ProvidedMecanumTeleop();
+  private CustomMecanumTeleop customMecanumTeleop = new CustomMecanumTeleop(robot);
+  private ProvidedMecanumTeleop providedMecanumTeleop = new ProvidedMecanumTeleop(robot);
   private Limelight limelight = new Limelight();
 
   /**
@@ -54,10 +57,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    /*
     SmartDashboard.putNumber("Left Front Temperature", robot.frontLeft.getMotorTemperature());
     SmartDashboard.putNumber("Right Front Temperature", robot.frontRight.getMotorTemperature());
     SmartDashboard.putNumber("Left Rear Temperature", robot.rearLeft.getMotorTemperature());
     SmartDashboard.putNumber("Right Rear Temperature", robot.rearRight.getMotorTemperature());
+    */
     limelight.updateData();
   }
 
