@@ -83,6 +83,10 @@ jar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
+task GenerateJavadoc(type: Javadoc) {
+  source = sourceSets.main.allJava
+}
+
 // Configure jar and deploy tasks
 deployArtifact.jarTask = jar
 wpi.java.configureExecutableTasks(jar)
