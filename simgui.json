@@ -7,6 +7,23 @@
       "/SmartDashboard/Please Select A Autonomous Program": "String Chooser",
       "/SmartDashboard/Please Select A Teleop Program": "String Chooser",
       "/SmartDashboard/Please Select A Test Program": "String Chooser"
+    },
+    "windows": {
+      "/SmartDashboard/Please Select A Autonomous Program": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Please Select A Teleop Program": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Please Select A Test Program": {
+        "window": {
+          "visible": true
+        }
+      }
     }
   },
   "NetworkTables": {
