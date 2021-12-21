@@ -1,7 +1,7 @@
 package frc.robot.hardware;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+//import com.revrobotics.CANSparkMax;
+//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -14,10 +14,11 @@ public class RobotHardware {
     public CANSparkMax frontRight = new CANSparkMax(0, MotorType.kBrushless);
     public CANSparkMax rearRight = new CANSparkMax(0, MotorType.kBrushless);
     */
+    /**hi */
     public PWMSparkMax frontLeft = new PWMSparkMax(0);
     public PWMSparkMax rearLeft= new PWMSparkMax(1);
-    public PWMSparkMax frontRight = new PWMSparkMax(2);;
-    public PWMSparkMax rearRight = new PWMSparkMax(3);;
+    public PWMSparkMax frontRight = new PWMSparkMax(2);
+    public PWMSparkMax rearRight = new PWMSparkMax(3);
 
     public AnalogGyro gyro = new AnalogGyro(0);
 
@@ -31,9 +32,23 @@ public class RobotHardware {
 
     }
 
+    
+    /** 
+     * @param value the value to clip
+     * @param min the minimum value
+     * @param max the maximum value
+     * @return the cliped value
+     */
     public double clip(double value, double min, double max) {
         return value > max ? max : value < min ? min : value;
     }
+    
+    /** 
+     * @param x the left/right affector
+     * @param y the forward/backward affector
+     * @param z the rotation affector
+     * @param cap the maximum speed
+     */
     public void Drive(double x, double y, double z, double cap) {
         // r *= steeringMultiplier;
         double m1 = clip(y + x + z, -cap, cap);
@@ -46,6 +61,14 @@ public class RobotHardware {
         rearRight.set(m4);
     }
 
+    
+    /** 
+     * @param x
+     * @param y
+     * @param z
+     * @param cap
+     * @param g
+     */
     public void RelativeDrive(double x, double y, double z, double cap, double g) {
         g = -g / 45;
         if (g > 2 || g < -2) {
