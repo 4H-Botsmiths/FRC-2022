@@ -2,7 +2,7 @@ import edu.wpi.first.gradlerio.deploy.roborio.RoboRIO
 
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2022.1.1-beta-3"
+    id "edu.wpi.first.GradleRIO" version "2022.1.1-beta-4"
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -81,10 +81,6 @@ jar {
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
-}
-
-task GenerateJavadoc(type: Javadoc) {
-  source = sourceSets.main.allJava
 }
 
 // Configure jar and deploy tasks
