@@ -1,4 +1,5 @@
 if [ -z "$(git status --porcelain)" ]; then 
+
 echo cd FRC-2022
 cd FRC-2022
 echo rm -r frc
@@ -13,6 +14,10 @@ echo "echo theme: jekyll-theme-tactile > ../docs/_config.yml"
 echo theme: jekyll-theme-tactile > ../docs/_config.yml
 echo git commit -a -m "Updated Javadoc"
 git commit -a -m "Updated Javadoc"
+git push
+
 else 
+
 echo Git Directory Not Clean
+
 fi
