@@ -14,6 +14,7 @@ echo "echo theme: jekyll-theme-tactile > ../docs/_config.yml"
 echo theme: jekyll-theme-tactile > ../docs/_config.yml
 echo git commit -a -m "Updated Javadoc"
 git commit -a -m "Updated Javadoc"
+echo git push
 git push
 
 else 
