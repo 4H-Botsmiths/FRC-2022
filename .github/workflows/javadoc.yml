@@ -27,17 +27,10 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Change Directory
-        run: cd ../../FRC-2022
-        
-      - name: update frc package
         run: |
-          rm -r frc
-          cp -r ../src/main/java/frc frc
-      - name: remove old documentation
-        run: rm -r ../docs
-        
-      - name: Generate Javadoc
-        run: javadoc -subpackages frc -d ../docs
-      
-      - name: re-add theme
-        run: 'echo "theme: jekyll-theme-tactile" > ../docs/_config.yml'
+           cd ../../FRC-2022
+           rm -r frc
+           cp -r ../src/main/java/frc frc
+           rm -r ../docs
+           javadoc -subpackages frc -d ../docs
+           'echo "theme: jekyll-theme-tactile" > ../docs/_config.yml'
