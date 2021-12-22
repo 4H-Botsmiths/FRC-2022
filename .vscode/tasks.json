@@ -6,7 +6,10 @@
         {
             "label": "Update Javadock",
             "type": "shell",
-            "command": "sh /Users/Kolton/Documents/FRC-2022/Javadoc.command",
+            "options": {
+                "cwd": "${workspaceFolder}"
+        },
+            "command": "./Javadoc.command",
             "problemMatcher": []
         }
     ]
