@@ -8,8 +8,8 @@ echo cp -r ../src/main/java/frc frc
 cp -r ../src/main/java/frc frc
 echo rm -r ../docs
 rm -r ../docs
-echo javadoc -subpackages frc -d ../docs
-javadoc -subpackages frc -d ../docs
+echo javadoc -subpackages com:edu:frc:org:pabeles -d ../docs
+javadoc -subpackages com:edu:frc:org:pabeles -d ../docs
 echo "echo theme: jekyll-theme-tactile > ../docs/_config.yml" 
 echo theme: jekyll-theme-tactile > ../docs/_config.yml
 echo git commit -a -m "Updated Javadoc"
