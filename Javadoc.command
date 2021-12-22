@@ -16,6 +16,16 @@ echo git commit -a -m "Updated Javadoc"
 git commit -a -m "Updated Javadoc"
 echo git push
 git push
+if [ -z "$(git status --porcelain)" ]; then 
+
+else
+
+echo git commit -a -m "Updated Javadoc"
+git commit -a -m "Updated Javadoc"
+echo git push
+git push
+
+fi
 
 else 
 
