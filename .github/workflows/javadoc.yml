@@ -43,7 +43,7 @@ jobs:
         run: |
           cd FRC-2022
           javadoc -subpackages frc -d ../docs > ../javadoc.log
-          cat ../javadock.log
+          cat ../javadoc.log
           rm ../javadoc.log
           
       - name: Commit files
