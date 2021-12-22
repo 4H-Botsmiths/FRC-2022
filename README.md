@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://bytebybyte.wixsite.com/botsmiths"><img alt="Logo" src="https://static.wixstatic.com/media/8ebff3_078a31f3d1d94ebc9f03799c35a972ed~mv2.png/v1/fill/w_400,h_318,al_c,usm_0.66_1.00_0.01/8ebff3_078a31f3d1d94ebc9f03799c35a972ed~mv2.png"></a>
+  <a href="https://bytebybyte.wixsite.com/botsmiths" target="_blank"><img alt="Logo" src="https://static.wixstatic.com/media/8ebff3_078a31f3d1d94ebc9f03799c35a972ed~mv2.png/v1/fill/w_400,h_318,al_c,usm_0.66_1.00_0.01/8ebff3_078a31f3d1d94ebc9f03799c35a972ed~mv2.png"></a>
 </p>
 <span align="center">
 
