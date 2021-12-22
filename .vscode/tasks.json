@@ -9,7 +9,7 @@
             "options": {
                 "cwd": "${workspaceFolder}"
         },
-            "command": "./Javadoc.command",
+            "command": "./Javadoc.sh",
             "problemMatcher": []
         }
     ]
