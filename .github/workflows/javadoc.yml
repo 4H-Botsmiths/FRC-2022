@@ -46,17 +46,22 @@ jobs:
           
       - name: Commit files
         id: commit
+        shell: bash
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
           git add --all
-          if [-z "$(git status --porcelain)"]; then
+
+          if [ -z "$(git status --porcelain)" ]; then 
+
              echo "::set-output name=push::false"
+
           else
+
              git commit -m "Updated API Documentation Using Javadoc" -a
              echo "::set-output name=push::true"
+
           fi
-        shell: bash
 
       - name: Push changes
         if: steps.commit.outputs.push == 'true'
