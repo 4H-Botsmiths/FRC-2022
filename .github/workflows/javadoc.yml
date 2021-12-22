@@ -42,3 +42,9 @@ jobs:
         run: |
           cd FRC-2022
           javadoc -subpackages frc -d ../docs
+          
+      - name: publish changes
+        run: |
+          git commit -a -m "Updated Javadocs"
+          git push
+        
