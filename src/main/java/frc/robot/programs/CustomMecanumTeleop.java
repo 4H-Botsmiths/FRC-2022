@@ -24,9 +24,7 @@ public class CustomMecanumTeleop implements TeleopInterface {
     public static final String name = "Custom Mecanum Teleop";
     /** Gamepad1 device */
     Gamepad1 gamepad1 = new Gamepad1();
-    ///** Gamepad2 device */
-    //Gamepad2 gamepad2 = new Gamepad2();
-
+    
     @Override
     public void teleopInit() {
         SmartDashboard.putNumber("Gyro Dummy", 0);
