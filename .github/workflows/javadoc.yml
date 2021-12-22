@@ -28,7 +28,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Change Directory
         run: |
-           cd ../../FRC-2022
+           cd FRC-2022
            rm -r frc
            cp -r ../src/main/java/frc frc
            rm -r ../docs
