@@ -57,6 +57,7 @@ jobs:
              echo "::set-output name=push::true"
           fi
         shell: bash
+
       - name: Push changes
         if: steps.commit.outputs.push == 'true'
         uses: ad-m/github-push-action@master
