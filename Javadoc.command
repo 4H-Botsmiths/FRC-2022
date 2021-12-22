@@ -10,4 +10,6 @@ echo rm -r ../../../docs
 rm -r ../../../docs
 echo javadoc -subpackages frc -d ../../../docs
 javadoc -subpackages frc -d ../../../docs
+echo "echo theme: jekyll-theme-tactile > ../../../docs/_config.yml" 
+echo theme: jekyll-theme-tactile > ../../../docs/_config.yml
 read -p "Press any key to close" -n 1
