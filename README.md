@@ -5,6 +5,9 @@
 
 # [FRC Team 4309](https://bytebybyte.wixsite.com/botsmiths)
 this is a repo for the 2022 Botsmiths FRC 4309 robot code
+
+[![Javadoc Generator](https://github.com/4H-Botsmiths/FRC-2022/actions/workflows/javadoc.yml/badge.svg)](https://github.com/4H-Botsmiths/FRC-2022/actions/workflows/javadoc.yml)
+
 #### View our [API here](https://4h-botsmiths.github.io/FRC-2022/)
   
   </span>
