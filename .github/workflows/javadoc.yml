@@ -27,7 +27,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Change Directory
-        run: cd FRC-2022
+        run: cd ../../FRC-2022
         
       - name: update frc package
         run: |
