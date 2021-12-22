@@ -5,14 +5,14 @@ package frc.robot.programs.interfaces;
  */
 public interface TeleopInterface {
        /**
-        * <h4>ONLY CALL ONCE</h4>
         * call this function once to run teleop init code.
+        * <p>ONLY CALL ONCE</p>
         */
        public void teleopInit();
 
        /**
-        * <h4>CALL REPEATEDLY</h4>
         * call this function repeatedly to run teleop periodic code.
+        * <p>CALL REPEATEDLY</p>
         */
        public void teleopPeriodic();
 }
