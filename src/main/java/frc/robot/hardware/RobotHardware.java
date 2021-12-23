@@ -9,14 +9,6 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
 /**
  * Use this class to control all motors and sensors
- * 
- * @changes
- *          <p>
- *          added 4 drive motors
- *          <p>
- *          added gyro
- *          <p>
- *          changed init function to constructor
  */
 public class RobotHardware {
     /** Front Left brushless motor (Port: 0) */
@@ -38,6 +30,14 @@ public class RobotHardware {
 
     /**
      * Use this class to control all motors and sensors
+     * 
+     * @changes
+     *          <p>
+     *          added 4 drive motors
+     *          <p>
+     *          added gyro
+     *          <p>
+     *          changed init function to constructor
      */
     public RobotHardware() {
         // Invert the left side motors.
