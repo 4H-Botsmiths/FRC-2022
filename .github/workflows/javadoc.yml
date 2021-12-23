@@ -42,7 +42,7 @@ jobs:
       - name: Generate Javadoc
         run: |
           cd FRC-2022
-          javadoc -subpackages frc -d ../docs -tag changes:a:"ChangeLog"> ../javadoc.log
+          javadoc -subpackages frc -d ../docs -tag changes:a:"ChangeLog:"> ../javadoc.log
           cat ../javadoc.log
           rm ../javadoc.log
           
