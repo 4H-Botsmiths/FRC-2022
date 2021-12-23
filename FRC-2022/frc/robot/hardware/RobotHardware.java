@@ -29,8 +29,8 @@ public class RobotHardware {
     public AnalogGyro gyro = new AnalogGyro(0);
 
     /**
-     * Use this class to control all motors and sensors
-     * 
+     * Use this class to control all motors and sensors 
+     * See below for changes
      * @changes
      *          <p>
      *          added 4 drive motors
