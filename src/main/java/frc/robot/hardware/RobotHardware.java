@@ -30,7 +30,7 @@ public class RobotHardware {
 
     /**
      * Use this class to control all motors and sensors
-     * 
+     * See below for changes 
      * @changes
      *          <p>
      *          added 4 drive motors
