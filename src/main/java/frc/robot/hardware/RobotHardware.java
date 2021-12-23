@@ -1,6 +1,5 @@
 package frc.robot.hardware;
 
-
 //import com.revrobotics.CANSparkMax;
 //import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -10,6 +9,14 @@ import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
 /**
  * Use this class to control all motors and sensors
+ * 
+ * @changes
+ *          <p>
+ *          added 4 drive motors
+ *          <p>
+ *          added gyro
+ *          <p>
+ *          changed init function to constructor
  */
 public class RobotHardware {
     /** Front Left brushless motor (Port: 0) */
