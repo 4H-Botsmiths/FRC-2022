@@ -1,36 +1,36 @@
 package frc.robot.hardware;
 
-//import com.revrobotics.CANSparkMax;
-//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+//import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
 /**
  * Use this class to control all motors and sensors
  */
 public class RobotHardware {
     /** Front Left brushless motor (Port: 0) */
-    public PWMSparkMax frontLeft = new PWMSparkMax(0);
-    /* public CANSparkMax frontLeft = new CANSparkMax(0, MotorType.kBrushless); */
+    // public PWMSparkMax frontLeft = new PWMSparkMax(0);
+    public CANSparkMax frontLeft = new CANSparkMax(0, MotorType.kBrushless);
     /** Rear Left brushless motor (Port: 1) */
-    public PWMSparkMax rearLeft = new PWMSparkMax(1);
-    /* public CANSparkMax rearLeft = new CANSparkMax(0, MotorType.kBrushless); */
+    // public PWMSparkMax rearLeft = new PWMSparkMax(1);
+    public CANSparkMax rearLeft = new CANSparkMax(0, MotorType.kBrushless);
     /** Front Right brushless motor (Port: 2) */
-    public PWMSparkMax frontRight = new PWMSparkMax(2);
-    /* public CANSparkMax frontRight = new CANSparkMax(0, MotorType.kBrushless); */
+    // public PWMSparkMax frontRight = new PWMSparkMax(2);
+    public CANSparkMax frontRight = new CANSparkMax(0, MotorType.kBrushless);
     /** Rear Right brushless motor (Port: 3) */
-    public PWMSparkMax rearRight = new PWMSparkMax(3);
-    /* public CANSparkMax rearRight = new CANSparkMax(0, MotorType.kBrushless); */
+    // public PWMSparkMax rearRight = new PWMSparkMax(3);
+    public CANSparkMax rearRight = new CANSparkMax(0, MotorType.kBrushless);
     /** use this for the provided mecanum drive */
     public MecanumDrive drivetrain;
     /** Analog Gyro (Port: 0) */
     public AnalogGyro gyro = new AnalogGyro(0);
 
     /**
-     * Use this class to control all motors and sensors
-     * See below for changes 
+     * Use this class to control all motors and sensors See below for changes
+     * 
      * @changes
      *          <p>
      *          added 4 drive motors
