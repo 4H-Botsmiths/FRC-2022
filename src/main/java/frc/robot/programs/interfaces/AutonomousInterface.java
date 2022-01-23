@@ -6,13 +6,17 @@ package frc.robot.programs.interfaces;
 public interface AutonomousInterface {
        /**
         * call this function once to run autonomous init code.
-        * <p> ONLY CALL ONCE </p>
+        * <p>
+        * ONLY CALL ONCE
+        * </p>
         */
        public void autonomousInit();
 
        /**
         * call this function repeatedly to run autonomous periodic code.
-        * <p> CALL REPEATEDLY </p>
+        * <p>
+        * CALL REPEATEDLY
+        * </p>
         */
        public void autonomousPeriodic();
 }

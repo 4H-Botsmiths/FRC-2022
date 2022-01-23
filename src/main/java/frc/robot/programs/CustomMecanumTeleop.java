@@ -20,11 +20,12 @@ public class CustomMecanumTeleop implements TeleopInterface {
     public CustomMecanumTeleop(RobotHardware r) {
         robot = r;
     }
-    /** Unique String for identifying this program */
-    public static final String name = "Custom Mecanum Teleop";
+
+    /** Unique identifier for identifying this instance */
+    public static final String id = "Custom Mecanum Teleop";
     /** Gamepad1 device */
     Gamepad1 gamepad1 = new Gamepad1();
-    
+
     @Override
     public void teleopInit() {
         SmartDashboard.putNumber("Gyro Dummy", 0);

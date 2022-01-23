@@ -1,32 +1,39 @@
 package frc.robot.hardware;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.ADIS16448_IMU;
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-//import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
 /**
  * Use this class to control all motors and sensors
  */
 public class RobotHardware {
-    /** Front Left brushless motor (Port: 0) */
+    /** Front Left brushless motor (ID: 0) */
     // public PWMSparkMax frontLeft = new PWMSparkMax(0);
-    public CANSparkMax frontLeft = new CANSparkMax(0, MotorType.kBrushless);
-    /** Rear Left brushless motor (Port: 1) */
+    //public CANSparkMax frontLeft = new CANSparkMax(0, MotorType.kBrushless);
+    public TalonSRX frontLeft = new TalonSRX(0);
+    /** Rear Left brushless motor (ID: 1) */
     // public PWMSparkMax rearLeft = new PWMSparkMax(1);
-    public CANSparkMax rearLeft = new CANSparkMax(0, MotorType.kBrushless);
-    /** Front Right brushless motor (Port: 2) */
+    //public CANSparkMax rearLeft = new CANSparkMax(0, MotorType.kBrushless);
+    public TalonSRX rearLeft = new TalonSRX(1);
+    /** Front Right brushless motor (ID: 2) */
     // public PWMSparkMax frontRight = new PWMSparkMax(2);
-    public CANSparkMax frontRight = new CANSparkMax(0, MotorType.kBrushless);
-    /** Rear Right brushless motor (Port: 3) */
+    //public CANSparkMax frontRight = new CANSparkMax(0, MotorType.kBrushless);
+    public TalonSRX frontRight = new TalonSRX(2);
+    /** Rear Right brushless motor (ID: 3) */
     // public PWMSparkMax rearRight = new PWMSparkMax(3);
-    public CANSparkMax rearRight = new CANSparkMax(0, MotorType.kBrushless);
+    //public CANSparkMax rearRight = new CANSparkMax(0, MotorType.kBrushless);
+    public TalonSRX rearRight = new TalonSRX(3);
     /** use this for the provided mecanum drive */
     public MecanumDrive drivetrain;
     /** Analog Gyro (Port: 0) */
     public AnalogGyro gyro = new AnalogGyro(0);
+    /** Built-in accelerometer */
+    public BuiltInAccelerometer Accel = new BuiltInAccelerometer();
 
     /**
      * Use this class to control all motors and sensors See below for changes
@@ -44,8 +51,7 @@ public class RobotHardware {
         // You may need to change or remove this to match your robot.
         frontLeft.setInverted(true);
         rearLeft.setInverted(true);
-
-        drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
+        //drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
     }
 
     /**
@@ -74,10 +80,10 @@ public class RobotHardware {
         double m2 = clip(y - x - z, -cap, cap);
         double m3 = clip(y - x + z, -cap, cap);
         double m4 = clip(y + x - z, -cap, cap);
-        frontLeft.set(m1);
-        frontRight.set(m2);
-        rearLeft.set(m3);
-        rearRight.set(m4);
+        frontLeft.set(ControlMode.Velocity, m1);
+        frontRight.set(ControlMode.Velocity, m2);
+        rearLeft.set(ControlMode.Velocity, m3);
+        rearRight.set(ControlMode.Velocity, m4);
     }
 
     /**
