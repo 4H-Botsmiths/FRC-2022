@@ -8,23 +8,16 @@ import frc.robot.programs.interfaces.TeleopInterface;
 /**
  * This program performs a basic mecanum drive using a custom algorithim
  */
-public class CustomMecanumTeleop implements TeleopInterface {
-    private RobotHardware robot;
-
+public class CustomMecanumTeleop extends TeleopInterface {
     /**
-     * 
      * This program performs a basic mecanum drive using a custom algorithim
      * 
-     * @param r RobotHardware for controlling the motors and sensors
+     * @param Robot RobotHardware for controlling the motors and sensors (used to
+     *              avoid overlapping instances)
      */
-    public CustomMecanumTeleop(RobotHardware r) {
-        robot = r;
+    public CustomMecanumTeleop(RobotHardware Robot) {
+        super(Robot, "Custom Mecanum Teleop");
     }
-
-    /** Unique identifier for identifying this instance */
-    public static final String id = "Custom Mecanum Teleop";
-    /** Gamepad1 device */
-    Gamepad1 gamepad1 = new Gamepad1();
 
     @Override
     public void teleopInit() {

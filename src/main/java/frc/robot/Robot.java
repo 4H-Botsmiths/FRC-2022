@@ -5,13 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.hardware.RobotHardware;
-import frc.robot.hardware.Limelight;
-import frc.robot.programs.CustomMecanumTeleop;
-import frc.robot.programs.ProvidedMecanumTeleop;
-import frc.robot.programs.SimulationBoard;
+import edu.wpi.first.wpilibj.smartdashboard.*;
+import frc.robot.hardware.*;
+import frc.robot.programs.interfaces.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,22 +25,39 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> autonomousPrograms = new SendableChooser<>();
   private final SendableChooser<String> testPrograms = new SendableChooser<>();
   private RobotHardware robot = new RobotHardware();
-  private CustomMecanumTeleop customMecanumTeleop = new CustomMecanumTeleop(robot);
-  private ProvidedMecanumTeleop providedMecanumTeleop = new ProvidedMecanumTeleop(robot);
-  private SimulationBoard simulationBoard = new SimulationBoard(robot);
   private Limelight limelight = new Limelight();
+  private ProgramFetcher programFetcher = new ProgramFetcher(robot);
 
+  // private String selectedProgram;
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
    */
   @Override
   public void robotInit() {
-    teleopPrograms.setDefaultOption("Simulation Board", SimulationBoard.id);
-    teleopPrograms.addOption("Custom Teleop Program", CustomMecanumTeleop.id);
-    teleopPrograms.addOption("Provided Mecanum Teleop", ProvidedMecanumTeleop.id);
+    for (TeleopInterface program : programFetcher.getTeleopPrograms()) {
+      if (program.Default) {
+        teleopPrograms.setDefaultOption(program.displayName, program.id);
+      } else {
+        teleopPrograms.addOption(program.displayName, program.id);
+      }
+    }
     SmartDashboard.putData("Please Select A Teleop Program", teleopPrograms);
+    for (AutonomousInterface program : programFetcher.getAutonomousPrograms()) {
+      if (program.Default) {
+        autonomousPrograms.setDefaultOption(program.displayName, program.id);
+      } else {
+        autonomousPrograms.addOption(program.displayName, program.id);
+      }
+    }
     SmartDashboard.putData("Please Select A Autonomous Program", autonomousPrograms);
+    for (TestInterface program : programFetcher.getTestPrograms()) {
+      if (program.Default) {
+        testPrograms.setDefaultOption(program.displayName, program.id);
+      } else {
+        testPrograms.addOption(program.displayName, program.id);
+      }
+    }
     SmartDashboard.putData("Please Select A Test Program", testPrograms);
 
   }
@@ -73,6 +86,8 @@ public class Robot extends TimedRobot {
     limelight.updateData();
   }
 
+  private AutonomousInterface autonomousProgram;
+
   /**
    * This autonomous (along with the chooser code above) shows how to select
    * between different autonomous modes using the dashboard. The sendable chooser
@@ -87,45 +102,39 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    System.out.println("Autonomous Program selected: " + autonomousPrograms.getSelected());
-
+    for (AutonomousInterface program : programFetcher.getAutonomousPrograms()) {
+      if (autonomousPrograms.getSelected().equals(program.id)) {
+        System.out.println("Autonomous Program selected: " + program.displayName);
+        autonomousProgram = program;
+      }
+    }
+    autonomousProgram.autonomousInit();
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-
+    autonomousProgram.autonomousPeriodic();
   }
+
+  private TeleopInterface teleopProgram;
 
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    System.out.println("Teleop Program selected: " + teleopPrograms.getSelected());
-    switch (teleopPrograms.getSelected()) {
-      case CustomMecanumTeleop.id:
-        customMecanumTeleop.teleopInit();
-        break;
-      case ProvidedMecanumTeleop.id:
-        providedMecanumTeleop.teleopInit();
-        break;
-      case SimulationBoard.id:
-        simulationBoard.teleopInit();
+    for (TeleopInterface program : programFetcher.getTeleopPrograms()) {
+      if (teleopPrograms.getSelected().equals(program.id)) {
+        System.out.println("Teleop Program selected: " + program.displayName);
+        teleopProgram = program;
+      }
     }
+    teleopProgram.teleopInit();
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    switch (teleopPrograms.getSelected()) {
-      case CustomMecanumTeleop.id:
-        customMecanumTeleop.teleopPeriodic();
-        break;
-      case ProvidedMecanumTeleop.id:
-        providedMecanumTeleop.teleopPeriodic();
-        break;
-      case SimulationBoard.id:
-        simulationBoard.teleopPeriodic();
-    }
+    teleopProgram.teleopPeriodic();
   }
 
   /** This function is called once when the robot is disabled. */
@@ -138,13 +147,23 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
   }
 
+  private TestInterface testProgram;
+
   /** This function is called once when test mode is enabled. */
   @Override
   public void testInit() {
+    for (TestInterface program : programFetcher.getTestPrograms()) {
+      if (teleopPrograms.getSelected().equals(program.id)) {
+        System.out.println("Test Program selected: " + program.displayName);
+        testProgram = program;
+      }
+    }
+    testProgram.testInit();
   }
 
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
+    testProgram.testPeriodic();
   }
 }
