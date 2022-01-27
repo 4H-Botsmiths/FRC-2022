@@ -2,6 +2,8 @@ package frc.robot.hardware;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.  WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.ADIS16448_IMU;
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -15,25 +17,27 @@ public class RobotHardware {
     /** Front Left brushless motor (ID: 0) */
     // public PWMSparkMax frontLeft = new PWMSparkMax(0);
     //public CANSparkMax frontLeft = new CANSparkMax(0, MotorType.kBrushless);
-    public TalonSRX frontLeft = new TalonSRX(0);
+    public  WPI_VictorSPX frontLeft = new  WPI_VictorSPX(1);
     /** Rear Left brushless motor (ID: 1) */
     // public PWMSparkMax rearLeft = new PWMSparkMax(1);
     //public CANSparkMax rearLeft = new CANSparkMax(0, MotorType.kBrushless);
-    public TalonSRX rearLeft = new TalonSRX(1);
+    public WPI_VictorSPX rearLeft = new   WPI_VictorSPX(2);
     /** Front Right brushless motor (ID: 2) */
     // public PWMSparkMax frontRight = new PWMSparkMax(2);
     //public CANSparkMax frontRight = new CANSparkMax(0, MotorType.kBrushless);
-    public TalonSRX frontRight = new TalonSRX(2);
+    public   WPI_VictorSPX frontRight = new   WPI_VictorSPX(3);
     /** Rear Right brushless motor (ID: 3) */
     // public PWMSparkMax rearRight = new PWMSparkMax(3);
     //public CANSparkMax rearRight = new CANSparkMax(0, MotorType.kBrushless);
-    public TalonSRX rearRight = new TalonSRX(3);
+    public   WPI_VictorSPX rearRight = new   WPI_VictorSPX(4);
     /** use this for the provided mecanum drive */
     public MecanumDrive drivetrain;
     /** Analog Gyro (Port: 0) */
     public AnalogGyro gyro = new AnalogGyro(0);
     /** Built-in accelerometer */
     public BuiltInAccelerometer Accel = new BuiltInAccelerometer();
+
+    public double Expiration = 0.02;
 
     /**
      * Use this class to control all motors and sensors See below for changes
@@ -51,6 +55,12 @@ public class RobotHardware {
         // You may need to change or remove this to match your robot.
         frontLeft.setInverted(true);
         rearLeft.setInverted(true);
+
+        frontLeft.setExpiration( Expiration);
+        rearLeft.setExpiration( Expiration);
+        frontRight.setExpiration( Expiration);
+        rearRight.setExpiration( Expiration);
+        
         //drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
     }
 
@@ -80,10 +90,10 @@ public class RobotHardware {
         double m2 = clip(y - x - z, -cap, cap);
         double m3 = clip(y - x + z, -cap, cap);
         double m4 = clip(y + x - z, -cap, cap);
-        frontLeft.set(ControlMode.Velocity, m1);
-        frontRight.set(ControlMode.Velocity, m2);
-        rearLeft.set(ControlMode.Velocity, m3);
-        rearRight.set(ControlMode.Velocity, m4);
+        frontLeft.set(m1);
+        frontRight.set(m2);
+        rearLeft.set(m3);
+        rearRight.set(m4);
     }
 
     /**

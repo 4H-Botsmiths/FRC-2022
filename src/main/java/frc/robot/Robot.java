@@ -4,7 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.MotorSafety;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 import frc.robot.hardware.*;
 import frc.robot.programs.interfaces.*;
@@ -17,10 +19,11 @@ import frc.robot.programs.interfaces.*;
  * project.
  */
 public class Robot extends TimedRobot {
-  /*
-   * public Robot() { super(0.03); // Periodic methods will now be called every 30
-   * ms. }
-   */
+  
+   public Robot() { 
+     super(0.03); // Periodic methods will now be called every 20ms. 
+  }
+   
   private final SendableChooser<String> teleopPrograms = new SendableChooser<>();
   private final SendableChooser<String> autonomousPrograms = new SendableChooser<>();
   private final SendableChooser<String> testPrograms = new SendableChooser<>();
@@ -83,7 +86,7 @@ public class Robot extends TimedRobot {
      * SmartDashboard.putNumber("Right Rear Temperature",
      * robot.rearRight.getMotorTemperature());
      */
-    limelight.updateData();
+    //limelight.updateData();
   }
 
   private AutonomousInterface autonomousProgram;

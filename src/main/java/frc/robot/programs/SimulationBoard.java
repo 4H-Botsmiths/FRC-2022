@@ -21,10 +21,10 @@ public class SimulationBoard extends TeleopInterface {
 
     @Override
     public void teleopPeriodic() {
-        robot.frontLeft.set(TalonSRXControlMode.Velocity, gamepad1.getLeftY());
-        robot.rearLeft.set(TalonSRXControlMode.Velocity, gamepad1.getLeftY());
-        robot.frontRight.set(TalonSRXControlMode.Velocity, gamepad1.getRightY());
-        robot.rearRight.set(TalonSRXControlMode.Velocity, gamepad1.getRightY());
+        robot.frontLeft.set(gamepad1.getLeftY());
+        robot.rearLeft.set(gamepad1.getLeftY());
+        robot.frontRight.set(gamepad1.getRightY());
+        robot.rearRight.set(gamepad1.getRightY());
     }
 
 }
