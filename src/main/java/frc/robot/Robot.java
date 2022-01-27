@@ -17,9 +17,9 @@ import frc.robot.programs.interfaces.*;
  * project.
  */
 public class Robot extends TimedRobot {
-  private double period = 0.03;
+  private double period = 0.04;
    public Robot() { 
-     super(0.03); // Periodic methods will now be called every 20ms. 
+     super(0.03); // Periodic methods will now be called every 30ms. 
   }
    
   private final SendableChooser<String> teleopPrograms = new SendableChooser<>();

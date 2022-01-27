@@ -1,7 +1,6 @@
 package frc.robot.programs;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.hardware.Gamepad1;
 import frc.robot.hardware.RobotHardware;
 import frc.robot.programs.interfaces.TeleopInterface;
 

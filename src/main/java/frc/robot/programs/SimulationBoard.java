@@ -13,12 +13,14 @@ public class SimulationBoard extends TeleopInterface {
     public SimulationBoard(RobotHardware Robot) {
         super(Robot, "Simulation Board", true);
     }
+
     @Override
     public void teleopInit() {
     }
 
     @Override
     public void teleopPeriodic() {
+        gamepad1.setRumble(Math.abs(gamepad1.getLeftY()), Math.abs(gamepad1.getRightY()));
         robot.frontLeft.set(gamepad1.getLeftY());
         robot.rearLeft.set(gamepad1.getLeftY());
         robot.frontRight.set(gamepad1.getRightY());

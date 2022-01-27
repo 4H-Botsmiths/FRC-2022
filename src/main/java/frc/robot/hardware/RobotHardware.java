@@ -104,15 +104,15 @@ public class RobotHardware {
      * @param y   the forward/backward affector
      * @param z   the rotation affector
      * @param cap the maximum speed
-     * @param g   the gyro
+     * @param gyro   the gyro
      */
-    public void RelativeDrive(double x, double y, double z, double cap, double g) {
-        g = -g / 45;
-        if (g > 2 || g < -2) {
-            g = g > 2 ? -g + 4 : -g - 4;
-            Drive((x + g * y) * -1, (y - g * x) * -1, z + 0, cap);
+    public void RelativeDrive(double x, double y, double z, double cap, double gyro) {
+        gyro = gyro / 45;
+        if (gyro > 2 || gyro < -2) {
+            gyro = gyro > 2 ? -gyro + 4 : -gyro - 4;
+            Drive((x + gyro * y) * -1, (y - gyro * x) * -1, z, cap);
         } else {
-            Drive(x - g * y, y + g * x, z + 0, cap);
+            Drive(x - gyro * y, y + gyro * x, z, cap);
         }
     }
 }
