@@ -1,7 +1,5 @@
 package frc.robot.programs;
 
-import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
-
 import frc.robot.hardware.RobotHardware;
 import frc.robot.programs.interfaces.TeleopInterface;
 
