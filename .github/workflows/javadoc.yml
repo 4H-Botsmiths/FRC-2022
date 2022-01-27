@@ -28,8 +28,8 @@ jobs:
         
       - name: Update FRC Package
         run: |
-          rm -r FRC-2022/frc
-          cp -r src/main/java/frc FRC-2022/frc
+          rm -r dist/frc
+          cp -r src/main/java/frc dist/frc
       - name: Remove Old Documentation
         run: rm -r docs
         
@@ -41,7 +41,7 @@ jobs:
         
       - name: Generate Javadoc
         run: |
-          cd FRC-2022
+          cd dist
           javadoc -subpackages frc -d ../docs -tag changes:a:"Changelog:"> ../javadoc.log
           cat ../javadoc.log
           rm ../javadoc.log
