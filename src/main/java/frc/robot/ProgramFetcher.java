@@ -10,10 +10,10 @@ public class ProgramFetcher {
         robot = Robot;
     }
     public TeleopInterface[] getTeleopPrograms(){
-        TeleopInterface[] programs = new TeleopInterface[3];
+        TeleopInterface[] programs = new TeleopInterface[2];
         programs[0] = new SimulationBoard(robot);
         programs[1] = new CustomMecanumTeleop(robot);
-        programs[2] = new ProvidedMecanumTeleop(robot);
+        //programs[2] = new ProvidedMecanumTeleop(robot);
         return programs;
     }
     public AutonomousInterface[] getAutonomousPrograms(){

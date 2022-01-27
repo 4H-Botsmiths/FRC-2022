@@ -32,7 +32,11 @@ public class ProvidedMecanumTeleop extends TeleopInterface {
             robot.drivetrain.driveCartesian(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX(),
                     SmartDashboard.getNumber("Gyro Dummy", 0));
         } else {
-            robot.drivetrain.driveCartesian(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX(), 0);
+            try{
+            robot.drivetrain.driveCartesian(1,0,0/*gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX()*/);
+            } catch(NullPointerException error){
+                System.out.print("Null Pointer Exeption: " + error);
+            }
         }
     }
 

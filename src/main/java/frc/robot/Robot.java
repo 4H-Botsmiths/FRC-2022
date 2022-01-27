@@ -4,9 +4,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.MotorSafety;
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Watchdog;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 import frc.robot.hardware.*;
 import frc.robot.programs.interfaces.*;
@@ -19,7 +17,7 @@ import frc.robot.programs.interfaces.*;
  * project.
  */
 public class Robot extends TimedRobot {
-  
+  private double period = 0.03;
    public Robot() { 
      super(0.03); // Periodic methods will now be called every 20ms. 
   }
@@ -27,8 +25,8 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> teleopPrograms = new SendableChooser<>();
   private final SendableChooser<String> autonomousPrograms = new SendableChooser<>();
   private final SendableChooser<String> testPrograms = new SendableChooser<>();
-  private RobotHardware robot = new RobotHardware();
-  private Limelight limelight = new Limelight();
+  private RobotHardware robot = new RobotHardware(period);
+//  private Limelight limelight = new Limelight();
   private ProgramFetcher programFetcher = new ProgramFetcher(robot);
 
   // private String selectedProgram;

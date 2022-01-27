@@ -1,13 +1,8 @@
 package frc.robot.hardware;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.  WPI_VictorSPX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.*;
 
-import edu.wpi.first.wpilibj.ADIS16448_IMU;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
 /**
@@ -33,12 +28,9 @@ public class RobotHardware {
     /** use this for the provided mecanum drive */
     public MecanumDrive drivetrain;
     /** Analog Gyro (Port: 0) */
-    public AnalogGyro gyro = new AnalogGyro(0);
+    //public AnalogGyro gyro = new AnalogGyro(0);
     /** Built-in accelerometer */
     public BuiltInAccelerometer Accel = new BuiltInAccelerometer();
-
-    public double Expiration = 0.02;
-
     /**
      * Use this class to control all motors and sensors See below for changes
      * 
@@ -50,18 +42,26 @@ public class RobotHardware {
      *          <p>
      *          changed init function to constructor
      */
-    public RobotHardware() {
-        // Invert the left side motors.
-        // You may need to change or remove this to match your robot.
-        frontLeft.setInverted(true);
-        rearLeft.setInverted(true);
+    public RobotHardware(double period) {
 
-        frontLeft.setExpiration( Expiration);
-        rearLeft.setExpiration( Expiration);
-        frontRight.setExpiration( Expiration);
-        rearRight.setExpiration( Expiration);
+        frontLeft.setExpiration(period);
+        rearLeft.setExpiration(period);
+        frontRight.setExpiration(period);
+        rearRight.setExpiration(period);
+        frontLeft.setSafetyEnabled(true);
+        frontRight.setSafetyEnabled(true);
+        rearLeft.setSafetyEnabled(true);
+        rearRight.setSafetyEnabled(true);
         
-        //drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
+        drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
+        drivetrain.setSafetyEnabled(false);
+    }
+    public void feedAllMotors(){
+        frontLeft.feed();
+        frontRight.feed();
+        rearLeft.feed();
+        rearRight.feed();
+        //drivetrain.feed();
     }
 
     /**
@@ -94,6 +94,7 @@ public class RobotHardware {
         frontRight.set(m2);
         rearLeft.set(m3);
         rearRight.set(m4);
+        //feedAllMotors();
     }
 
     /**
