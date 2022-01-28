@@ -88,8 +88,8 @@ public class Robot extends TimedRobot {
     // limelight.updateData();
     SmartDashboard.putNumber("Voltage", robot.pdp.getVoltage());
     SmartDashboard.putNumber("Temperature", (int)(robot.pdp.getTemperature() * 1.8 + 32));
-    for (int i = 0; i < 16; i++) {
-      SmartDashboard.putNumber("Ampage Port: " + i, robot.pdp.getCurrent(i));
+    for (int i = 0; i < robot.spxMotors.length; i++) {
+      SmartDashboard.putNumber("Volatge Port: " + i, robot.spxMotors[i].getBusVoltage());
     }
     if(gamepad1.getStartButtonReleased()){
       robot.pdp.clearStickyFaults();

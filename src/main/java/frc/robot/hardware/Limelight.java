@@ -1,6 +1,7 @@
 package frc.robot.hardware;
 
 import edu.wpi.first.networktables.*;
+import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -8,123 +9,111 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * limelight
  */
 public class Limelight {
-    /** update the limelight network table */
-    public NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
-    /** Whether the limelight has any valid targets (0 or 1) */
-    public NetworkTableEntry tv = table.getEntry("tv");
-    /**
-     * Horizontal Offset From Crosshair To Target (LL1: -27 degrees to 27 degrees |
-     * LL2: -29.8 to 29.8 degrees)
-     */
-    public NetworkTableEntry tx = table.getEntry("tx");
-    /**
-     * Vertical Offset From Crosshair To Target (LL1: -20.5 degrees to 20.5 degrees
-     * | LL2: -24.85 to 24.85 degrees)
-     */
-    public NetworkTableEntry ty = table.getEntry("ty");
-    /** Target Area (0% of image to 100% of image) */
-    public NetworkTableEntry ta = table.getEntry("ta");
-    /** Skew or rotation (-90 degrees to 0 degrees) */
-    public NetworkTableEntry ts = table.getEntry("ts");
-    /**
-     * The pipeline’s latency contribution (ms) Add at least 11ms for image capture
-     * latency.
-     */
-    public NetworkTableEntry tl = table.getEntry("tl");
-    /** Sidelength of shortest side of the fitted bounding box (pixels) */
-    public NetworkTableEntry tshort = table.getEntry("tshort");
-    /** Sidelength of longest side of the fitted bounding box (pixels) */
-    public NetworkTableEntry tlong = table.getEntry("tlong");
-    /** Horizontal sidelength of the rough bounding box (0 - 320 pixels) */
-    public NetworkTableEntry thor = table.getEntry("thor");
-    /** Vertical sidelength of the rough bounding box (0 - 320 pixels) */
-    public NetworkTableEntry tvert = table.getEntry("tvert");
-    /** True active pipeline index of the camera (0 .. 9) */
-    public NetworkTableEntry getpipe = table.getEntry("getpipe");
-    /**
-     * Results of a 3D position solution, 6 numbers: Translation (x,y,y)
-     * Rotation(pitch,yaw,roll)
-     */
-    public NetworkTableEntry camtran = table.getEntry("camtran");
-
-    // =================================================================
-
-    /** Whether the limelight has any valid targets (0 or 1) */
-    public boolean v = tv.getDouble(0) == 1;
-    /**
-     * Horizontal Offset From Crosshair To Target (LL1: -27 degrees to 27 degrees |
-     * LL2: -29.8 to 29.8 degrees)
-     */
-    public double x = tx.getDouble(0);
-    /**
-     * Vertical Offset From Crosshair To Target (LL1: -20.5 degrees to 20.5 degrees
-     * | LL2: -24.85 to 24.85 degrees)
-     */
-    public double y = ty.getDouble(0);
-    /** Target Area (0% of image to 100% of image) */
-    public double a = ta.getDouble(0);
-    /** Skew or rotation (-90 degrees to 0 degrees) */
-    public double s = ts.getDouble(0);
-    /**
-     * The pipeline’s latency contribution (ms) Add at least 11ms for image capture
-     * latency.
-     */
-    public double l = tl.getDouble(0);
-    /** Sidelength of shortest side of the fitted bounding box (pixels) */
-    public double short_ = tshort.getDouble(0);
-    /** Sidelength of longest side of the fitted bounding box (pixels) */
-    public double long_ = tlong.getDouble(0);
-    /** Horizontal sidelength of the rough bounding box (0 - 320 pixels) */
-    public double hor = thor.getDouble(0);
-    /** Vertical sidelength of the rough bounding box (0 - 320 pixels) */
-    public double vert = tvert.getDouble(0);
-    /** True active pipeline index of the camera (0 .. 9) */
-    public double pipe = getpipe.getDouble(0);
-    /**
-     * Results of a 3D position solution, 6 numbers: Translation (x,y,y)
-     * Rotation(pitch,yaw,roll)
-     */
-    public double tran = camtran.getDouble(0);
-
-    // ----------------------------------------------------------------
-    /**
-     * This updates all of the Limelight values then updates the smartdashboard
-     */
-    public void updateData() {
-        v = tv.getDouble(0) == 1;
-        x = tx.getDouble(0);
-        y = ty.getDouble(0);
-        a = ta.getDouble(0);
-        s = ts.getDouble(0);
-        l = tl.getDouble(0);
-        short_ = tshort.getDouble(0);
-        long_ = tlong.getDouble(0);
-        hor = thor.getDouble(0);
-        vert = tvert.getDouble(0);
-        pipe = getpipe.getDouble(0);
-        tran = camtran.getDouble(0);
-
-        SmartDashboard.putBoolean("Limelight Targets", v);
-        if (v) {
-            SmartDashboard.putNumber("Limelight X", x);
-            SmartDashboard.putNumber("Limelight Y", y);
-            SmartDashboard.putNumber("Limlight Area", a);
-            SmartDashboard.putNumber("Limelight Skew/Rotation", s);
-            SmartDashboard.putNumber("Limelight Latency", l);
-            SmartDashboard.putNumber("Limelight Shortest Sidelength", short_);
-            SmartDashboard.putNumber("Limelight Longest Sidelength", long_);
-            SmartDashboard.putNumber("Limelight Horizontal Sidelength", hor);
-            SmartDashboard.putNumber("Limelight Vertical Sidelength", vert);
-            SmartDashboard.putNumber("Limelight pipe index 0..9", pipe);
-            SmartDashboard.putNumber("Limelight 3D position", tran);
-        }
+    /** Whether the limelight has any valid targets */
+    public boolean tv() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0) == 1;
     }
-public double get(String variable){
-    return NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).getDouble(0);
-}
-public void set(String variable, double mode){
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).setNumber(mode);
-}
+
+    /**
+     * Horizontal Offset From Crosshair To Target (-29.8 to 29.8 degrees)
+     */
+    public double tx() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+    }
+
+    /**
+     * Vertical Offset From Crosshair To Target (-24.85 to 24.85 degrees)
+     */
+    public double ty() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+    }
+
+    /** Target Area (0% of image to 100% of image) */
+    public double ta() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+    }
+
+    /** Skew or rotation (-90 degrees to 0 degrees) */
+    public double ts() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0);
+    }
+
+    /**
+     * The pipeline’s latency contribution (ms).
+     */
+    public double tl() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(0);
+    }
+
+    /**
+     * The image capture latency (ms).
+     */
+    public double til() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(-11) + 11;
+    }
+
+    /** Sidelength of shortest side of the fitted bounding box (pixels) */
+    public double tshort() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tshort").getDouble(0);
+    }
+
+    /** Sidelength of longest side of the fitted bounding box (pixels) */
+    public double tlong() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tlong").getDouble(0);
+    }
+
+    /** Horizontal sidelength of the rough bounding box (0 - 320 pixels) */
+    public double thor() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("thor").getDouble(0);
+    }
+
+    /** Vertical sidelength of the rough bounding box (0 - 320 pixels) */
+    public double tvert() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tvert").getDouble(0);
+    }
+
+    /** True active pipeline index of the camera (0 .. 9) */
+    public double getpipe() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("getpipe").getDouble(0);
+    }
+
+    /**
+     * Results of a 3D position solution, 6 numbers: Translation (x,y,y)
+     * Rotation(pitch,yaw,roll)
+     */
+    public Number[] camtran() {
+        Number[] position = new Number[6];
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getNumberArray(position);
+    }
+
+    /**
+     * Get the average HSV color underneath the crosshair region as a NumberArray
+     */
+    public Number[] tc() {
+        Number[] defaultNum = new Number[3];
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tc").getNumberArray(defaultNum);
+    }
+
+    /** Get value from network table */
+    public double getRaw(String variable) {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).getDouble(0);
+    }
+
+    /** Set value in network table */
+    public void setRaw(String variable, double value) {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).setNumber(value);
+    }
+
+    public double[] numberToDouble(Number[] numbers) {
+        double[] doubles = new double[numbers.length];
+        int i = 0;
+        for (Number number : numbers) {
+            doubles[i] = number.doubleValue();
+            i++;
+        }
+        return doubles;
+    }
+
     /**
      * Set Limelight's LED State
      * 
@@ -139,7 +128,7 @@ public void set(String variable, double mode){
      *             3: force on
      */
     public void ledMode(int mode) {
-        table.getEntry("ledMode").setNumber(mode);
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(mode);
     }
 
     /**
@@ -152,7 +141,7 @@ public void set(String variable, double mode){
      *             1: Driver Camera
      */
     public void camMode(int mode) {
-        table.getEntry("camMode").setNumber(mode);
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(mode);
     }
 
     /**
@@ -163,7 +152,7 @@ public void set(String variable, double mode){
      *                 Select Pipeline 0..9
      */
     public void pipeline(int pipeline) {
-        table.getEntry("pipeline").setNumber(pipeline);
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
     }
 
     /**
@@ -178,7 +167,7 @@ public void set(String variable, double mode){
      *             2: PiP Secoundary (Primary Stream In Lower Right Corner)
      */
     public void stream(int mode) {
-        table.getEntry("stream").setNumber(mode);
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(mode);
     }
 
     /**
@@ -191,6 +180,27 @@ public void set(String variable, double mode){
      *             1: Take Two Snapshots Per Second
      */
     public void snapshot(int mode) {
-        table.getEntry("snapshot").setNumber(mode);
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(mode);
+    }
+
+    /** Updates SmartDashboard */
+    public void updateSmartDashboard() {
+        SmartDashboard.putBoolean("Target Visible", tv());
+        if (tv()) {
+            SmartDashboard.putNumber("Target x (-29.8 to 29.8 degrees)", tx());
+            SmartDashboard.putNumber("Target y (-24.85 to 24.85 degrees)", ty());
+            SmartDashboard.putNumber("Target Area (percent)", ta());
+            SmartDashboard.putNumber("Target Skew/Rotation (-90 to 0 degrees)", ts());
+            SmartDashboard.putNumber("Pipeline Latency (ms)", tl());
+            SmartDashboard.putNumber("Image Latency (ms)", til());
+            SmartDashboard.putNumber("Shortest Sidelength (pixels)", tshort());
+            SmartDashboard.putNumber("Longest Sidelength (pixels)", tlong());
+            SmartDashboard.putNumber("Horizontal Sidelength (0 to 320 pixels)", thor());
+            SmartDashboard.putNumber("Vertical Sidelength (0 to 320 pixels)", tvert());
+            SmartDashboard.putNumber("Pipeline (0 to 9)", getpipe());
+            SmartDashboard.putNumberArray("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))",
+                    numberToDouble(camtran()));
+            SmartDashboard.putNumberArray("Avergae HSV Color (h, s, v)", numberToDouble(tc()));
+        }
     }
 }

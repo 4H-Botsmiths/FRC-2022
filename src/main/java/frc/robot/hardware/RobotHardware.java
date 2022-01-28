@@ -140,7 +140,7 @@ public class RobotHardware {
         }
 
         public void setSafe(double speed) {
-            double multiplier = pdp.getVoltage() / RobotHardware.targetVoltage;
+            double multiplier = Math.pow(pdp.getVoltage() / RobotHardware.targetVoltage, 2);
             set(speed * multiplier);
         }
     }
