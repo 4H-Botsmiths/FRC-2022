@@ -119,7 +119,12 @@ public class Limelight {
             SmartDashboard.putNumber("Limelight 3D position", tran);
         }
     }
-
+public double get(String variable){
+    return NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).getDouble(0);
+}
+public void set(String variable, double mode){
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).setNumber(mode);
+}
     /**
      * Set Limelight's LED State
      * 

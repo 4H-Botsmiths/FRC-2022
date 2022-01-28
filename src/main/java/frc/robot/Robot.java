@@ -18,17 +18,18 @@ import frc.robot.programs.interfaces.*;
  */
 public class Robot extends TimedRobot {
   private double period = 0.04;
-   public Robot() { 
-     super(0.03); // Periodic methods will now be called every 30ms. 
+
+  public Robot() {
+    super(0.03); // Periodic methods will now be called every 30ms.
   }
-   
+
   private final SendableChooser<String> teleopPrograms = new SendableChooser<>();
   private final SendableChooser<String> autonomousPrograms = new SendableChooser<>();
   private final SendableChooser<String> testPrograms = new SendableChooser<>();
   private RobotHardware robot = new RobotHardware(period);
-//  private Limelight limelight = new Limelight();
+  // private Limelight limelight = new Limelight();
   private ProgramFetcher programFetcher = new ProgramFetcher(robot);
-
+  private Gamepad1 gamepad1 = new Gamepad1();
   // private String selectedProgram;
   /**
    * This function is run when the robot is first started up and should be used
@@ -84,11 +85,14 @@ public class Robot extends TimedRobot {
      * SmartDashboard.putNumber("Right Rear Temperature",
      * robot.rearRight.getMotorTemperature());
      */
-    //limelight.updateData();
+    // limelight.updateData();
     SmartDashboard.putNumber("Voltage", robot.pdp.getVoltage());
-    SmartDashboard.putNumber("Temperature", robot.pdp.getTemperature());
-    for (int i = 0; i<16; i++){
-      SmartDashboard.putNumber("Ampage Port: "+ i, robot.pdp.getCurrent(i));
+    SmartDashboard.putNumber("Temperature", (int)(robot.pdp.getTemperature() * 1.8 + 32));
+    for (int i = 0; i < 16; i++) {
+      SmartDashboard.putNumber("Ampage Port: " + i, robot.pdp.getCurrent(i));
+    }
+    if(gamepad1.getStartButtonReleased()){
+      robot.pdp.clearStickyFaults();
     }
   }
 

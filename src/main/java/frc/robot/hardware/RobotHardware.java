@@ -62,6 +62,8 @@ public class RobotHardware {
         drivetrain = new MecanumDrivetrain(frontLeft, rearLeft, frontRight, rearRight);
         drivetrain.setSafetyEnabled(true);
         drivetrain.setExpiration(period);
+
+        pdp.clearStickyFaults();
     }
 
     public class MecanumDrivetrain extends MecanumDrive {
