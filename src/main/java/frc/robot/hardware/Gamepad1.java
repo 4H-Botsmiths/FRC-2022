@@ -13,8 +13,8 @@ public class Gamepad1 extends XboxController {
     super(0);
   }
 
-  public RumbleType LeftRumble = RumbleType.kRightRumble;
-  public RumbleType RightRumble = RumbleType.kLeftRumble;
+  public RumbleType LeftRumble = RumbleType.kLeftRumble;
+  public RumbleType RightRumble = RumbleType.kRightRumble;
 
   public void setRumble(double left, double right) {
     setRumble(LeftRumble, left < 0 ? 0 : left > 1 ? 1 : left);

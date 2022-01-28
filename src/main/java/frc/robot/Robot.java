@@ -85,6 +85,11 @@ public class Robot extends TimedRobot {
      * robot.rearRight.getMotorTemperature());
      */
     //limelight.updateData();
+    SmartDashboard.putNumber("Voltage", robot.pdp.getVoltage());
+    SmartDashboard.putNumber("Temperature", robot.pdp.getTemperature());
+    for (int i = 0; i<16; i++){
+      SmartDashboard.putNumber("Ampage Port: "+ i, robot.pdp.getCurrent(i));
+    }
   }
 
   private AutonomousInterface autonomousProgram;
