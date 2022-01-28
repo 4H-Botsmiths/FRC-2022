@@ -6,7 +6,10 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
-    paths: [ src/**, .github/workflows/javadoc.yml ] 
+    paths: [ src/**, .github/workflows/build.yml ] 
+  pull_request:
+    branches: [ main ]
+    paths: [ src/** , .github/workflows/build.yml ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -14,7 +17,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  Javadoc:
+  Build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -23,26 +26,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         
-      - name: Update FRC Package
-        run: |
-          rm -r dist/frc
-          cp -r src/main/java/frc dist/frc
-      - name: Remove Old Documentation
-        run: rm -r docs
-        
-      - name: Re-Create Docs Folder
-        run: mkdir docs
-        
-      - name: Re-inject Theme
-        run: 'echo "theme: jekyll-theme-tactile" > docs/_config.yml'
-        
-      - name: Generate Javadoc
-        run: |
-          cd dist
-          javadoc -subpackages frc -d ../docs -tag changes:a:"Changelog:"> ../javadoc.log
-          cat ../javadoc.log
-          rm ../javadoc.log
-          
+      - name: Build the project
+        run: gradlew build
+
+
       - name: Commit files
         id: commit
         shell: bash
@@ -63,7 +50,7 @@ jobs:
           fi
 
       - name: Push changes
-        if: steps.commit.outputs.push == 'true'
+        if: steps.commit.outputs.push == 'true' && github.event_name == 'push'
         uses: ad-m/github-push-action@master
         with:
            github_token: ${{ secrets.GITHUB_TOKEN }}
