@@ -27,7 +27,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> autonomousPrograms = new SendableChooser<>();
   private final SendableChooser<String> testPrograms = new SendableChooser<>();
   private RobotHardware robot = new RobotHardware(period);
-  // private Limelight limelight = new Limelight();
+  private Limelight limelight = new Limelight();
   private ProgramFetcher programFetcher = new ProgramFetcher(robot);
   private Gamepad1 gamepad1 = new Gamepad1();
   // private String selectedProgram;
@@ -85,11 +85,11 @@ public class Robot extends TimedRobot {
      * SmartDashboard.putNumber("Right Rear Temperature",
      * robot.rearRight.getMotorTemperature());
      */
-    // limelight.updateData();
+    limelight.updateSmartDashboard();
     SmartDashboard.putNumber("Voltage", robot.pdp.getVoltage());
     SmartDashboard.putNumber("Temperature", (int)(robot.pdp.getTemperature() * 1.8 + 32));
     for (int i = 0; i < robot.spxMotors.length; i++) {
-      SmartDashboard.putNumber("Volatge Port: " + i, robot.spxMotors[i].getBusVoltage());
+      SmartDashboard.putNumber("Voltage Port: " + i, robot.spxMotors[i].getBusVoltage());
     }
     if(gamepad1.getStartButtonReleased()){
       robot.pdp.clearStickyFaults();
