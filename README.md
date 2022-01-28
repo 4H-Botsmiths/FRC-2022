@@ -4,9 +4,10 @@
 <span align="center">
 
 # [FRC Team 4309](https://bytebybyte.wixsite.com/botsmiths)
-this is a repo for the 2022 Botsmiths FRC 4309 robot code
-
 [![Build](https://github.com/4H-Botsmiths/FRC-2022/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/4H-Botsmiths/FRC-2022/actions/workflows/build.yml)
+this is a repo for the 2022 Botsmiths FRC 4309 robot code
+Code 
+
 [![Javadoc Generator](https://github.com/4H-Botsmiths/FRC-2022/actions/workflows/javadoc.yml/badge.svg)](https://github.com/4H-Botsmiths/FRC-2022/actions/workflows/javadoc.yml)
 [![pages-build-deployment](https://github.com/4H-Botsmiths/FRC-2022/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/4H-Botsmiths/FRC-2022/actions/workflows/pages/pages-build-deployment)
 
