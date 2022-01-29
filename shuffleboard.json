@@ -273,6 +273,17 @@
               "imageWidth": 0,
               "imageHeight": 0
             }
+          },
+          "0,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Analog Gyro",
+              "_title": "Analog Gyro"
+            }
           }
         }
       }
@@ -418,9 +429,9 @@
     }
   ],
   "windowGeometry": {
-    "x": -8.0,
-    "y": -8.0,
-    "width": 1616.0,
-    "height": 876.0
+    "x": -6.400000095367432,
+    "y": -6.400000095367432,
+    "width": 1548.800048828125,
+    "height": 836.7999877929688
   }
 }

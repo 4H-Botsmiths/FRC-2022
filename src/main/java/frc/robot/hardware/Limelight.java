@@ -1,7 +1,6 @@
 package frc.robot.hardware;
 
 import edu.wpi.first.networktables.*;
-import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
