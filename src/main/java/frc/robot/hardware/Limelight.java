@@ -200,7 +200,7 @@ public class Limelight {
             /*SmartDashboard.putNumberArray("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))",
                     numberToDouble(camtran()));
                     */
-            SmartDashboard.putNumberArray("Avergae HSV Color (h, s, v)", numberToDouble(tc()));
+            //SmartDashboard.putNumberArray("Avergae HSV Color (h, s, v)", numberToDouble(tc()));
         }
     }
 }

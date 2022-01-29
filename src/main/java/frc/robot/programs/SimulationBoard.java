@@ -1,5 +1,6 @@
 package frc.robot.programs;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.hardware.RobotHardware;
 import frc.robot.programs.interfaces.TeleopInterface;
 
@@ -20,8 +21,23 @@ public class SimulationBoard extends TeleopInterface {
 
     @Override
     public void teleopPeriodic() {
+        if(gamepad1.getAButtonPressed()){
+            robot.piston1.set(Value.kForward);
+        } else if(gamepad1.getAButtonReleased()){
+            robot.piston1.set(Value.kReverse);
+        } else {
+            robot.piston1.set(Value.kOff);
+        }
         gamepad1.setRumble(Math.abs(gamepad1.getLeftY()), Math.abs(gamepad1.getRightY()));
         robot.drivetrain.TankDrive(Math.pow(gamepad1.getLeftY(), 3), Math.pow(gamepad1.getRightY(), 3));
+        /*if (gamepad1.getRightBumper()) {
+            robot.piston1.set(Value.kForward);
+        } else if (gamepad1.getLeftBumper()) {
+            robot.piston1.set(Value.kReverse);
+        } else if (!gamepad1.getRightBumper() && !gamepad1.getLeftBumper()){
+            robot.piston1.set(Value.kOff);
+        }
+        */
     }
 
 }

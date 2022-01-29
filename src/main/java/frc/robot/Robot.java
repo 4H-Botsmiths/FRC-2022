@@ -91,10 +91,14 @@ public class Robot extends TimedRobot {
     for (int i = 0; i < robot.spxMotors.length; i++) {
       SmartDashboard.putNumber("Voltage Port: " + i, robot.spxMotors[i].getBusVoltage());
     }
-    SmartDashboard.putNumber("Analog Gyro", robot.gyro.getAngle2());
+    //SmartDashboard.putNumber("Gyro Angle", robot.gyro.getAngle2());
+    //SmartDashboard.putNumber("Gyro Rotation", robot.gyro.getRotation2d2());
+    //SmartDashboard.putBoolean("Gyro Connected?", robot.gyro.isConnected());
     if(gamepad1.getStartButtonReleased()){
       robot.pdp.clearStickyFaults();
       limelight.ledMode(0);
+      //robot.gyro.calibrate();
+
     }else if(gamepad1.getBackButtonReleased()){
       limelight.ledMode(1);
     }

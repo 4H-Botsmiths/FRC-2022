@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.*;
 
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
@@ -31,14 +32,18 @@ public class RobotHardware {
     /** use this for the provided mecanum drive */
     public MecanumDrivetrain drivetrain;
     /** Analog Gyro (Port: 0) */
-    public Gyro gyro = new Gyro();
-    //public Gyro gyro = new Gyro(0);
+    //public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+    //public Gyro gyro = new Gyro();
     /** Built-in accelerometer */
     public BuiltInAccelerometer Accel = new BuiltInAccelerometer();
     /** Power Distribution Panel */
-    public PowerDistribution pdp = new PowerDistribution();
+    public PowerDistribution pdp = new PowerDistribution(5, ModuleType.kCTRE);
     /** Battery Running Voltage */
     public static double targetVoltage = 12;
+    /** Pneumatic Control Module */
+    public PneumaticsControlModule pcm = new PneumaticsControlModule();
+    /** Piston 1 */
+    public DoubleSolenoid piston1 = pcm.makeDoubleSolenoid(4, 5);
 
     /**
      * Use this class to control all motors and sensors See below for changes
@@ -65,10 +70,17 @@ public class RobotHardware {
         drivetrain.setExpiration(period);
 
         pdp.clearStickyFaults();
+
     }
     public class Gyro extends ADXRS450_Gyro {
+        public Gyro(){
+            super();
+        }
         public double getAngle2(){
             return getAngle() % 360;
+        }
+        public double getRotation2d2(){
+            return getRotation2d().getDegrees() % 360;
         }
         
     }
