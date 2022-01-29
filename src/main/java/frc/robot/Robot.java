@@ -94,13 +94,14 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putNumber("Gyro Angle", robot.gyro.getAngle2());
     //SmartDashboard.putNumber("Gyro Rotation", robot.gyro.getRotation2d2());
     //SmartDashboard.putBoolean("Gyro Connected?", robot.gyro.isConnected());
-    if(gamepad1.getStartButtonReleased()){
+    if(gamepad1.getStartButtonPressed()){
       robot.pdp.clearStickyFaults();
       limelight.ledMode(0);
       //robot.gyro.calibrate();
-
-    }else if(gamepad1.getBackButtonReleased()){
+      robot.pcm.enableCompressorDigital();
+    }else if(gamepad1.getBackButtonPressed()){
       limelight.ledMode(1);
+      robot.pcm.disableCompressor();
     }
   }
 

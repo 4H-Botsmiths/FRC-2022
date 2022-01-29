@@ -43,7 +43,7 @@ public class RobotHardware {
     /** Pneumatic Control Module */
     public PneumaticsControlModule pcm = new PneumaticsControlModule();
     /** Piston 1 */
-    public DoubleSolenoid piston1 = pcm.makeDoubleSolenoid(4, 5);
+    public DoubleSolenoid piston1 = pcm.makeDoubleSolenoid(5, 4);
 
     /**
      * Use this class to control all motors and sensors See below for changes
