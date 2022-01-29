@@ -102,6 +102,8 @@ public class Robot extends TimedRobot {
     }else if(gamepad1.getBackButtonPressed()){
       limelight.ledMode(1);
       robot.pcm.disableCompressor();
+    } else if(!gamepad1.getStartButton() && robot.pdp.getVoltage() < 10){
+      robot.pcm.disableCompressor();
     }
   }
 
