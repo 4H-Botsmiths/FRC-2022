@@ -6,7 +6,7 @@ import frc.robot.programs.interfaces.AutonomousInterface;
 
 public class WillAuto extends AutonomousInterface {
     public WillAuto(RobotHardware Robot) {
-        super(Robot, "William's Auto Code");
+        super(Robot, "William's Auto Code", true);
     }
 
     @Override
@@ -15,7 +15,6 @@ public class WillAuto extends AutonomousInterface {
 
     @Override
     public void autonomousPeriodic() {
-        robot.drivetrain.Drive(1, 1, 0, 1);
+        robot.drivetrain.Drive(0, 1, 0, 1);
     }
-
 }

@@ -7,12 +7,12 @@ import frc.robot.programs.interfaces.TeleopInterface;
 public class JoesFirstTeleop extends TeleopInterface {
 
     public JoesFirstTeleop(RobotHardware Robot) {
-        super(Robot, "Testing123");
+        super(Robot, "JoeTesting123");
     }
-    
+
     @Override
     public void teleopInit() {
-    
+
     }
 
     @Override
@@ -23,5 +23,6 @@ public class JoesFirstTeleop extends TeleopInterface {
         if (gamepad1.getLeftX() < 0) {
             robot.piston1.set(Value.kReverse);
         }
+        robot.drivetrain.feed();
     }
 }
