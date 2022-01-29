@@ -198,8 +198,9 @@ public class Limelight {
             SmartDashboard.putNumber("Horizontal Sidelength (0 to 320 pixels)", thor());
             SmartDashboard.putNumber("Vertical Sidelength (0 to 320 pixels)", tvert());
             SmartDashboard.putNumber("Pipeline (0 to 9)", getpipe());
-            SmartDashboard.putNumberArray("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))",
+            /*SmartDashboard.putNumberArray("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))",
                     numberToDouble(camtran()));
+                    */
             SmartDashboard.putNumberArray("Avergae HSV Color (h, s, v)", numberToDouble(tc()));
         }
     }
