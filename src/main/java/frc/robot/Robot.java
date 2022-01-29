@@ -93,6 +93,9 @@ public class Robot extends TimedRobot {
     }
     if(gamepad1.getStartButtonReleased()){
       robot.pdp.clearStickyFaults();
+      limelight.ledMode(0);
+    }else if(gamepad1.getBackButtonReleased()){
+      limelight.ledMode(1);
     }
   }
 

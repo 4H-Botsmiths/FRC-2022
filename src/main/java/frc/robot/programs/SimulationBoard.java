@@ -21,7 +21,7 @@ public class SimulationBoard extends TeleopInterface {
     @Override
     public void teleopPeriodic() {
         gamepad1.setRumble(Math.abs(gamepad1.getLeftY()), Math.abs(gamepad1.getRightY()));
-        robot.drivetrain.TankDrive(gamepad1.getLeftY(), gamepad1.getRightY());
+        robot.drivetrain.TankDrive(Math.pow(gamepad1.getLeftY(), 3), Math.pow(gamepad1.getRightY(), 3));
     }
 
 }

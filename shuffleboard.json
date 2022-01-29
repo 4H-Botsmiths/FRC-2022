@@ -66,7 +66,7 @@
               "_title": "Relative Drive"
             }
           },
-          "5,0": {
+          "5,2": {
             "size": [
               3,
               3
@@ -75,12 +75,13 @@
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/Voltage",
               "_title": "Voltage",
-              "Graph/Visible time": 30.0,
+              "Graph/Visible time": 300.0,
               "Graph/X-axis auto scrolling": true,
-              "Y-axis/Automatic bounds": true,
+              "Y-axis/Automatic bounds": false,
               "Y-axis/Upper bound": 13.0,
               "Y-axis/Lower bound": 8.0,
-              "Y-axis/Unit": "volts"
+              "Y-axis/Unit": "volts",
+              "Visible data/SmartDashboard/Voltage": true
             }
           },
           "4,2": {
@@ -97,16 +98,180 @@
               "Visuals/Show value": true
             }
           },
-          "8,0": {
+          "5,0": {
             "size": [
               3,
-              3
+              2
             ],
             "content": {
               "_type": "Mecanum Drivebase",
               "_source0": "network_table:///LiveWindow/Ungrouped/MecanumDrive[1]",
               "_title": "MecanumDrive[1]",
               "Visuals/Show velocity vectors": true
+            }
+          },
+          "8,0": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Grid Layout",
+              "_title": "Power Distribution Panel",
+              "Layout/Number of columns": 2,
+              "Layout/Number of rows": 2,
+              "Layout/Label position": "LEFT",
+              "_children": {
+                "0,0": {
+                  "_type": "Voltage View",
+                  "_source0": "network_table:///SmartDashboard/Voltage Port: 0",
+                  "_title": "Voltage Port: 0",
+                  "Range/Min": 6.0,
+                  "Range/Max": 12.0,
+                  "Range/Center": 0.0,
+                  "Visuals/Orientation": "VERTICAL",
+                  "Visuals/Number of tick marks": 7
+                },
+                "0,1": {
+                  "_type": "Voltage View",
+                  "_source0": "network_table:///SmartDashboard/Voltage Port: 2",
+                  "_title": "Voltage Port: 2",
+                  "Range/Min": 6.0,
+                  "Range/Max": 12.0,
+                  "Range/Center": 0.0,
+                  "Visuals/Orientation": "VERTICAL",
+                  "Visuals/Number of tick marks": 7
+                },
+                "1,0": {
+                  "_type": "Voltage View",
+                  "_source0": "network_table:///SmartDashboard/Voltage Port: 1",
+                  "_title": "Voltage Port: 1",
+                  "Range/Min": 6.0,
+                  "Range/Max": 12.0,
+                  "Range/Center": 0.0,
+                  "Visuals/Orientation": "VERTICAL",
+                  "Visuals/Number of tick marks": 7
+                },
+                "1,1": {
+                  "_type": "Voltage View",
+                  "_source0": "network_table:///SmartDashboard/Voltage Port: 3",
+                  "_title": "Voltage Port: 3",
+                  "Range/Min": 6.0,
+                  "Range/Max": 12.0,
+                  "Range/Center": 0.0,
+                  "Visuals/Orientation": "VERTICAL",
+                  "Visuals/Number of tick marks": 7
+                }
+              }
+            }
+          },
+          "8,3": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "Limelight",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/Target Visible",
+                  "_title": "Target Visible",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Target Skew/Rotation (-90 to 0 degrees)",
+                  "_title": "Target Skew/Rotation (-90 to 0 degrees)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Pipeline (0 to 9)",
+                  "_title": "Pipeline (0 to 9)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Target Area (percent)",
+                  "_title": "Target Area (percent)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Target y (-24.85 to 24.85 degrees)",
+                  "_title": "Target y (-24.85 to 24.85 degrees)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Vertical Sidelength (0 to 320 pixels)",
+                  "_title": "Vertical Sidelength (0 to 320 pixels)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Target x (-29.8 to 29.8 degrees)",
+                  "_title": "Target x (-29.8 to 29.8 degrees)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Longest Sidelength (pixels)",
+                  "_title": "Longest Sidelength (pixels)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Horizontal Sidelength (0 to 320 pixels)",
+                  "_title": "Horizontal Sidelength (0 to 320 pixels)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Shortest Sidelength (pixels)",
+                  "_title": "Shortest Sidelength (pixels)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Image Latency (ms)",
+                  "_title": "Image Latency (ms)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Pipeline Latency (ms)",
+                  "_title": "Pipeline Latency (ms)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/limelight_PipelineName",
+                  "_title": "limelight_PipelineName"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/limelight_Stream",
+                  "_title": "limelight_Stream"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/limelight_Interface",
+                  "_title": "limelight_Interface"
+                }
+              ]
+            }
+          },
+          "2,3": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://limelight",
+              "_title": "limelight",
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": -1,
+              "imageWidth": 0,
+              "imageHeight": 0
             }
           }
         }
