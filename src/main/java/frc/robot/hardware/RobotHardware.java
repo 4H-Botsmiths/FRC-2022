@@ -31,7 +31,7 @@ public class RobotHardware {
     /** use this for the provided mecanum drive */
     public MecanumDrivetrain drivetrain;
     /** Analog Gyro (Port: 0) */
-    public AnalogGyro gyro = new Gyro(0);
+    public Gyro gyro = new Gyro(0);
     /** Built-in accelerometer */
     public BuiltInAccelerometer Accel = new BuiltInAccelerometer();
     /** Power Distribution Panel */
