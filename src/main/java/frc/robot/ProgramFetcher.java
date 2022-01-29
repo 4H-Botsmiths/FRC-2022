@@ -17,7 +17,8 @@ public class ProgramFetcher {
         return programs;
     }
     public AutonomousInterface[] getAutonomousPrograms(){
-        AutonomousInterface[] programs = new AutonomousInterface[0];
+        AutonomousInterface[] programs = new AutonomousInterface[1];
+        programs[0] = new WillAuto(robot);
         return programs;
     }
     public TestInterface[] getTestPrograms(){
