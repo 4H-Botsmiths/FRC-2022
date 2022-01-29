@@ -31,7 +31,7 @@ public class RobotHardware {
     /** use this for the provided mecanum drive */
     public MecanumDrivetrain drivetrain;
     /** Analog Gyro (Port: 0) */
-    public AnalogGyro gyro = new AnalogGyro(0);
+    public AnalogGyro gyro = new Gyro(0);
     /** Built-in accelerometer */
     public BuiltInAccelerometer Accel = new BuiltInAccelerometer();
     /** Power Distribution Panel */
@@ -65,7 +65,16 @@ public class RobotHardware {
 
         pdp.clearStickyFaults();
     }
+    public class Gyro extends AnalogGyro {
 
+        public Gyro(int channel) {
+            super(channel);
+        }
+        public double getAngle2(){
+            return getAngle() % 360;
+        }
+        
+    }
     public class MecanumDrivetrain extends MecanumDrive {
         public MecanumDrivetrain(MotorController frontLeftMotor, MotorController rearLeftMotor,
                 MotorController frontRightMotor, MotorController rearRightMotor) {
