@@ -1,13 +1,15 @@
 package frc.robot.hardware;
 
 import edu.wpi.first.networktables.*;
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * this class contains all of the code and functions required for using a
  * limelight
  */
-public class Limelight {
+public class Limelight implements Sendable{
     /** Whether the limelight has any valid targets */
     public boolean targetVisible() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0) == 1;
@@ -127,6 +129,9 @@ public class Limelight {
     public void ledMode(int mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(mode);
     }
+    public double getLEDMode() {
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").getDouble(0);
+    }
 
     /**
      * Sets Limelight's Operation Mode
@@ -195,9 +200,20 @@ public class Limelight {
             SmartDashboard.putNumber("Horizontal Sidelength (0 to 320 pixels)", getWidth());
             SmartDashboard.putNumber("Vertical Sidelength (0 to 320 pixels)", getHeight());
             SmartDashboard.putNumber("Pipeline (0 to 9)", getPipe());
-            SmartDashboard.putNumberArray("Avergae HSV Color (h, s, v)", numberToDouble(getColor()));
+            SmartDashboard.putNumberArray("Avergae HSV Color (H, S, V)", numberToDouble(getColor()));
             SmartDashboard.putNumberArray("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))",
                     numberToDouble(get3D()));
         }
+    }
+    //private void dummySetter(boolean Value){}
+    //private void dummySetter(double Value){}
+    @Override
+    public void initSendable(SendableBuilder builder) {
+        builder.setSmartDashboardType("Limelight");
+        builder.addDoubleProperty("LED Mode", this::getLEDMode, this::ledMode);
+        /*builder.addBooleanProperty("Target Visible", this::targetVisible, this::dummySetter);
+        builder.addDoubleProperty("Target x (-29.8 to 29.8 degrees)", this::getX, this::dummySetter);
+        builder.addDoubleProperty("Target y (-24.85 to 24.85 degrees)", this::getY, this::dummySetter);
+        builder.addDoubleProperty("Target Area (Percent)", this::getArea, this::dummySetter);*/
     }
 }

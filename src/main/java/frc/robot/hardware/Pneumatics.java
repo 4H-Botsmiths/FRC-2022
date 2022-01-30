@@ -1,6 +1,9 @@
 package frc.robot.hardware;
 
+import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Pneumatics extends PneumaticsControlModule {
     // public PneumaticsControlModule pcm = new PneumaticsControlModule();
