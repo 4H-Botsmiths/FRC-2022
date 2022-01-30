@@ -97,13 +97,16 @@ public class Robot extends TimedRobot {
     if(gamepad1.getStartButtonPressed()){
       robot.pdp.clearStickyFaults();
       limelight.ledMode(0);
+      robot.pcm.compressor.enable();
       //robot.gyro.calibrate();
-      robot.pcm.enableCompressorDigital();
+      //robot.pcm.enableCompressorDigital();
     }else if(gamepad1.getBackButtonPressed()){
       limelight.ledMode(1);
-      robot.pcm.disableCompressor();
+      robot.pcm.compressor.enable();
+      //robot.pcm.disableCompressor();
     } else if(!gamepad1.getStartButton() && robot.pdp.getVoltage() < 10){
-      robot.pcm.disableCompressor();
+      robot.pcm.compressor.disable();
+            //robot.pcm.disableCompressor();
     }
   }
 

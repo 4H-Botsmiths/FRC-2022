@@ -41,10 +41,11 @@ public class RobotHardware {
     /** Battery Running Voltage */
     public static double targetVoltage = 12;
     /** Pneumatic Control Module */
-    public PneumaticsControlModule pcm = new PneumaticsControlModule();
+    //public PneumaticsControlModule pcm = new PneumaticsControlModule();
     /** Piston 1 */
-    public DoubleSolenoid piston1 = pcm.makeDoubleSolenoid(5, 4);
-
+    //public DoubleSolenoid piston1 = pcm.makeDoubleSolenoid(5, 4);
+    /** Pneumatic Control Module */
+    public Pneumatics pcm = new Pneumatics();
     /**
      * Use this class to control all motors and sensors See below for changes
      * 

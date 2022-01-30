@@ -18,10 +18,10 @@ public class JoesFirstTeleop extends TeleopInterface {
     @Override
     public void teleopPeriodic() {
         if (gamepad1.getLeftX() > 0) {
-            robot.piston1.set(Value.kForward);
+            robot.pcm.pistons[0].set(Value.kForward);
         }
         if (gamepad1.getLeftX() < 0) {
-            robot.piston1.set(Value.kReverse);
+            robot.pcm.pistons[0].set(Value.kReverse);
         }
         robot.drivetrain.feed();
     }
