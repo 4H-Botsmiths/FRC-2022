@@ -9,70 +9,70 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Limelight {
     /** Whether the limelight has any valid targets */
-    public boolean tv() {
+    public boolean targetVisible() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0) == 1;
     }
 
     /**
      * Horizontal Offset From Crosshair To Target (-29.8 to 29.8 degrees)
      */
-    public double tx() {
+    public double getX() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
     }
 
     /**
      * Vertical Offset From Crosshair To Target (-24.85 to 24.85 degrees)
      */
-    public double ty() {
+    public double getY() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
     }
 
     /** Target Area (0% of image to 100% of image) */
-    public double ta() {
+    public double getArea() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
     }
 
     /** Skew or rotation (-90 degrees to 0 degrees) */
-    public double ts() {
+    public double getRotation() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0);
     }
 
     /**
      * The pipeline’s latency contribution (ms).
      */
-    public double tl() {
+    public double latency() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(0);
     }
 
     /**
      * The image capture latency (ms).
      */
-    public double til() {
+    public double imageLatency() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(-11) + 11;
     }
 
     /** Sidelength of shortest side of the fitted bounding box (pixels) */
-    public double tshort() {
+    public double getShortestSidelength() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tshort").getDouble(0);
     }
 
     /** Sidelength of longest side of the fitted bounding box (pixels) */
-    public double tlong() {
+    public double getLongestSidelength() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tlong").getDouble(0);
     }
 
     /** Horizontal sidelength of the rough bounding box (0 - 320 pixels) */
-    public double thor() {
+    public double getWidth() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("thor").getDouble(0);
     }
 
     /** Vertical sidelength of the rough bounding box (0 - 320 pixels) */
-    public double tvert() {
+    public double getHeight() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tvert").getDouble(0);
     }
 
     /** True active pipeline index of the camera (0 .. 9) */
-    public double getpipe() {
+    public double getPipe() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("getpipe").getDouble(0);
     }
 
@@ -80,7 +80,7 @@ public class Limelight {
      * Results of a 3D position solution, 6 numbers: Translation (x,y,y)
      * Rotation(pitch,yaw,roll)
      */
-    public Number[] camtran() {
+    public Number[] get3D() {
         Number[] position = new Number[6];
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getNumberArray(position);
     }
@@ -88,7 +88,7 @@ public class Limelight {
     /**
      * Get the average HSV color underneath the crosshair region as a NumberArray
      */
-    public Number[] tc() {
+    public Number[] getColor() {
         Number[] defaultNum = new Number[3];
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tc").getNumberArray(defaultNum);
     }
@@ -102,9 +102,9 @@ public class Limelight {
     public void setRaw(String variable, double value) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).setNumber(value);
     }
-
+/** Converts number array into double array */
     public double[] numberToDouble(Number[] numbers) {
-        double[] doubles = new double[numbers.length];
+        double[] doubles = new double[numbers.length-1];
         int i = 0;
         for (Number number : numbers) {
             doubles[i] = number.doubleValue();
@@ -184,23 +184,22 @@ public class Limelight {
 
     /** Updates SmartDashboard */
     public void updateSmartDashboard() {
-        SmartDashboard.putBoolean("Target Visible", tv());
-        if (tv()) {
-            SmartDashboard.putNumber("Target x (-29.8 to 29.8 degrees)", tx());
-            SmartDashboard.putNumber("Target y (-24.85 to 24.85 degrees)", ty());
-            SmartDashboard.putNumber("Target Area (percent)", ta());
-            SmartDashboard.putNumber("Target Skew/Rotation (-90 to 0 degrees)", ts());
-            SmartDashboard.putNumber("Pipeline Latency (ms)", tl());
-            SmartDashboard.putNumber("Image Latency (ms)", til());
-            SmartDashboard.putNumber("Shortest Sidelength (pixels)", tshort());
-            SmartDashboard.putNumber("Longest Sidelength (pixels)", tlong());
-            SmartDashboard.putNumber("Horizontal Sidelength (0 to 320 pixels)", thor());
-            SmartDashboard.putNumber("Vertical Sidelength (0 to 320 pixels)", tvert());
-            SmartDashboard.putNumber("Pipeline (0 to 9)", getpipe());
-            /*SmartDashboard.putNumberArray("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))",
-                    numberToDouble(camtran()));
-                    */
-            //SmartDashboard.putNumberArray("Avergae HSV Color (h, s, v)", numberToDouble(tc()));
+        SmartDashboard.putBoolean("Target Visible", targetVisible());
+        if (targetVisible()) {
+            SmartDashboard.putNumber("Target x (-29.8 to 29.8 degrees)", getX());
+            SmartDashboard.putNumber("Target y (-24.85 to 24.85 degrees)", getY());
+            SmartDashboard.putNumber("Target Area (percent)", getArea());
+            SmartDashboard.putNumber("Target Skew/Rotation (-90 to 0 degrees)", getRotation());
+            SmartDashboard.putNumber("Pipeline Latency (ms)", latency());
+            SmartDashboard.putNumber("Image Latency (ms)", imageLatency());
+            SmartDashboard.putNumber("Shortest Sidelength (pixels)", getShortestSidelength());
+            SmartDashboard.putNumber("Longest Sidelength (pixels)", getLongestSidelength());
+            SmartDashboard.putNumber("Horizontal Sidelength (0 to 320 pixels)", getWidth());
+            SmartDashboard.putNumber("Vertical Sidelength (0 to 320 pixels)", getHeight());
+            SmartDashboard.putNumber("Pipeline (0 to 9)", getPipe());
+            SmartDashboard.putNumberArray("Avergae HSV Color (h, s, v)", numberToDouble(getColor()));
+            SmartDashboard.putNumberArray("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))",
+                    numberToDouble(get3D()));
         }
     }
 }

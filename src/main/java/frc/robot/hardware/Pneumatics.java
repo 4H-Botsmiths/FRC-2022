@@ -4,8 +4,9 @@ import edu.wpi.first.wpilibj.*;
 
 public class Pneumatics extends PneumaticsControlModule {
     // public PneumaticsControlModule pcm = new PneumaticsControlModule();
-    public Compressor2 compressor = (Compressor2) makeCompressor();
+    public Compressor2 compressor = makeCompressor2();
     public DoubleSolenoid[] pistons = new DoubleSolenoid[7];
+    private int moduleIndex = -1;
 
     public Pneumatics() {
         super();
@@ -13,6 +14,24 @@ public class Pneumatics extends PneumaticsControlModule {
         for (int i = 0; i < pistons.length; i += 2) {
             pistons[index] = makeDoubleSolenoid(i, i + 1);
             index++;
+        }
+    }
+
+    public Pneumatics(int module){
+        super(module);
+        int index = 0;
+        for (int i = 0; i < pistons.length; i += 2) {
+            pistons[index] = makeDoubleSolenoid(i, i + 1);
+            index++;
+        }
+        moduleIndex = module;
+    }
+
+    public Compressor2 makeCompressor2() {
+        if(moduleIndex == -1) {
+            return new Compressor2(PneumaticsModuleType.CTREPCM);
+        } else {
+            return new Compressor2(moduleIndex, PneumaticsModuleType.CTREPCM);
         }
     }
 
