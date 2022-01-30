@@ -27,7 +27,6 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> autonomousPrograms = new SendableChooser<>();
   private final SendableChooser<String> testPrograms = new SendableChooser<>();
   private RobotHardware robot = new RobotHardware(period);
-  private Limelight limelight = new Limelight();
   private ProgramFetcher programFetcher = new ProgramFetcher(robot);
   private Gamepad1 gamepad1 = new Gamepad1();
   // private String selectedProgram;
@@ -85,7 +84,7 @@ public class Robot extends TimedRobot {
      * SmartDashboard.putNumber("Right Rear Temperature",
      * robot.rearRight.getMotorTemperature());
      */
-    limelight.updateSmartDashboard();
+    robot.limelight.updateSmartDashboard();
     SmartDashboard.putNumber("Voltage", robot.pdp.getVoltage());
     SmartDashboard.putNumber("Temperature", (int)(robot.pdp.getTemperature() * 1.8 + 32));
     for (int i = 0; i < robot.spxMotors.length; i++) {
@@ -96,12 +95,12 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putBoolean("Gyro Connected?", robot.gyro.isConnected());
     if(gamepad1.getStartButtonPressed()){
       robot.pdp.clearStickyFaults();
-      limelight.ledMode(0);
+      robot.limelight.ledMode(0);
       robot.pcm.compressor.enable();
       //robot.gyro.calibrate();
       //robot.pcm.enableCompressorDigital();
     }else if(gamepad1.getBackButtonPressed()){
-      limelight.ledMode(1);
+      robot.limelight.ledMode(1);
       robot.pcm.compressor.enable();
       //robot.pcm.disableCompressor();
     } else if(!gamepad1.getStartButton() && robot.pdp.getVoltage() < 10){

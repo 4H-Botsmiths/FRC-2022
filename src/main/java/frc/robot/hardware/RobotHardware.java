@@ -46,6 +46,8 @@ public class RobotHardware {
     //public DoubleSolenoid piston1 = pcm.makeDoubleSolenoid(5, 4);
     /** Pneumatic Control Module */
     public Pneumatics pcm = new Pneumatics();
+    /** Limelight Controller */
+    public Limelight limelight = new Limelight();
     /**
      * Use this class to control all motors and sensors See below for changes
      * 
