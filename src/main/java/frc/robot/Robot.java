@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
       }
     }
     SmartDashboard.putData("Please Select A Test Program", testPrograms);
-
+    SmartDashboard.putData("Limelight", robot.limelight);
   }
 
   /**
@@ -84,12 +84,12 @@ public class Robot extends TimedRobot {
      * SmartDashboard.putNumber("Right Rear Temperature",
      * robot.rearRight.getMotorTemperature());
      */
-    robot.limelight.updateSmartDashboard();
+    //robot.limelight.updateSmartDashboard();
     SmartDashboard.putNumber("Voltage", robot.pdp.getVoltage());
     SmartDashboard.putNumber("Temperature", (int)(robot.pdp.getTemperature() * 1.8 + 32));
-    for (int i = 0; i < robot.spxMotors.length; i++) {
+    /*for (int i = 0; i < robot.spxMotors.length; i++) {
       SmartDashboard.putNumber("Voltage Port: " + i, robot.spxMotors[i].getBusVoltage());
-    }
+    }*/
     //SmartDashboard.putNumber("Gyro Angle", robot.gyro.getAngle2());
     //SmartDashboard.putNumber("Gyro Rotation", robot.gyro.getRotation2d2());
     //SmartDashboard.putBoolean("Gyro Connected?", robot.gyro.isConnected());

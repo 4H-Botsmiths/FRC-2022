@@ -85,12 +85,18 @@ public class Limelight implements Sendable{
     public Number[] get3D() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getNumberArray(new Number[6]);
     }
+    public double[] get3DDouble(){
+        return numberToDouble(get3D());
+    }
 
     /**
      * Get the average HSV color underneath the crosshair region as a NumberArray
      */
     public Number[] getColor() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tc").getNumberArray(new Number[3]);
+    }
+    public double[] getColorDouble(){
+        return numberToDouble(getColor());
     }
 
     /** Get value from network table */
@@ -126,11 +132,8 @@ public class Limelight implements Sendable{
      *             <p>
      *             3: force on
      */
-    public void ledMode(int mode) {
+    public void ledMode(double mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(mode);
-    }
-    public double getLEDMode() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").getDouble(0);
     }
 
     /**
@@ -142,7 +145,7 @@ public class Limelight implements Sendable{
      *             <p>
      *             1: Driver Camera
      */
-    public void camMode(int mode) {
+    public void camMode(double mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(mode);
     }
 
@@ -153,7 +156,7 @@ public class Limelight implements Sendable{
      *                 <p>
      *                 Select Pipeline 0..9
      */
-    public void pipeline(int pipeline) {
+    public void pipeline(double pipeline) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
     }
 
@@ -168,7 +171,7 @@ public class Limelight implements Sendable{
      *             <p>
      *             2: PiP Secoundary (Primary Stream In Lower Right Corner)
      */
-    public void stream(int mode) {
+    public void stream(double mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(mode);
     }
 
@@ -181,39 +184,32 @@ public class Limelight implements Sendable{
      *             <p>
      *             1: Take Two Snapshots Per Second
      */
-    public void snapshot(int mode) {
+    public void snapshot(double mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(mode);
     }
 
-    /** Updates SmartDashboard */
-    public void updateSmartDashboard() {
-        SmartDashboard.putBoolean("Target Visible", targetVisible());
-        if (targetVisible()) {
-            SmartDashboard.putNumber("Target x (-29.8 to 29.8 degrees)", getX());
-            SmartDashboard.putNumber("Target y (-24.85 to 24.85 degrees)", getY());
-            SmartDashboard.putNumber("Target Area (percent)", getArea());
-            SmartDashboard.putNumber("Target Skew/Rotation (-90 to 0 degrees)", getRotation());
-            SmartDashboard.putNumber("Pipeline Latency (ms)", latency());
-            SmartDashboard.putNumber("Image Latency (ms)", imageLatency());
-            SmartDashboard.putNumber("Shortest Sidelength (pixels)", getShortestSidelength());
-            SmartDashboard.putNumber("Longest Sidelength (pixels)", getLongestSidelength());
-            SmartDashboard.putNumber("Horizontal Sidelength (0 to 320 pixels)", getWidth());
-            SmartDashboard.putNumber("Vertical Sidelength (0 to 320 pixels)", getHeight());
-            SmartDashboard.putNumber("Pipeline (0 to 9)", getPipe());
-            SmartDashboard.putNumberArray("Avergae HSV Color (H, S, V)", numberToDouble(getColor()));
-            SmartDashboard.putNumberArray("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))",
-                    numberToDouble(get3D()));
-        }
-    }
-    //private void dummySetter(boolean Value){}
-    //private void dummySetter(double Value){}
     @Override
     public void initSendable(SendableBuilder builder) {
         builder.setSmartDashboardType("Limelight");
-        builder.addDoubleProperty("LED Mode", this::getLEDMode, this::ledMode);
-        /*builder.addBooleanProperty("Target Visible", this::targetVisible, this::dummySetter);
-        builder.addDoubleProperty("Target x (-29.8 to 29.8 degrees)", this::getX, this::dummySetter);
-        builder.addDoubleProperty("Target y (-24.85 to 24.85 degrees)", this::getY, this::dummySetter);
-        builder.addDoubleProperty("Target Area (Percent)", this::getArea, this::dummySetter);*/
+
+        builder.addDoubleProperty("LED Mode", null, this::ledMode);
+        builder.addDoubleProperty("Pipeline (0 to 9)", this::getPipe, this::pipeline);
+        builder.addDoubleProperty("Limelight Operation Mode", null, this::camMode);
+        builder.addDoubleProperty("Limelight Stream Mode", null, this::stream);
+        builder.addDoubleProperty("Limelight Snapshot Mode", null, this::snapshot);
+
+        builder.addBooleanProperty("Target Visible", this::targetVisible, null);
+        builder.addDoubleProperty("Target x (-29.8 to 29.8 degrees)", this::getX, null);
+        builder.addDoubleProperty("Target y (-24.85 to 24.85 degrees)", this::getY, null);
+        builder.addDoubleProperty("Target Area (Percent)", this::getArea, null);
+        builder.addDoubleProperty("Target Skew/Rotation (-90 to 0 degrees)", this::getRotation, null);
+        builder.addDoubleProperty("Pipeline Latency (ms)", this::latency, null);
+        builder.addDoubleProperty("Image Latency (ms)", this::imageLatency, null);
+        builder.addDoubleProperty("Shortest Sidelength (pixels)", this::getShortestSidelength, null);
+        builder.addDoubleProperty("Longest Sidelength (pixels)", this::getLongestSidelength, null);
+        builder.addDoubleProperty("Horizontal Sidelength (0 to 320 pixels)", this::getWidth, null);
+        builder.addDoubleProperty("Vertical Sidelength (0 to 320 pixels)", this::getHeight, null);
+        //builder.addDoubleArrayProperty("Avergae HSV Color", this::getColorDouble, null);
+        //builder.addDoubleArrayProperty("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))", this::get3DDouble, null);
     }
 }
