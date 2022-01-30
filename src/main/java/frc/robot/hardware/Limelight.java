@@ -81,16 +81,14 @@ public class Limelight {
      * Rotation(pitch,yaw,roll)
      */
     public Number[] get3D() {
-        Number[] position = new Number[6];
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getNumberArray(position);
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getNumberArray(new Number[6]);
     }
 
     /**
      * Get the average HSV color underneath the crosshair region as a NumberArray
      */
     public Number[] getColor() {
-        Number[] defaultNum = new Number[3];
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tc").getNumberArray(defaultNum);
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tc").getNumberArray(new Number[3]);
     }
 
     /** Get value from network table */
