@@ -73,6 +73,7 @@ public class RobotHardware {
         drivetrain.setExpiration(period);
 
         pdp.clearStickyFaults();
+        //pcm.clearAllStickyFaults();
 
     }
     public class Gyro extends ADXRS450_Gyro {

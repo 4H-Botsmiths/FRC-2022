@@ -71,7 +71,7 @@
               "Graph/X-axis auto scrolling": true,
               "Y-axis/Automatic bounds": false,
               "Y-axis/Upper bound": 13.0,
-              "Y-axis/Lower bound": 0.0,
+              "Y-axis/Lower bound": 5.0,
               "Y-axis/Unit": "volts",
               "Visible data/SmartDashboard/Voltage": true
             }
@@ -92,6 +92,26 @@
                   "_title": "Limelight/Target Visible",
                   "Colors/Color when true": "#7CFC00FF",
                   "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Limelight/LED Mode (0:normal, 1:off, 2:blink, 3:on)",
+                  "_title": "Limelight/LED Mode (0:normal, 1:off, 2:blink, 3:on)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Limelight/Limelight Operation Mode (0:vision proccesing, 1:driver camera)",
+                  "_title": "Limelight/Limelight Operation Mode (0:vision proccesing, 1:driver camera)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Limelight/Limelight Snapshot Mode (0:off, 1:twice/second)",
+                  "_title": "Limelight/Limelight Snapshot Mode (0:off, 1:twice/second)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Limelight/Limelight Stream Mode (0:Standard, 1:PiP Main, 2:PiP Secoundary)",
+                  "_title": "Limelight/Limelight Stream Mode (0:Standard, 1:PiP Main, 2:PiP Secoundary)"
                 },
                 {
                   "_type": "Text View",
@@ -147,13 +167,23 @@
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Limelight/Pipeline Latency (ms)",
                   "_title": "Limelight/Pipeline Latency (ms)"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/limelight_Interface",
+                  "_title": "limelight_Interface"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/limelight_Stream",
+                  "_title": "limelight_Stream"
                 }
               ]
             }
           },
           "0,3": {
             "size": [
-              2,
+              3,
               1
             ],
             "content": {
@@ -162,7 +192,7 @@
               "_title": "Gyro Dummy"
             }
           },
-          "2,3": {
+          "3,3": {
             "size": [
               2,
               1

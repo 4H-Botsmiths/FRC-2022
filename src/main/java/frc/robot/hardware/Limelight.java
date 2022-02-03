@@ -9,7 +9,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * this class contains all of the code and functions required for using a
  * limelight
  */
-public class Limelight implements Sendable{
+public class Limelight implements Sendable {
+    public Limelight(){
+        SmartDashboard.putData("Limelight", this);
+    }
     /** Whether the limelight has any valid targets */
     public boolean targetVisible() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0) == 1;
@@ -83,9 +86,17 @@ public class Limelight implements Sendable{
      * Rotation(pitch,yaw,roll)
      */
     public Number[] get3D() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getNumberArray(new Number[6]);
+        Number[] position = new Number[6];
+        position[0] = 0;
+        position[1] = 0;
+        position[2] = 0;
+        position[3] = 0;
+        position[4] = 0;
+        position[5] = 0;
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getNumberArray(position);
     }
-    public double[] get3DDouble(){
+
+    public double[] get3DDouble() {
         return numberToDouble(get3D());
     }
 
@@ -93,9 +104,14 @@ public class Limelight implements Sendable{
      * Get the average HSV color underneath the crosshair region as a NumberArray
      */
     public Number[] getColor() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tc").getNumberArray(new Number[3]);
+        Number[] color = new Number[3];
+        color[0] = 0;
+        color[1] = 0;
+        color[2] = 0;
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tc").getNumberArray(color);
     }
-    public double[] getColorDouble(){
+
+    public double[] getColorDouble() {
         return numberToDouble(getColor());
     }
 
@@ -108,9 +124,10 @@ public class Limelight implements Sendable{
     public void setRaw(String variable, double value) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).setNumber(value);
     }
-/** Converts number array into double array */
+
+    /** Converts number array into double array */
     public double[] numberToDouble(Number[] numbers) {
-        double[] doubles = new double[numbers.length-1];
+        double[] doubles = new double[numbers.length];
         int i = 0;
         for (Number number : numbers) {
             doubles[i] = number.doubleValue();
@@ -132,8 +149,11 @@ public class Limelight implements Sendable{
      *             <p>
      *             3: force on
      */
-    public void ledMode(double mode) {
+    public void setLEDMode(double mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(mode);
+    }
+    public double getLEDMode(){
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").getNumber(0).intValue();
     }
 
     /**
@@ -145,8 +165,11 @@ public class Limelight implements Sendable{
      *             <p>
      *             1: Driver Camera
      */
-    public void camMode(double mode) {
+    public void setCamMode(double mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(mode);
+    }
+    public double getCamMode(){
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").getNumber(0).intValue();
     }
 
     /**
@@ -156,7 +179,7 @@ public class Limelight implements Sendable{
      *                 <p>
      *                 Select Pipeline 0..9
      */
-    public void pipeline(double pipeline) {
+    public void setPipeline(double pipeline) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(pipeline);
     }
 
@@ -171,8 +194,11 @@ public class Limelight implements Sendable{
      *             <p>
      *             2: PiP Secoundary (Primary Stream In Lower Right Corner)
      */
-    public void stream(double mode) {
+    public void setStream(double mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(mode);
+    }
+    public double getStream(){
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").getNumber(0).intValue();
     }
 
     /**
@@ -184,19 +210,22 @@ public class Limelight implements Sendable{
      *             <p>
      *             1: Take Two Snapshots Per Second
      */
-    public void snapshot(double mode) {
+    public void setSnapshot(double mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(mode);
+    }
+    public double getSnapshot(){
+        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").getNumber(0).intValue();
     }
 
     @Override
     public void initSendable(SendableBuilder builder) {
         builder.setSmartDashboardType("Limelight");
 
-        builder.addDoubleProperty("LED Mode", null, this::ledMode);
-        builder.addDoubleProperty("Pipeline (0 to 9)", this::getPipe, this::pipeline);
-        builder.addDoubleProperty("Limelight Operation Mode", null, this::camMode);
-        builder.addDoubleProperty("Limelight Stream Mode", null, this::stream);
-        builder.addDoubleProperty("Limelight Snapshot Mode", null, this::snapshot);
+        builder.addDoubleProperty("LED Mode (0:normal, 1:off, 2:blink, 3:on)", this::getLEDMode, this::setLEDMode);
+        builder.addDoubleProperty("Pipeline (0 to 9)", this::getPipe, this::setPipeline);
+        builder.addDoubleProperty("Limelight Operation Mode (0:vision proccesing, 1:driver camera)", this::getCamMode, this::setCamMode);
+        builder.addDoubleProperty("Limelight Stream Mode (0:Standard, 1:PiP Main, 2:PiP Secoundary)", this::getStream, this::setStream);
+        builder.addDoubleProperty("Limelight Snapshot Mode (0:off, 1:twice/second)", this::getSnapshot, this::setSnapshot);
 
         builder.addBooleanProperty("Target Visible", this::targetVisible, null);
         builder.addDoubleProperty("Target x (-29.8 to 29.8 degrees)", this::getX, null);
@@ -209,7 +238,8 @@ public class Limelight implements Sendable{
         builder.addDoubleProperty("Longest Sidelength (pixels)", this::getLongestSidelength, null);
         builder.addDoubleProperty("Horizontal Sidelength (0 to 320 pixels)", this::getWidth, null);
         builder.addDoubleProperty("Vertical Sidelength (0 to 320 pixels)", this::getHeight, null);
-        //builder.addDoubleArrayProperty("Avergae HSV Color", this::getColorDouble, null);
-        //builder.addDoubleArrayProperty("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))", this::get3DDouble, null);
+        builder.addDoubleArrayProperty("Avergae HSV Color", this::getColorDouble, null);
+        builder.addDoubleArrayProperty("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))",
+                this::get3DDouble, null);
     }
 }

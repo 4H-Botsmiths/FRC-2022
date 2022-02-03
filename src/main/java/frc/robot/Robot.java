@@ -60,7 +60,6 @@ public class Robot extends TimedRobot {
       }
     }
     SmartDashboard.putData("Please Select A Test Program", testPrograms);
-    SmartDashboard.putData("Limelight", robot.limelight);
   }
 
   /**
@@ -95,15 +94,16 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putBoolean("Gyro Connected?", robot.gyro.isConnected());
     if(gamepad1.getStartButtonPressed()){
       robot.pdp.clearStickyFaults();
-      robot.limelight.ledMode(0);
+      robot.pcm.clearStickyFaults();
+      //robot.limelight.setLEDMode(0);
       robot.pcm.compressor.enable();
       //robot.gyro.calibrate();
       //robot.pcm.enableCompressorDigital();
     }else if(gamepad1.getBackButtonPressed()){
-      robot.limelight.ledMode(1);
-      robot.pcm.compressor.enable();
+      //robot.limelight.setLEDMode(1);
+      robot.pcm.compressor.disable();
       //robot.pcm.disableCompressor();
-    } else if(!gamepad1.getStartButton() && robot.pdp.getVoltage() < 10){
+    } else if(!gamepad1.getStartButton() && robot.pdp.getVoltage() < 9){
       robot.pcm.compressor.disable();
             //robot.pcm.disableCompressor();
     }
