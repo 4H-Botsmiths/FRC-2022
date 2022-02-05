@@ -1,7 +1,7 @@
 package frc.robot.hardware;
 
 import com.ctre.phoenix.motorcontrol.can.*;
-
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
@@ -31,9 +31,11 @@ public class RobotHardware {
     public SPX[] spxMotors = new SPX[4];
     /** use this for the provided mecanum drive */
     public MecanumDrivetrain drivetrain;
-    /** Analog Gyro (Port: 0) */
-    //public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-    //public Gyro gyro = new Gyro();
+    /** Analog Gyro */
+    // public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+    // public Gyro gyro = new Gyro();
+    /** I^2C Gyro */
+    public AHRS gyro = new AHRS(I2C.Port.kMXP);
     /** Built-in accelerometer */
     public BuiltInAccelerometer Accel = new BuiltInAccelerometer();
     /** Power Distribution Panel */
@@ -41,13 +43,14 @@ public class RobotHardware {
     /** Battery Running Voltage */
     public static double targetVoltage = 12;
     /** Pneumatic Control Module */
-    //public PneumaticsControlModule pcm = new PneumaticsControlModule();
+    // public PneumaticsControlModule pcm = new PneumaticsControlModule();
     /** Piston 1 */
-    //public DoubleSolenoid piston1 = pcm.makeDoubleSolenoid(5, 4);
+    // public DoubleSolenoid piston1 = pcm.makeDoubleSolenoid(5, 4);
     /** Pneumatic Control Module */
     public Pneumatics pcm = new Pneumatics();
     /** Limelight Controller */
     public Limelight limelight = new Limelight();
+
     /**
      * Use this class to control all motors and sensors See below for changes
      * 
@@ -73,21 +76,35 @@ public class RobotHardware {
         drivetrain.setExpiration(period);
 
         pdp.clearStickyFaults();
-        //pcm.clearAllStickyFaults();
+        // pcm.clearAllStickyFaults();
+        gyro.calibrate();
+        while (gyro.isCalibrating()) {
+            System.out.println("Gyro Calibrating...");
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+        gyro.zeroYaw();
 
     }
+
     public class Gyro extends ADXRS450_Gyro {
-        public Gyro(){
+        public Gyro() {
             super();
         }
-        public double getAngle2(){
+
+        public double getAngle2() {
             return getAngle() % 360;
         }
-        public double getRotation2d2(){
+
+        public double getRotation2d2() {
             return getRotation2d().getDegrees() % 360;
         }
-        
+
     }
+
     public class MecanumDrivetrain extends MecanumDrive {
         public MecanumDrivetrain(MotorController frontLeftMotor, MotorController rearLeftMotor,
                 MotorController frontRightMotor, MotorController rearRightMotor) {
@@ -134,8 +151,9 @@ public class RobotHardware {
                 Drive(x - gyro * y, y + gyro * x, z, cap);
             }
         }
+
         /** Tank Drive requireing a left and right input */
-        public void TankDrive(double left, double right){
+        public void TankDrive(double left, double right) {
             frontLeft.setSafe(left);
             rearLeft.setSafe(left);
             frontRight.setSafe(right);
