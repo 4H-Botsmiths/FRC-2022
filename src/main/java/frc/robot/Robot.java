@@ -27,7 +27,6 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> autonomousPrograms = new SendableChooser<>();
   private final SendableChooser<String> testPrograms = new SendableChooser<>();
   private RobotHardware robot = new RobotHardware(period);
-  private Limelight limelight = new Limelight();
   private ProgramFetcher programFetcher = new ProgramFetcher(robot);
   private Gamepad1 gamepad1 = new Gamepad1();
   // private String selectedProgram;
@@ -61,7 +60,6 @@ public class Robot extends TimedRobot {
       }
     }
     SmartDashboard.putData("Please Select A Test Program", testPrograms);
-
   }
 
   /**
@@ -85,25 +83,29 @@ public class Robot extends TimedRobot {
      * SmartDashboard.putNumber("Right Rear Temperature",
      * robot.rearRight.getMotorTemperature());
      */
-    limelight.updateSmartDashboard();
+    //robot.limelight.updateSmartDashboard();
     SmartDashboard.putNumber("Voltage", robot.pdp.getVoltage());
     SmartDashboard.putNumber("Temperature", (int)(robot.pdp.getTemperature() * 1.8 + 32));
-    for (int i = 0; i < robot.spxMotors.length; i++) {
+    /*for (int i = 0; i < robot.spxMotors.length; i++) {
       SmartDashboard.putNumber("Voltage Port: " + i, robot.spxMotors[i].getBusVoltage());
-    }
-    //SmartDashboard.putNumber("Gyro Angle", robot.gyro.getAngle2());
+    }*/
+    SmartDashboard.putNumber("Gyro Angle", robot.gyro.getYaw());
     //SmartDashboard.putNumber("Gyro Rotation", robot.gyro.getRotation2d2());
     //SmartDashboard.putBoolean("Gyro Connected?", robot.gyro.isConnected());
     if(gamepad1.getStartButtonPressed()){
       robot.pdp.clearStickyFaults();
-      limelight.ledMode(0);
+      robot.pcm.clearStickyFaults();
+      //robot.limelight.setLEDMode(0);
+      robot.pcm.compressor.enable();
       //robot.gyro.calibrate();
-      robot.pcm.enableCompressorDigital();
+      //robot.pcm.enableCompressorDigital();
     }else if(gamepad1.getBackButtonPressed()){
-      limelight.ledMode(1);
-      robot.pcm.disableCompressor();
-    } else if(!gamepad1.getStartButton() && robot.pdp.getVoltage() < 10){
-      robot.pcm.disableCompressor();
+      //robot.limelight.setLEDMode(1);
+      robot.pcm.compressor.disable();
+      //robot.pcm.disableCompressor();
+    } else if(!gamepad1.getStartButton() && robot.pdp.getVoltage() < 9){
+      robot.pcm.compressor.disable();
+            //robot.pcm.disableCompressor();
     }
   }
 
