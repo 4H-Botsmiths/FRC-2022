@@ -22,63 +22,63 @@ public class Limelight implements Sendable {
      * Horizontal Offset From Crosshair To Target (-29.8 to 29.8 degrees)
      */
     public double getX() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0);
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0));
     }
 
     /**
      * Vertical Offset From Crosshair To Target (-24.85 to 24.85 degrees)
      */
     public double getY() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0);
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0));
     }
 
     /** Target Area (0% of image to 100% of image) */
     public double getArea() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0);
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0));
     }
 
     /** Skew or rotation (-90 degrees to 0 degrees) */
     public double getRotation() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0);
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0));
     }
 
     /**
      * The pipeline’s latency contribution (ms).
      */
     public double latency() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(0);
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(0));
     }
 
     /**
      * The image capture latency (ms).
      */
     public double imageLatency() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(-11) + 11;
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(-11) + 11);
     }
 
     /** Sidelength of shortest side of the fitted bounding box (pixels) */
     public double getShortestSidelength() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tshort").getDouble(0);
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tshort").getDouble(0));
     }
 
     /** Sidelength of longest side of the fitted bounding box (pixels) */
     public double getLongestSidelength() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tlong").getDouble(0);
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tlong").getDouble(0));
     }
 
     /** Horizontal sidelength of the rough bounding box (0 - 320 pixels) */
     public double getWidth() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("thor").getDouble(0);
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("thor").getDouble(0));
     }
 
     /** Vertical sidelength of the rough bounding box (0 - 320 pixels) */
     public double getHeight() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tvert").getDouble(0);
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tvert").getDouble(0));
     }
 
     /** True active pipeline index of the camera (0 .. 9) */
     public double getPipe() {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("getpipe").getDouble(0);
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("getpipe").getDouble(0));
     }
 
     /**
@@ -117,7 +117,7 @@ public class Limelight implements Sendable {
 
     /** Get value from network table */
     public double getRaw(String variable) {
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).getDouble(0);
+        return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).getDouble(0));
     }
 
     /** Set value in network table */
@@ -134,6 +134,10 @@ public class Limelight implements Sendable {
             i++;
         }
         return doubles;
+    }
+    /** Rounds input to the nearest hundereths place */
+    public double round(double numberToRound){
+        return ((int)(numberToRound*100))/100;
     }
 
     /**

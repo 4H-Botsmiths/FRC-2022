@@ -35,7 +35,7 @@ public class RobotHardware {
     // public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
     // public Gyro gyro = new Gyro();
     /** I^2C Gyro */
-    public AHRS gyro = new AHRS(I2C.Port.kMXP);
+    public AHRS gyro = new AHRS(I2C.Port.kOnboard);
     /** Built-in accelerometer */
     public BuiltInAccelerometer Accel = new BuiltInAccelerometer();
     /** Power Distribution Panel */
@@ -77,17 +77,15 @@ public class RobotHardware {
 
         pdp.clearStickyFaults();
         // pcm.clearAllStickyFaults();
-        gyro.calibrate();
         while (gyro.isCalibrating()) {
             System.out.println("Gyro Calibrating...");
             try {
-                Thread.sleep(5);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 System.out.println(e);
             }
         }
-        gyro.zeroYaw();
-
+        System.out.println("Gyro Calibrated");
     }
 
     public class Gyro extends ADXRS450_Gyro {
