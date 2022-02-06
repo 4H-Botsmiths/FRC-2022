@@ -5,6 +5,7 @@
       "/LiveWindow/Ungrouped/ADXRS450_Gyro[0]": "Gyro",
       "/LiveWindow/Ungrouped/AnalogGyro[0]": "Gyro",
       "/LiveWindow/Ungrouped/MecanumDrive[1]": "MecanumDrive",
+      "/LiveWindow/Ungrouped/navX-Sensor[1]": "Gyro",
       "/SmartDashboard/Please Select A Autonomous Program": "String Chooser",
       "/SmartDashboard/Please Select A Teleop Program": "String Chooser",
       "/SmartDashboard/Please Select A Test Program": "String Chooser"
