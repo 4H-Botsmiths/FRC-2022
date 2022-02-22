@@ -184,7 +184,7 @@ public class RobotHardware {
 
         public void setSafe(double speed) {
             double multiplier = Math.pow(pdp.getVoltage() / RobotHardware.targetVoltage, 2);
-            set(speed * multiplier);
+            set(clip(speed * multiplier, -1, 1));
         }
     }
     public class SparkMax extends CANSparkMax {
