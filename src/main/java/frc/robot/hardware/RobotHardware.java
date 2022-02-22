@@ -2,6 +2,9 @@ package frc.robot.hardware;
 
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
@@ -12,23 +15,24 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorController;
  * Use this class to control all motors and sensors
  */
 public class RobotHardware {
-    /** Front Left brushless motor (ID: 0) */
+    /** Front Left brushless motor (ID: 1) */
     // public PWMSparkMax frontLeft = new PWMSparkMax(0);
-    // public CANSparkMax frontLeft = new CANSparkMax(0, MotorType.kBrushless);
-    public SPX frontLeft = new SPX(1);
-    /** Rear Left brushless motor (ID: 1) */
+    public SparkMax frontLeft = new SparkMax(1, MotorType.kBrushless);
+    //public SPX frontLeft = new SPX(1);
+    /** Rear Left brushless motor (ID: 2) */
     // public PWMSparkMax rearLeft = new PWMSparkMax(1);
-    // public CANSparkMax rearLeft = new CANSparkMax(0, MotorType.kBrushless);
-    public SPX rearLeft = new SPX(2);
-    /** Front Right brushless motor (ID: 2) */
+    public SparkMax rearLeft = new SparkMax(2, MotorType.kBrushless);
+    //public SPX rearLeft = new SPX(2);
+    /** Front Right brushless motor (ID: 3) */
     // public PWMSparkMax frontRight = new PWMSparkMax(2);
-    // public CANSparkMax frontRight = new CANSparkMax(0, MotorType.kBrushless);
-    public SPX frontRight = new SPX(3);
-    /** Rear Right brushless motor (ID: 3) */
+    public SparkMax frontRight = new SparkMax(3, MotorType.kBrushless);
+    //public SPX frontRight = new SPX(3);
+    /** Rear Right brushless motor (ID: 4) */
     // public PWMSparkMax rearRight = new PWMSparkMax(3);
-    // public CANSparkMax rearRight = new CANSparkMax(0, MotorType.kBrushless);
-    public SPX rearRight = new SPX(4);
-    public SPX[] spxMotors = new SPX[4];
+    public SparkMax rearRight = new SparkMax(4, MotorType.kBrushless);
+    //public SPX rearRight = new SPX(4);
+    public SparkMax[] Motors = new SparkMax[4];
+    //public SPX[] Motors = new SPX[4];
     /** use this for the provided mecanum drive */
     public MecanumDrivetrain drivetrain;
     /** Analog Gyro */
@@ -63,13 +67,14 @@ public class RobotHardware {
      *          changed init function to constructor
      */
     public RobotHardware(double period) {
-        spxMotors[0] = frontLeft;
-        spxMotors[1] = rearLeft;
-        spxMotors[2] = frontRight;
-        spxMotors[3] = rearRight;
-        for (SPX motor : spxMotors) {
-            motor.setExpiration(period);
-            motor.setSafetyEnabled(false);
+        Motors[0] = frontLeft;
+        Motors[1] = rearLeft;
+        Motors[2] = frontRight;
+        Motors[3] = rearRight;
+        for (SparkMax motor : Motors) {
+            //motor.setExpiration(period);
+            //motor.setSafetyEnabled(false);
+            //motor.setL
         }
         drivetrain = new MecanumDrivetrain(frontLeft, rearLeft, frontRight, rearRight);
         drivetrain.setSafetyEnabled(true);
@@ -177,6 +182,17 @@ public class RobotHardware {
             super(deviceNumber);
         }
 
+        public void setSafe(double speed) {
+            double multiplier = Math.pow(pdp.getVoltage() / RobotHardware.targetVoltage, 2);
+            set(speed * multiplier);
+        }
+    }
+    public class SparkMax extends CANSparkMax {
+        public SparkMax(int deviceId, MotorType type) {
+            super(deviceId, type);
+            enableExternalUSBControl(true);
+        }
+        
         public void setSafe(double speed) {
             double multiplier = Math.pow(pdp.getVoltage() / RobotHardware.targetVoltage, 2);
             set(speed * multiplier);

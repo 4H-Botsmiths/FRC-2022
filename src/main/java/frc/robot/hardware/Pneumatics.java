@@ -1,6 +1,7 @@
 package frc.robot.hardware;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 
 public class Pneumatics extends PneumaticsControlModule {
@@ -28,6 +29,26 @@ public class Pneumatics extends PneumaticsControlModule {
         moduleIndex = module;
     }
 
+    public void pistonOut(int index) {
+        pistons[index].set(Value.kForward);
+    }
+    public void pistonIn(int index){
+        pistons[index].set(Value.kReverse);
+    }
+    public void pistonOff(int index) {
+        pistons[index].set(Value.kOff);
+    }
+    public Value togglePiston(int index){
+        pistons[index].toggle();
+        switch(pistons[index].get()){
+            case kForward:
+                return Value.kReverse;
+            case kReverse:
+                return Value.kForward;
+            default:
+                return Value.kOff;
+        }
+    }
     public void clearStickyFaults() {
         try {
             clearAllStickyFaults();

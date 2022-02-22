@@ -12,7 +12,7 @@ public class SimulationBoard extends TeleopInterface {
      * @param Robot RobotHardware for controlling the motors and sensors
      */
     public SimulationBoard(RobotHardware Robot) {
-        super(Robot, "Simulation Board", true);
+        super(Robot, "Simulation Board");
     }
 
     @Override

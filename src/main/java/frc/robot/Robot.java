@@ -176,7 +176,7 @@ public class Robot extends TimedRobot {
   @Override
   public void testInit() {
     for (TestInterface program : programFetcher.getTestPrograms()) {
-      if (teleopPrograms.getSelected().equals(program.id)) {
+      if (testPrograms.getSelected().equals(program.id)) {
         System.out.println("Test Program selected: " + program.displayName);
         testProgram = program;
       }

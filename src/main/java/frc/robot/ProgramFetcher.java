@@ -23,7 +23,8 @@ public class ProgramFetcher {
         return programs;
     }
     public TestInterface[] getTestPrograms(){
-        TestInterface[] programs = new TestInterface[0];
+        TestInterface[] programs = new TestInterface[1];
+        programs[0] = new MotorTester(robot);
         return programs;
     }
 }
