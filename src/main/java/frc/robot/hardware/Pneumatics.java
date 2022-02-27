@@ -3,18 +3,21 @@ package frc.robot.hardware;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-
 public class Pneumatics extends PneumaticsControlModule {
     // public PneumaticsControlModule pcm = new PneumaticsControlModule();
     public Compressor2 compressor = makeCompressor2();
     public DoubleSolenoid[] pistons = new DoubleSolenoid[7];
+    /** true for out, false for in */
+    public boolean[] pistonValues = new boolean[7];
     private int moduleIndex = -1;
+    public int drivetrain = 0;
 
     public Pneumatics() {
         super();
         int index = 0;
         for (int i = 0; i < pistons.length; i += 2) {
             pistons[index] = makeDoubleSolenoid(i, i + 1);
+            pistonValues[index] = false;
             index++;
         }
     }
@@ -24,23 +27,39 @@ public class Pneumatics extends PneumaticsControlModule {
         int index = 0;
         for (int i = 0; i < pistons.length; i += 2) {
             pistons[index] = makeDoubleSolenoid(i, i + 1);
+            pistonValues[index] = false;
             index++;
         }
         moduleIndex = module;
     }
 
     public void pistonOut(int index) {
+        /*if (pistonValues[index] != true) {
+            pistons[index].set(Value.kForward);
+            pistonValues[index] = true;
+        } else {
+            pistons[index].set(Value.kOff);
+        }*/
         pistons[index].set(Value.kForward);
     }
-    public void pistonIn(int index){
+
+    public void pistonIn(int index) {
+        /*if (pistonValues[index] != false) {
+            pistons[index].set(Value.kReverse);
+            pistonValues[index] = false;
+        } else {
+            pistons[index].set(Value.kOff);
+        }*/
         pistons[index].set(Value.kReverse);
     }
+
     public void pistonOff(int index) {
         pistons[index].set(Value.kOff);
     }
-    public Value togglePiston(int index){
+
+    public Value togglePiston(int index) {
         pistons[index].toggle();
-        switch(pistons[index].get()){
+        switch (pistons[index].get()) {
             case kForward:
                 return Value.kReverse;
             case kReverse:
@@ -49,6 +68,7 @@ public class Pneumatics extends PneumaticsControlModule {
                 return Value.kOff;
         }
     }
+
     public void clearStickyFaults() {
         try {
             clearAllStickyFaults();

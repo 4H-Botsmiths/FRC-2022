@@ -82,7 +82,7 @@ public class RobotHardware {
 
         pdp.clearStickyFaults();
         // pcm.clearAllStickyFaults();
-        while (gyro.isCalibrating()) {
+        /*while (gyro.isCalibrating()) {
             System.out.println("Gyro Calibrating...");
             try {
                 Thread.sleep(500);
@@ -91,6 +91,7 @@ public class RobotHardware {
             }
         }
         System.out.println("Gyro Calibrated");
+        */
     }
 
     public class Gyro extends ADXRS450_Gyro {
