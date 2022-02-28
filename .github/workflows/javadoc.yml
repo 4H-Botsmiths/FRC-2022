@@ -28,6 +28,9 @@ jobs:
           #rm -r dist/frc
           #cp -r src/main/java/frc dist/frc
           
+      - name: Build Code
+        run: ./gradlew build
+          
       - name: Remove Old Documentation
         run: rm -r docs
         
