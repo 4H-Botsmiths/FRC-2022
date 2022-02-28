@@ -39,8 +39,7 @@ jobs:
         
       - name: Generate Javadoc
         run: |
-          #cd dist
-          javadoc -subpackages src/frc -d docs -tag changes:a:"Changelog:"> ../javadoc.log
+          javadoc -subpackages src/main/java/frc -d docs -tag changes:a:"Changelog:"> ../javadoc.log
           cat ../javadoc.log
           rm ../javadoc.log
           
