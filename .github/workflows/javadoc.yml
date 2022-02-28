@@ -23,10 +23,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         
-      - name: Update FRC Package
-        run: |
-          rm -r dist/frc
-          cp -r src/main/java/frc dist/frc
+      #- name: Update FRC Package
+        #run: |
+          #rm -r dist/frc
+          #cp -r src/main/java/frc dist/frc
+          
       - name: Remove Old Documentation
         run: rm -r docs
         
@@ -38,8 +39,8 @@ jobs:
         
       - name: Generate Javadoc
         run: |
-          cd dist
-          javadoc -subpackages frc -d ../docs -tag changes:a:"Changelog:"> ../javadoc.log
+          #cd dist
+          javadoc -subpackages src/frc -d docs -tag changes:a:"Changelog:"> ../javadoc.log
           cat ../javadoc.log
           rm ../javadoc.log
           
