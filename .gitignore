@@ -137,7 +137,7 @@ $RECYCLE.BIN/
 
 ### Gradle ###
 .gradle
-/build/
+#/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -157,6 +157,7 @@ gradle-app.setting
 .project
 .settings/
 bin/
+javadoc.sh
 
 # Simulation GUI and other tools window save file
 *-window.json

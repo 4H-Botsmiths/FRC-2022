@@ -4,13 +4,10 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.hardware.RobotHardware;
-import frc.robot.hardware.Limelight;
-import frc.robot.programs.CustomMecanumTeleop;
-import frc.robot.programs.ProvidedMecanumTeleop;
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.smartdashboard.*;
+import frc.robot.hardware.*;
+import frc.robot.programs.interfaces.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,29 +17,49 @@ import frc.robot.programs.ProvidedMecanumTeleop;
  * project.
  */
 public class Robot extends TimedRobot {
-  /*public Robot() {
-    super(0.03); // Periodic methods will now be called every 30 ms.
-  }*/
+  private double period = 0.04;
+
+  public Robot() {
+    super(0.03); // Periodic methods will now be called every 30ms.
+  }
+
   private final SendableChooser<String> teleopPrograms = new SendableChooser<>();
   private final SendableChooser<String> autonomousPrograms = new SendableChooser<>();
   private final SendableChooser<String> testPrograms = new SendableChooser<>();
-  private RobotHardware robot = new RobotHardware();
-  private CustomMecanumTeleop customMecanumTeleop = new CustomMecanumTeleop(robot);
-  private ProvidedMecanumTeleop providedMecanumTeleop = new ProvidedMecanumTeleop(robot);
-  private Limelight limelight = new Limelight();
-
+  private RobotHardware robot = new RobotHardware(period);
+  private ProgramFetcher programFetcher = new ProgramFetcher(robot);
+  private Gamepad1 gamepad1 = new Gamepad1();
+  // private String selectedProgram;
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
    */
   @Override
   public void robotInit() {
-    teleopPrograms.setDefaultOption("Custom Teleop Program", CustomMecanumTeleop.name);
-    teleopPrograms.addOption("Provided Mecanum Teleop", ProvidedMecanumTeleop.name);
+    for (TeleopInterface program : programFetcher.getTeleopPrograms()) {
+      if (program.Default) {
+        teleopPrograms.setDefaultOption(program.displayName, program.id);
+      } else {
+        teleopPrograms.addOption(program.displayName, program.id);
+      }
+    }
     SmartDashboard.putData("Please Select A Teleop Program", teleopPrograms);
+    for (AutonomousInterface program : programFetcher.getAutonomousPrograms()) {
+      if (program.Default) {
+        autonomousPrograms.setDefaultOption(program.displayName, program.id);
+      } else {
+        autonomousPrograms.addOption(program.displayName, program.id);
+      }
+    }
     SmartDashboard.putData("Please Select A Autonomous Program", autonomousPrograms);
+    for (TestInterface program : programFetcher.getTestPrograms()) {
+      if (program.Default) {
+        testPrograms.setDefaultOption(program.displayName, program.id);
+      } else {
+        testPrograms.addOption(program.displayName, program.id);
+      }
+    }
     SmartDashboard.putData("Please Select A Test Program", testPrograms);
-
   }
 
   /**
@@ -57,13 +74,42 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     /*
-    SmartDashboard.putNumber("Left Front Temperature", robot.frontLeft.getMotorTemperature());
-    SmartDashboard.putNumber("Right Front Temperature", robot.frontRight.getMotorTemperature());
-    SmartDashboard.putNumber("Left Rear Temperature", robot.rearLeft.getMotorTemperature());
-    SmartDashboard.putNumber("Right Rear Temperature", robot.rearRight.getMotorTemperature());
-    */
-    limelight.updateData();
+     * SmartDashboard.putNumber("Left Front Temperature",
+     * robot.frontLeft.getMotorTemperature());
+     * SmartDashboard.putNumber("Right Front Temperature",
+     * robot.frontRight.getMotorTemperature());
+     * SmartDashboard.putNumber("Left Rear Temperature",
+     * robot.rearLeft.getMotorTemperature());
+     * SmartDashboard.putNumber("Right Rear Temperature",
+     * robot.rearRight.getMotorTemperature());
+     */
+    //robot.limelight.updateSmartDashboard();
+    SmartDashboard.putNumber("Voltage", robot.pdp.getVoltage());
+    SmartDashboard.putNumber("Temperature", (int)(robot.pdp.getTemperature() * 1.8 + 32));
+    /*for (int i = 0; i < robot.spxMotors.length; i++) {
+      SmartDashboard.putNumber("Voltage Port: " + i, robot.spxMotors[i].getBusVoltage());
+    }*/
+    SmartDashboard.putNumber("Gyro Angle", robot.gyro.getYaw());
+    //SmartDashboard.putNumber("Gyro Rotation", robot.gyro.getRotation2d2());
+    //SmartDashboard.putBoolean("Gyro Connected?", robot.gyro.isConnected());
+    if(gamepad1.getStartButtonPressed()){
+      robot.pdp.clearStickyFaults();
+      robot.pcm.clearStickyFaults();
+      //robot.limelight.setLEDMode(0);
+      robot.pcm.compressor.enable();
+      //robot.gyro.calibrate();
+      //robot.pcm.enableCompressorDigital();
+    }else if(gamepad1.getBackButtonPressed()){
+      //robot.limelight.setLEDMode(1);
+      robot.pcm.compressor.disable();
+      //robot.pcm.disableCompressor();
+    } else if(!gamepad1.getStartButton() && robot.pdp.getVoltage() < 9){
+      robot.pcm.compressor.disable();
+            //robot.pcm.disableCompressor();
+    }
   }
+
+  private AutonomousInterface autonomousProgram;
 
   /**
    * This autonomous (along with the chooser code above) shows how to select
@@ -79,41 +125,39 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    System.out.println("Autonomous Program selected: " + autonomousPrograms.getSelected());
-
+    for (AutonomousInterface program : programFetcher.getAutonomousPrograms()) {
+      if (autonomousPrograms.getSelected().equals(program.id)) {
+        System.out.println("Autonomous Program selected: " + program.displayName);
+        autonomousProgram = program;
+      }
+    }
+    autonomousProgram.autonomousInit();
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-
+    autonomousProgram.autonomousPeriodic();
   }
+
+  private TeleopInterface teleopProgram;
 
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    System.out.println("Teleop Program selected: " + teleopPrograms.getSelected());
-    switch (teleopPrograms.getSelected()) {
-      case CustomMecanumTeleop.name:
-        customMecanumTeleop.teleopInit();
-        break;
-      case ProvidedMecanumTeleop.name:
-        providedMecanumTeleop.teleopInit();
-        break;
+    for (TeleopInterface program : programFetcher.getTeleopPrograms()) {
+      if (teleopPrograms.getSelected().equals(program.id)) {
+        System.out.println("Teleop Program selected: " + program.displayName);
+        teleopProgram = program;
+      }
     }
+    teleopProgram.teleopInit();
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    switch (teleopPrograms.getSelected()) {
-      case CustomMecanumTeleop.name:
-        customMecanumTeleop.teleopPeriodic();
-        break;
-      case ProvidedMecanumTeleop.name:
-        providedMecanumTeleop.teleopPeriodic();
-        break;
-    }
+    teleopProgram.teleopPeriodic();
   }
 
   /** This function is called once when the robot is disabled. */
@@ -126,13 +170,23 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
   }
 
+  private TestInterface testProgram;
+
   /** This function is called once when test mode is enabled. */
   @Override
   public void testInit() {
+    for (TestInterface program : programFetcher.getTestPrograms()) {
+      if (testPrograms.getSelected().equals(program.id)) {
+        System.out.println("Test Program selected: " + program.displayName);
+        testProgram = program;
+      }
+    }
+    testProgram.testInit();
   }
 
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
+    testProgram.testPeriodic();
   }
 }
