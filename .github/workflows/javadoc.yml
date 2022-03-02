@@ -22,13 +22,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        
-      #- name: Update FRC Package
-        #run: |
-          #rm -r dist/frc
-          #cp -r src/main/java/frc dist/frc
           
-      - name: Build Code
+      - name: Generate Javadoc
         run: ./gradlew Javadoc
           
       - name: Commit files
