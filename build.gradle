@@ -100,5 +100,9 @@ options.addStringOption('tag', 'changes:a:"Changelog:"')
    }
    doLast {
         new File(file('docs/'), "_config.yml").text = "theme: jekyll-theme-hacker"
+        new File('docs/search.js').append '\n\n' +
+'getURLPrefix = function(ui) {\n' +
+'    return \'\';\n' +
+'};\n'
    }
 }
