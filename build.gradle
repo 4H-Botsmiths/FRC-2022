@@ -99,6 +99,6 @@ options.addStringOption('tag', 'changes:a:"Changelog:"')
         new File('docs/').deleteDir()
    }
    doLast {
-        new File(file('docs/'), "_config.yml").text = "theme: jekyll-theme-modernist"
+        new File(file('docs/'), "_config.yml").text = "theme: jekyll-theme-hacker"
    }
 }
