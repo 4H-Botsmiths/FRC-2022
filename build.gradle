@@ -87,3 +87,10 @@ jar {
 deployArtifact.jarTask = jar
 wpi.java.configureExecutableTasks(jar)
 wpi.java.configureTestTasks(test)
+
+task Javadoc(type: Javadoc) {
+  source = sourceSets.main.allJava
+  destinationDir = file('docs/')
+ failOnError false
+   //classpath =  configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+}
