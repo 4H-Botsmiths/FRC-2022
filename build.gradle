@@ -93,6 +93,11 @@ task Javadoc(type: Javadoc) {
   destinationDir = file('docs/')
   failOnError false
    classpath =  sourceSets.main.runtimeClasspath
+options.addBooleanOption('html5', true)
+options.addStringOption('tag', 'changes:a:"Changelog:"')
+   doFirst {
+        new File('docs/').deleteDir()
+   }
    doLast {
         new File(file('docs/'), "_config.yml").text = "theme: jekyll-theme-tactile"
    }
