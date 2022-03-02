@@ -93,4 +93,7 @@ task Javadoc(type: Javadoc) {
   destinationDir = file('docs/')
  failOnError false
    //classpath =  configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+   doLast {
+        new File(file('docs/'), "_config.yml").text = "theme: jekyll-theme-tactile"
+   }
 }
