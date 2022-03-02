@@ -91,8 +91,8 @@ wpi.java.configureTestTasks(test)
 task Javadoc(type: Javadoc) {
   source = sourceSets.main.allJava
   destinationDir = file('docs/')
- failOnError false
-   //classpath =  configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+  failOnError false
+   classpath =  sourceSets.main.runtimeClasspath
    doLast {
         new File(file('docs/'), "_config.yml").text = "theme: jekyll-theme-tactile"
    }
