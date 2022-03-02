@@ -4,9 +4,9 @@ name: Javadoc Generator
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  #push:
-    #branches: [ main ]
-    #paths: [ src/**, .github/workflows/javadoc.yml ] 
+  push:
+    branches: [ main ]
+    paths: [ src/**, .github/workflows/javadoc.yml ] 
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -29,22 +29,7 @@ jobs:
           #cp -r src/main/java/frc dist/frc
           
       - name: Build Code
-        run: ./gradlew build
-          
-      - name: Remove Old Documentation
-        run: rm -r docs
-        
-      - name: Re-Create Docs Folder
-        run: mkdir docs
-        
-      - name: Re-inject Theme
-        run: 'echo "theme: jekyll-theme-tactile" > docs/_config.yml'
-        
-      - name: Generate Javadoc
-        run: |
-          javadoc -subpackages src/main/java/frc -d docs -tag changes:a:"Changelog:"> ../javadoc.log
-          cat ../javadoc.log
-          rm ../javadoc.log
+        run: ./gradlew Javadoc
           
       - name: Commit files
         id: commit
