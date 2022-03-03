@@ -91,7 +91,7 @@ wpi.java.configureTestTasks(test)
 task Javadoc(type: Javadoc) {
   source = sourceSets.main.allJava
   destinationDir = file('docs/')
-  //failOnError false
+  failOnError false
    classpath =  sourceSets.main.runtimeClasspath
    options.tags = ['changes:a:"Changelog:"']
 options.memberLevel = JavadocMemberLevel.PRIVATE
