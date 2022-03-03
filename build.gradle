@@ -93,8 +93,10 @@ task Javadoc(type: Javadoc) {
   destinationDir = file('docs/')
   failOnError false
    classpath =  sourceSets.main.runtimeClasspath
-options.addBooleanOption('html5', true)
-options.addStringOption('tag', 'changes:a:"Changelog:"')
+   options.tag = 'changes:a:"Changelog:"'
+   options.private = true
+//options.addBooleanOption('html5', true)
+//options.addStringOption('tag', 'changes:a:"Changelog:"')
    doFirst {
         new File('docs/').deleteDir()
    }
