@@ -94,7 +94,7 @@ task Javadoc(type: Javadoc) {
   failOnError false
    classpath =  sourceSets.main.runtimeClasspath
    options.tags = ['changes:a:"Changelog:"']
-   options.private = true
+options.memberLevel = JavadocMemberLevel.PRIVATE
 //options.addBooleanOption('html5', true)
 //options.addStringOption('tag', 'changes:a:"Changelog:"')
    doFirst {
