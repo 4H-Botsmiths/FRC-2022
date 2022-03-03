@@ -94,7 +94,7 @@ loadScripts(document, 'script');</script>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -169,6 +169,64 @@ extends edu.wpi.first.wpilibj.TimedRobot</pre>
 <!--   -->
 </a>
 <h3>Field Summary</h3>
+<table class="memberSummary">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private <a href="programs/interfaces/AutonomousInterface.html" title="class in frc.robot.programs.interfaces">AutonomousInterface</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#autonomousProgram">autonomousProgram</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private edu.wpi.first.wpilibj.smartdashboard.SendableChooser&lt;java.lang.String&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#autonomousPrograms">autonomousPrograms</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private <a href="hardware/Gamepad1.html" title="class in frc.robot.hardware">Gamepad1</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#gamepad1">gamepad1</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#period">period</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private <a href="ProgramFetcher.html" title="class in frc.robot">ProgramFetcher</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#programFetcher">programFetcher</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private <a href="hardware/RobotHardware.html" title="class in frc.robot.hardware">RobotHardware</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#robot">robot</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private <a href="programs/interfaces/TeleopInterface.html" title="class in frc.robot.programs.interfaces">TeleopInterface</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#teleopProgram">teleopProgram</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private edu.wpi.first.wpilibj.smartdashboard.SendableChooser&lt;java.lang.String&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#teleopPrograms">teleopPrograms</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>private <a href="programs/interfaces/TestInterface.html" title="class in frc.robot.programs.interfaces">TestInterface</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#testProgram">testProgram</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>private edu.wpi.first.wpilibj.smartdashboard.SendableChooser&lt;java.lang.String&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#testPrograms">testPrograms</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a id="fields.inherited.from.class.edu.wpi.first.wpilibj.TimedRobot">
 <!--   -->
@@ -324,6 +382,106 @@ extends edu.wpi.first.wpilibj.TimedRobot</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a id="period">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>period</h4>
+<pre>private&nbsp;double period</pre>
+</li>
+</ul>
+<a id="teleopPrograms">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>teleopPrograms</h4>
+<pre>private final&nbsp;edu.wpi.first.wpilibj.smartdashboard.SendableChooser&lt;java.lang.String&gt; teleopPrograms</pre>
+</li>
+</ul>
+<a id="autonomousPrograms">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>autonomousPrograms</h4>
+<pre>private final&nbsp;edu.wpi.first.wpilibj.smartdashboard.SendableChooser&lt;java.lang.String&gt; autonomousPrograms</pre>
+</li>
+</ul>
+<a id="testPrograms">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>testPrograms</h4>
+<pre>private final&nbsp;edu.wpi.first.wpilibj.smartdashboard.SendableChooser&lt;java.lang.String&gt; testPrograms</pre>
+</li>
+</ul>
+<a id="robot">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>robot</h4>
+<pre>private&nbsp;<a href="hardware/RobotHardware.html" title="class in frc.robot.hardware">RobotHardware</a> robot</pre>
+</li>
+</ul>
+<a id="programFetcher">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>programFetcher</h4>
+<pre>private&nbsp;<a href="ProgramFetcher.html" title="class in frc.robot">ProgramFetcher</a> programFetcher</pre>
+</li>
+</ul>
+<a id="gamepad1">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>gamepad1</h4>
+<pre>private&nbsp;<a href="hardware/Gamepad1.html" title="class in frc.robot.hardware">Gamepad1</a> gamepad1</pre>
+</li>
+</ul>
+<a id="autonomousProgram">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>autonomousProgram</h4>
+<pre>private&nbsp;<a href="programs/interfaces/AutonomousInterface.html" title="class in frc.robot.programs.interfaces">AutonomousInterface</a> autonomousProgram</pre>
+</li>
+</ul>
+<a id="teleopProgram">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>teleopProgram</h4>
+<pre>private&nbsp;<a href="programs/interfaces/TeleopInterface.html" title="class in frc.robot.programs.interfaces">TeleopInterface</a> teleopProgram</pre>
+</li>
+</ul>
+<a id="testProgram">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>testProgram</h4>
+<pre>private&nbsp;<a href="programs/interfaces/TestInterface.html" title="class in frc.robot.programs.interfaces">TestInterface</a> testProgram</pre>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section role="region">
 <ul class="blockList">
@@ -564,7 +722,7 @@ extends edu.wpi.first.wpilibj.TimedRobot</pre>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
