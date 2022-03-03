@@ -8,7 +8,7 @@ public class WillAuto extends AutonomousInterface {
     //private double Clockwise = 0;
 
     public WillAuto(RobotHardware Robot) {
-        super(Robot, "William's Auto Code", true);
+        super(Robot, "William's Auto Code");
     }
 
     @Override
@@ -24,7 +24,7 @@ public class WillAuto extends AutonomousInterface {
             Clockwise =+ 0.1;
         }
         robot.drivetrain.Drive(0, 0, Clockwise, 1);*/
-        robot.drivetrain.Drive(0, robot.gyro.getYaw()/90, 0, 1);
+        robot.drivetrain.Drive(0, robot.gyro.getYaw()/90, 0);
         //System.out.println(Clockwise);
     }
 }

@@ -27,7 +27,7 @@ public class CustomMecanumTeleop extends TeleopInterface {
     @Override
     public void teleopPeriodic() {
         if (SmartDashboard.getBoolean("Relative Drive", false)) {
-            robot.drivetrain.RelativeDrive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX(), 1,
+            robot.drivetrain.RelativeDrive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX(),
                     SmartDashboard.getNumber("Gyro Dummy", 0));
             /*
              * robot.RelativeDrive(gamepad1.getLeftX(), gamepad1.getLeftY(),
@@ -38,7 +38,7 @@ public class CustomMecanumTeleop extends TeleopInterface {
              * robot.Drive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX(),
              * 1);
              */
-            robot.drivetrain.Drive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX(), 1);
+            robot.drivetrain.Drive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX());
         }
     }
 

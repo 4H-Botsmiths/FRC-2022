@@ -26,15 +26,15 @@ public class HowToCrashACar extends TeleopInterface {
 
         if (SmartDashboard.getBoolean("Relative Drive", false)) {
             robot.pcm.pistonIn(robot.pcm.drivetrain);
-            robot.drivetrain.RelativeDrive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX(), 1,
+            robot.drivetrain.RelativeDrive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX(),
                     robot.gyro.getYaw());
         } else {
             if (Math.abs(gamepad1.getLeftX()) < 0.1) {
                 robot.pcm.pistonOut(robot.pcm.drivetrain);
-                robot.drivetrain.Drive(0, gamepad1.getLeftY(), gamepad1.getRightX(), 1);
+                robot.drivetrain.Drive(0, gamepad1.getLeftY(), gamepad1.getRightX());
             } else {
                 robot.pcm.pistonIn(robot.pcm.drivetrain);
-                robot.drivetrain.Drive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX(), 1);
+                robot.drivetrain.Drive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX());
             }
         }
     }
