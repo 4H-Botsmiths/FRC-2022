@@ -37,6 +37,8 @@ public class HowToCrashACar extends TeleopInterface {
                 robot.drivetrain.Drive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX());
             }
         }
+        robot.climber.setSafe(gamepad2.getLeftY());
+        gamepad2.setRumble(Math.abs(robot.climber.leftClimber.get()), Math.abs(robot.climber.rightClimber.get()));
     }
 
 }

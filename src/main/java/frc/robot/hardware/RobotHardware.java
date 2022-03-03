@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 
 /**
  * Use this class to control all motors and sensors
@@ -35,6 +36,8 @@ public class RobotHardware {
     // public SPX[] Motors = new SPX[4];
     /** use this for the provided mecanum drive */
     public MecanumDrivetrain drivetrain;
+    /** Climbing Motors */
+    public SparkMaxClimber climber = new SparkMaxClimber(new PWMSparkMax(1), new PWMSparkMax(2), 30);
     /** Analog Gyro */
     // public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
     // public Gyro gyro = new Gyro();
@@ -195,6 +198,31 @@ public class RobotHardware {
             double multiplier = Math.pow(pdp.getVoltage() / RobotHardware.targetVoltage, 2);
             set(get() + 0.01 < (speed * multiplier) ? get() + 0.01 : speed * multiplier);
             drivetrain.feed();
+        }
+    }
+    public class SparkMaxClimber {
+        public PWMSparkMax leftClimber;
+        public PWMSparkMax rightClimber;
+
+        /**
+         * Use this class for controling 2 PWM Spark Max's
+         * @param left Left Motor
+         * @param right Right Motor
+         * @param timeout Expiration in milliseconds
+         */
+        public SparkMaxClimber(PWMSparkMax left, PWMSparkMax right, int timeout){
+            leftClimber = left;
+            rightClimber = right;
+            leftClimber.setExpiration(timeout);
+            rightClimber.setExpiration(timeout);
+        }
+        public void setSafe(double speed) {
+            double multiplier = Math.pow(pdp.getVoltage() / RobotHardware.targetVoltage, 2);
+            leftClimber.set(leftClimber.get() + 0.01 < (speed * multiplier) ? leftClimber.get() + 0.01 : speed * multiplier);
+            leftClimber.feed();
+
+            rightClimber.set(rightClimber.get() + 0.01 < (speed * multiplier) ? rightClimber.get() + 0.01 : speed * multiplier);
+            rightClimber.feed();
         }
     }
 }

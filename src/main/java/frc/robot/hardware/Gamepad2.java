@@ -12,12 +12,14 @@ public class Gamepad2 extends XboxController {
   public Gamepad2() {
     super(1);
   }
-  public RumbleType LeftRumble = RumbleType.kLeftRumble;
-  public RumbleType RightRumble = RumbleType.kRightRumble;
-
+  /**
+   * Rumble the gamepad
+   * @param left the amount to vibrate the left vibrater (0 to 1)
+   * @param right the amount to vibrate the right vibrater (0 to 1)
+   */
   public void setRumble(double left, double right) {
-    setRumble(LeftRumble, left < 0 ? 0 : left > 1 ? 1 : left);
-    setRumble(RightRumble, right < 0 ? 0 : right > 1 ? 1 : right);
+    setRumble(RumbleType.kLeftRumble, left < 0 ? 0 : left > 1 ? 1 : left);
+    setRumble(RumbleType.kRightRumble, right < 0 ? 0 : right > 1 ? 1 : right);
   }
   /**
    * Get the inverted Y axis value of left side of the controller.
