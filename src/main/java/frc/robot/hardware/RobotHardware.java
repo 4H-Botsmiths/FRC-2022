@@ -74,11 +74,11 @@ public class RobotHardware {
         Motors[1] = rearLeft;
         Motors[2] = frontRight;
         Motors[3] = rearRight;
-        //for (SparkMax motor : Motors) {
-            // motor.setExpiration(period);
-            // motor.setSafetyEnabled(false);
-            // motor.setL
-        //}
+        // for (SparkMax motor : Motors) {
+        // motor.setExpiration(period);
+        // motor.setSafetyEnabled(false);
+        // motor.setL
+        // }
         drivetrain = new MecanumDrivetrain(frontLeft, rearLeft, frontRight, rearRight);
         drivetrain.setSafetyEnabled(true);
         drivetrain.setExpiration(period);
@@ -90,6 +90,20 @@ public class RobotHardware {
          * { Thread.sleep(500); } catch (InterruptedException e) {
          * System.out.println(e); } } System.out.println("Gyro Calibrated");
          */
+    }
+
+    public double setSafeCalcuater(double speed, double currentSpeed) {
+        double multiplier = Math.pow(pdp.getVoltage() / targetVoltage, 2);
+        double multipliedSpeed = speed * multiplier;
+        if (multipliedSpeed == currentSpeed) {
+            return currentSpeed;
+        } else if (multipliedSpeed > currentSpeed && currentSpeed + 0.02 < multipliedSpeed) {
+            return currentSpeed + 0.02;
+        } else if (multipliedSpeed < currentSpeed && currentSpeed - 0.02 > multipliedSpeed) {
+            return currentSpeed - 0.02;
+        } else {
+            return multipliedSpeed;
+        }
     }
 
     public class Gyro extends ADXRS450_Gyro {
@@ -144,7 +158,7 @@ public class RobotHardware {
          * @param cap  the maximum speed
          * @param gyro the gyro
          */
-        public void RelativeDrive(double x, double y, double z,/* double cap,*/ double gyro) {
+        public void RelativeDrive(double x, double y, double z, /* double cap, */ double gyro) {
             gyro = gyro / 45;
             if (gyro > 2 || gyro < -2) {
                 gyro = gyro > 2 ? -gyro + 4 : -gyro - 4;
@@ -182,8 +196,7 @@ public class RobotHardware {
         }
 
         public void setSafe(double speed) {
-            double multiplier = Math.pow(pdp.getVoltage() / RobotHardware.targetVoltage, 2);
-            set(clip(speed * multiplier, -1, 1));
+            set(setSafeCalcuater(speed, get()));
             feed();
         }
     }
@@ -195,33 +208,41 @@ public class RobotHardware {
         }
 
         public void setSafe(double speed) {
-            double multiplier = Math.pow(pdp.getVoltage() / RobotHardware.targetVoltage, 2);
-            set(get() + 0.01 < (speed * multiplier) ? get() + 0.01 : speed * multiplier);
-            drivetrain.feed();
+            set(setSafeCalcuater(speed, get()));
+                        drivetrain.feed();
         }
     }
+
     public class SparkMaxClimber {
         public PWMSparkMax leftClimber;
         public PWMSparkMax rightClimber;
 
         /**
          * Use this class for controling 2 PWM Spark Max's
-         * @param left Left Motor
-         * @param right Right Motor
+         * 
+         * @param left    Left Motor
+         * @param right   Right Motor
          * @param timeout Expiration in milliseconds
          */
-        public SparkMaxClimber(PWMSparkMax left, PWMSparkMax right, int timeout){
+        public SparkMaxClimber(PWMSparkMax left, PWMSparkMax right, int timeout) {
             leftClimber = left;
             rightClimber = right;
             leftClimber.setExpiration(timeout);
             rightClimber.setExpiration(timeout);
         }
+
         public void setSafe(double speed) {
-            double multiplier = Math.pow(pdp.getVoltage() / RobotHardware.targetVoltage, 2);
-            leftClimber.set(leftClimber.get() + 0.01 < (speed * multiplier) ? leftClimber.get() + 0.01 : speed * multiplier);
+            leftClimber.set(setSafeCalcuater(speed, leftClimber.get()));
             leftClimber.feed();
 
-            rightClimber.set(rightClimber.get() + 0.01 < (speed * multiplier) ? rightClimber.get() + 0.01 : speed * multiplier);
+            rightClimber.set(setSafeCalcuater(speed, rightClimber.get()));
+            rightClimber.feed();
+        }
+        public void setSafe(double leftSpeed, double rightSpeed) {
+            leftClimber.set(setSafeCalcuater(leftSpeed, leftClimber.get()));
+            leftClimber.feed();
+
+            rightClimber.set(setSafeCalcuater(rightSpeed, rightClimber.get()));
             rightClimber.feed();
         }
     }
