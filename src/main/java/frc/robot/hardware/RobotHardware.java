@@ -91,7 +91,12 @@ public class RobotHardware {
          * System.out.println(e); } } System.out.println("Gyro Calibrated");
          */
     }
-
+/**
+ * Calculates out what your motor speed should be
+ * @param speed the target speed
+ * @param currentSpeed the current speed
+ * @return then new speed
+ */
     public double setSafeCalcuater(double speed, double currentSpeed) {
         double multiplier = Math.pow(pdp.getVoltage() / targetVoltage, 2);
         double multipliedSpeed = speed * multiplier;
