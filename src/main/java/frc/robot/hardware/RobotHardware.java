@@ -158,6 +158,8 @@ public class RobotHardware {
                         (float) (rearLeft.getEncoder().getPosition() - (inches / wheelCircumference)));
                 rearRight.setSoftLimit(SoftLimitDirection.kReverse,
                         (float) (rearRight.getEncoder().getPosition() - (inches / wheelCircumference)));
+            } else {
+                throw new Error("Error Setting Limits");
             }
             frontLeft.setSafePosition(speed);
             frontRight.setSafePosition(speed);
