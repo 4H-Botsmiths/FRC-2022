@@ -3,6 +3,7 @@ package frc.robot.hardware;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.*;
@@ -91,12 +92,14 @@ public class RobotHardware {
          * System.out.println(e); } } System.out.println("Gyro Calibrated");
          */
     }
-/**
- * Calculates out what your motor speed should be
- * @param speed the target speed
- * @param currentSpeed the current speed
- * @return then new speed
- */
+
+    /**
+     * Calculates out what your motor speed should be
+     * 
+     * @param speed        the target speed
+     * @param currentSpeed the current speed
+     * @return then new speed
+     */
     public double setSafeCalcuater(double speed, double currentSpeed) {
         double multiplier = Math.pow(pdp.getVoltage() / targetVoltage, 2);
         double multipliedSpeed = speed * multiplier;
@@ -127,9 +130,28 @@ public class RobotHardware {
     }
 
     public class MecanumDrivetrain extends MecanumDrive {
+        public double wheelDiameter = 6;
+        public double wheelCircumference = wheelDiameter * Math.PI;
+
         public MecanumDrivetrain(MotorController frontLeftMotor, MotorController rearLeftMotor,
                 MotorController frontRightMotor, MotorController rearRightMotor) {
             super(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
+        }
+
+        public void Drive(double inches, double speed) {
+            frontLeft.setSoftLimit(SoftLimitDirection.kForward,
+                    (float) (frontLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
+            frontRight.setSoftLimit(SoftLimitDirection.kForward,
+                    (float) (frontRight.getEncoder().getPosition() + (inches / wheelCircumference)));
+            rearLeft.setSoftLimit(SoftLimitDirection.kForward,
+                    (float) (rearLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
+            rearRight.setSoftLimit(SoftLimitDirection.kForward,
+                    (float) (rearRight.getEncoder().getPosition() + (inches / wheelCircumference)));
+
+            frontLeft.setSafePosition(speed);
+            frontRight.setSafePosition(speed);
+            rearLeft.setSafePosition(speed);
+            rearRight.setSafePosition(speed);
         }
 
         /**
@@ -213,8 +235,13 @@ public class RobotHardware {
         }
 
         public void setSafe(double speed) {
+            enableSoftLimit(SoftLimitDirection.kForward, false);
             set(setSafeCalcuater(speed, get()));
-                        drivetrain.feed();
+            drivetrain.feed();
+        }
+        public void setSafePosition(double speed){
+            set(setSafeCalcuater(speed, get()));
+            drivetrain.feed();
         }
     }
 
@@ -243,6 +270,7 @@ public class RobotHardware {
             rightClimber.set(setSafeCalcuater(speed, rightClimber.get()));
             rightClimber.feed();
         }
+
         public void setSafe(double leftSpeed, double rightSpeed) {
             leftClimber.set(setSafeCalcuater(leftSpeed, leftClimber.get()));
             leftClimber.feed();
