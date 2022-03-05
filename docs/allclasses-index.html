@@ -26,12 +26,6 @@
     catch(err) {
     }
 //-->
-var data = {"i0":2,"i1":2,"i2":2,"i3":2,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":2,"i10":2,"i11":2,"i12":2,"i13":2,"i14":2,"i15":1,"i16":2,"i17":2,"i18":2,"i19":2,"i20":2};
-var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"]};
-var altColor = "altColor";
-var rowColor = "rowColor";
-var tableTab = "tableTab";
-var activeTableTab = "activeTableTab";
 var pathtoroot = "./";
 var useModuleDirectories = true;
 loadScripts(document, 'script');</script>
@@ -104,64 +98,64 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <table class="typeSummary">
-<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Interface Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Class</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><a href="frc/robot/programs/AdaptiveObserver.html" title="class in frc.robot.programs">AdaptiveObserver</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><a href="frc/robot/programs/interfaces/AutonomousInterface.html" title="class in frc.robot.programs.interfaces">AutonomousInterface</a></td>
 <th class="colLast" scope="row">
 <div class="block">Use this when writing an autonomous program</div>
 </th>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><a href="frc/robot/programs/CustomMecanumTeleop.html" title="class in frc.robot.programs">CustomMecanumTeleop</a></td>
 <th class="colLast" scope="row">
 <div class="block">This program performs a basic mecanum drive using a custom algorithim</div>
 </th>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><a href="frc/robot/hardware/Gamepad1.html" title="class in frc.robot.hardware">Gamepad1</a></td>
 <th class="colLast" scope="row">
 <div class="block">Use this for reading inputs from Xbox controller 0</div>
 </th>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><a href="frc/robot/hardware/Gamepad2.html" title="class in frc.robot.hardware">Gamepad2</a></td>
 <th class="colLast" scope="row">
 <div class="block">Use this for reading inputs from Xbox controller 1</div>
 </th>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><a href="frc/robot/programs/HowToCrashACar.html" title="class in frc.robot.programs">HowToCrashACar</a></td>
 <th class="colLast" scope="row">
 <div class="block">NOTE: Kellen Named This Program</div>
 </th>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><a href="frc/robot/programs/JoesFirstTeleop.html" title="class in frc.robot.programs">JoesFirstTeleop</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></td>
 <th class="colLast" scope="row">
 <div class="block">this class contains all of the code and functions required for using a
  limelight</div>
 </th>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><a href="frc/robot/Main.html" title="class in frc.robot">Main</a></td>
 <th class="colLast" scope="row">
 <div class="block">Do NOT add any static variables to this class, or any initialization at all.</div>
 </th>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><a href="frc/robot/programs/MotorTester.html" title="class in frc.robot.programs">MotorTester</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><a href="frc/robot/programs/ObservedTeleop.html" title="class in frc.robot.programs">ObservedTeleop</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i10" class="altColor">
@@ -193,7 +187,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </th>
 </tr>
 <tr id="i15" class="rowColor">
-<td class="colFirst"><a href="frc/robot/programs/interfaces/RobotState.html" title="interface in frc.robot.programs.interfaces">RobotState</a></td>
+<td class="colFirst"><a href="frc/robot/programs/interfaces/RobotState.html" title="class in frc.robot.programs.interfaces">RobotState</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
 <tr id="i16" class="altColor">
@@ -211,12 +205,16 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </th>
 </tr>
 <tr id="i19" class="rowColor">
+<td class="colFirst"><a href="frc/robot/programs/TeleopObserver.html" title="class in frc.robot.programs">TeleopObserver</a></td>
+<th class="colLast" scope="row">&nbsp;</th>
+</tr>
+<tr id="i20" class="altColor">
 <td class="colFirst"><a href="frc/robot/programs/interfaces/TestInterface.html" title="class in frc.robot.programs.interfaces">TestInterface</a></td>
 <th class="colLast" scope="row">
 <div class="block">Use this when writing an test program</div>
 </th>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><a href="frc/robot/programs/WillAuto.html" title="class in frc.robot.programs">WillAuto</a></td>
 <th class="colLast" scope="row">&nbsp;</th>
 </tr>
