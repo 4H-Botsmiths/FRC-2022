@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -94,7 +94,7 @@ loadScripts(document, 'script');</script>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -192,6 +192,24 @@ extends edu.wpi.first.wpilibj.drive.MecanumDrive</pre>
 <!--   -->
 </a>
 <h3>Field Summary</h3>
+<table class="memberSummary">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#wheelCircumference">wheelCircumference</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>double</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#wheelDiameter">wheelDiameter</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a id="fields.inherited.from.class.edu.wpi.first.wpilibj.drive.RobotDriveBase">
 <!--   -->
@@ -242,6 +260,12 @@ extends edu.wpi.first.wpilibj.drive.MecanumDrive</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Drive(double,double)">Drive</a></span>&#8203;(double&nbsp;inches,
+     double&nbsp;speed)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Drive(double,double,double)">Drive</a></span>&#8203;(double&nbsp;x,
      double&nbsp;y,
      double&nbsp;z)</code></th>
@@ -249,7 +273,7 @@ extends edu.wpi.first.wpilibj.drive.MecanumDrive</pre>
 <div class="block">Classic Mecanum Drive</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#RelativeDrive(double,double,double,double)">RelativeDrive</a></span>&#8203;(double&nbsp;x,
              double&nbsp;y,
@@ -259,7 +283,7 @@ extends edu.wpi.first.wpilibj.drive.MecanumDrive</pre>
 <div class="block">Mecanum Drive using a Gyro for Relative Driving</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#TankDrive(double,double)">TankDrive</a></span>&#8203;(double&nbsp;left,
          double&nbsp;right)</code></th>
@@ -305,6 +329,34 @@ extends edu.wpi.first.wpilibj.drive.MecanumDrive</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a id="wheelDiameter">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>wheelDiameter</h4>
+<pre>public&nbsp;double wheelDiameter</pre>
+</li>
+</ul>
+<a id="wheelCircumference">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>wheelCircumference</h4>
+<pre>public&nbsp;double wheelCircumference</pre>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section role="region">
 <ul class="blockList">
@@ -334,6 +386,16 @@ extends edu.wpi.first.wpilibj.drive.MecanumDrive</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="Drive(double,double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>Drive</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;Drive&#8203;(double&nbsp;inches,
+                  double&nbsp;speed)</pre>
+</li>
+</ul>
 <a id="Drive(double,double,double)">
 <!--   -->
 </a>
@@ -443,7 +505,7 @@ extends edu.wpi.first.wpilibj.drive.MecanumDrive</pre>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
