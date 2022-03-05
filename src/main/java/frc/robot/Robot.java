@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
   private RobotHardware robot = new RobotHardware(period);
   private ProgramFetcher programFetcher = new ProgramFetcher(robot);
   private Gamepad1 gamepad1 = new Gamepad1();
+  private String activeMode;
   // private String selectedProgram;
   /**
    * This function is run when the robot is first started up and should be used
@@ -131,12 +132,14 @@ public class Robot extends TimedRobot {
         autonomousProgram = program;
       }
     }
+    activeMode = "Autonomous";
     autonomousProgram.autonomousInit();
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+    activeMode = "Autonomous";
     autonomousProgram.autonomousPeriodic();
   }
 
@@ -151,23 +154,15 @@ public class Robot extends TimedRobot {
         teleopProgram = program;
       }
     }
+    activeMode = "Teleop";
     teleopProgram.teleopInit();
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+    activeMode = "Teleop";
     teleopProgram.teleopPeriodic();
-  }
-
-  /** This function is called once when the robot is disabled. */
-  @Override
-  public void disabledInit() {
-  }
-
-  /** This function is called periodically when disabled. */
-  @Override
-  public void disabledPeriodic() {
   }
 
   private TestInterface testProgram;
@@ -181,12 +176,38 @@ public class Robot extends TimedRobot {
         testProgram = program;
       }
     }
+    activeMode = "Test";
     testProgram.testInit();
   }
 
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
+    activeMode = "Test";
     testProgram.testPeriodic();
+  }
+
+  
+  /** This function is called once when the robot is disabled. */
+  @Override
+  public void disabledInit() {
+    switch (activeMode) {
+      case "Test":
+        testProgram.testDisable();
+        break;
+      case "Teleop":
+        teleopProgram.teleopDisable();
+        break;
+      case "Autonomous":
+        autonomousProgram.autonomousDisable();
+        break;
+      default:
+        //do nothing
+    }
+  }
+
+  /** This function is called periodically when disabled. */
+  @Override
+  public void disabledPeriodic() {
   }
 }

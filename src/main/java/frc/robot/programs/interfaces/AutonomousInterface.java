@@ -55,7 +55,7 @@ public class AutonomousInterface {
        /**
         * call this function once to run autonomous init code.
         * <p>
-        * ONLY CALL ONCE
+        * ONLY CALLED ONCE
         * </p>
         */
        public void autonomousInit() {
@@ -64,9 +64,18 @@ public class AutonomousInterface {
        /**
         * call this function repeatedly to run autonomous periodic code.
         * <p>
-        * CALL REPEATEDLY
+        * CALLED REPEATEDLY
         * </p>
         */
        public void autonomousPeriodic() {
        };
+
+       /**
+        * call this function once to run autonomous disable code.
+        * <p>
+        * ONLY CALLED ONCE
+        * </p>
+        */
+       public void autonomousDisable() {
+       }
 }

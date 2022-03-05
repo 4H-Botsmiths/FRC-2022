@@ -26,22 +26,25 @@ public class TeleopInterface {
         * 
         * @param Robot this variable must contain all motors and sensors to be used
         */
-        protected TeleopInterface(RobotHardware Robot, String name){
-               robot = Robot;
-               displayName = name;
-               id = name;
-        }
+       protected TeleopInterface(RobotHardware Robot, String name) {
+              robot = Robot;
+              displayName = name;
+              id = name;
+       }
+
        protected TeleopInterface(RobotHardware Robot, String name, int ID) {
               robot = Robot;
               id = String.valueOf(ID);
               displayName = name;
        }
-       protected TeleopInterface(RobotHardware Robot, String name, boolean DEFAULT){
+
+       protected TeleopInterface(RobotHardware Robot, String name, boolean DEFAULT) {
               robot = Robot;
               displayName = name;
               Default = DEFAULT;
               id = name;
        }
+
        protected TeleopInterface(RobotHardware Robot, String name, boolean DEFAULT, int ID) {
               robot = Robot;
               id = String.valueOf(ID);
@@ -49,11 +52,10 @@ public class TeleopInterface {
               Default = DEFAULT;
        }
 
-
        /**
         * call this function once to run teleop init code.
         * <p>
-        * ONLY CALL ONCE
+        * ONLY CALLED ONCE
         * </p>
         */
        public void teleopInit() {
@@ -62,9 +64,18 @@ public class TeleopInterface {
        /**
         * call this function repeatedly to run teleop periodic code.
         * <p>
-        * CALL REPEATEDLY
+        * CALLED REPEATEDLY
         * </p>
         */
        public void teleopPeriodic() {
+       };
+
+       /**
+        * call this function once to run teleop disable code.
+        * <p>
+        * ONLY CALLED ONCE
+        * </p>
+        */
+       public void teleopDisable() {
        };
 }

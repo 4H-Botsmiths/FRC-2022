@@ -55,7 +55,7 @@ public class TestInterface {
        /**
         * call this function once to run test init code.
         * <p>
-        * ONLY CALL ONCE
+        * ONLY CALLED ONCE
         * </p>
         */
        public void testInit() {
@@ -64,9 +64,18 @@ public class TestInterface {
        /**
         * call this function repeatedly to run test periodic code.
         * <p>
-        * CALL REPEATEDLY
+        * CALLED REPEATEDLY
         * </p>
         */
        public void testPeriodic() {
+       };
+
+       /**
+        * call this function once to run test disable code.
+        * <p>
+        * ONLY CALLED ONCE
+        * </p>
+        */
+       public void testDisable() {
        };
 }
