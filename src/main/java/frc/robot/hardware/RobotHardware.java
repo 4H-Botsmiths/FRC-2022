@@ -249,6 +249,7 @@ public class RobotHardware {
 
         public void setSafe(double speed) {
             enableSoftLimit(SoftLimitDirection.kForward, false);
+            enableSoftLimit(SoftLimitDirection.kReverse, false);
             set(setSafeCalcuater(speed, get()));
             drivetrain.feed();
         }
