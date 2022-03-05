@@ -9,22 +9,23 @@ public class SupersonicTrain extends AutonomousInterface {
         super(Robot, "Supersonic Train", true);
     }
 
-    /** Whether the robot has made it back far enough */
-    private boolean done = false;
+    ///** Whether the robot has made it back far enough */
+    //private boolean done = false;
 
     @Override
     public void autonomousInit() {
-        robot.drivetrain.Drive(0, -0.5, 0);
+        //robot.drivetrain.Drive(0, -0.5, 0);
     }
 
     @Override
     public void autonomousPeriodic() {
-        for (SparkMax motor : robot.Motors) {
+        /*for (SparkMax motor : robot.Motors) {
             if (motor.getEncoder().getPosition() > 5) {
                 done = true;
             }
         }
-        robot.drivetrain.Drive(0, done ? 0 : -0.5, 0);
+        robot.drivetrain.Drive(0, done ? 0 : -0.5, 0);*/
+        robot.drivetrain.Drive(-112.4, -0.5);
     }
 
     @Override

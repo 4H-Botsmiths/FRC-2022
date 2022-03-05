@@ -139,15 +139,26 @@ public class RobotHardware {
         }
 
         public void Drive(double inches, double speed) {
-            frontLeft.setSoftLimit(SoftLimitDirection.kForward,
-                    (float) (frontLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
-            frontRight.setSoftLimit(SoftLimitDirection.kForward,
-                    (float) (frontRight.getEncoder().getPosition() + (inches / wheelCircumference)));
-            rearLeft.setSoftLimit(SoftLimitDirection.kForward,
-                    (float) (rearLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
-            rearRight.setSoftLimit(SoftLimitDirection.kForward,
-                    (float) (rearRight.getEncoder().getPosition() + (inches / wheelCircumference)));
-
+            pcm.pistonIn(pcm.drivetrain);
+            if (inches > 0 && speed > 0) {
+                frontLeft.setSoftLimit(SoftLimitDirection.kForward,
+                        (float) (frontLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
+                frontRight.setSoftLimit(SoftLimitDirection.kForward,
+                        (float) (frontRight.getEncoder().getPosition() + (inches / wheelCircumference)));
+                rearLeft.setSoftLimit(SoftLimitDirection.kForward,
+                        (float) (rearLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
+                rearRight.setSoftLimit(SoftLimitDirection.kForward,
+                        (float) (rearRight.getEncoder().getPosition() + (inches / wheelCircumference)));
+            } else if (inches < 0 && speed < 0) {
+                frontLeft.setSoftLimit(SoftLimitDirection.kReverse,
+                        (float) (frontLeft.getEncoder().getPosition() - (inches / wheelCircumference)));
+                frontRight.setSoftLimit(SoftLimitDirection.kReverse,
+                        (float) (frontRight.getEncoder().getPosition() - (inches / wheelCircumference)));
+                rearLeft.setSoftLimit(SoftLimitDirection.kReverse,
+                        (float) (rearLeft.getEncoder().getPosition() - (inches / wheelCircumference)));
+                rearRight.setSoftLimit(SoftLimitDirection.kReverse,
+                        (float) (rearRight.getEncoder().getPosition() - (inches / wheelCircumference)));
+            }
             frontLeft.setSafePosition(speed);
             frontRight.setSafePosition(speed);
             rearLeft.setSafePosition(speed);
@@ -239,7 +250,8 @@ public class RobotHardware {
             set(setSafeCalcuater(speed, get()));
             drivetrain.feed();
         }
-        public void setSafePosition(double speed){
+
+        public void setSafePosition(double speed) {
             set(setSafeCalcuater(speed, get()));
             drivetrain.feed();
         }
