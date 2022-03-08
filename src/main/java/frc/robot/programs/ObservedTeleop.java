@@ -1,28 +1,45 @@
 package frc.robot.programs;
 
 import java.io.*;
-import java.util.*;
+
+import org.json.simple.JSONArray;
+import org.json.simple.parser.*;
 
 import frc.robot.hardware.RobotHardware;
-import frc.robot.programs.interfaces.*;
+import frc.robot.programs.interfaces.AutonomousInterface;
 
-public class ObservedTeleop extends AutonomousInterface{
+public class ObservedTeleop extends AutonomousInterface {
     public ObservedTeleop(RobotHardware Robot) {
         super(Robot, "Observed Teleop", true);
     }
-    //private File recordedProgram;
-    private ArrayList<RobotState> robotState = new ArrayList<RobotState>();
+
+    // private File recordedProgram;
+    public JSONArray robotStateArray = new JSONArray();
+    public JSONParser jsonParser = new JSONParser();
+    public int index = 0;
 
     @Override
-    public void autonomousInit(){
-        try{
-        File recordedProgram = new File("filename");
-        Scanner recordedProgramReader = new Scanner(recordedProgram);
-        while(recordedProgramReader.hasNextLine()){
-            //robotState.add(recordedProgramReader.nextLine());
-        }
-        }catch (IOException e){
+    public void autonomousInit() {
+        try (FileReader reader = new FileReader("employees.json"))
+        {
+            //Read JSON file
+            Object obj = jsonParser.parse(reader);
+ 
+            robotStateArray = (JSONArray) obj;             
+ 
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }        
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void autonomousPeriodic(){
+
+    }
+    @Override
+    public void autonomousDisable() {
     }
 }

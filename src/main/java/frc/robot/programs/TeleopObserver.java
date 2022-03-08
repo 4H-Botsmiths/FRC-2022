@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.github.cliftonlabs.json_simple.*;
+import org.json.simple.*;
 
 import frc.robot.ProgramFetcher;
 import frc.robot.hardware.RobotHardware;
@@ -14,8 +14,8 @@ public class TeleopObserver extends TestInterface{
     public TeleopObserver(RobotHardware Robot) {
         super(Robot, "Teleop Observer", true);
     }
-    public JsonArray robotStateArray = new JsonArray();
-    public JsonObject robotStateObject = new JsonObject();
+    public JSONArray robotStateArray = new JSONArray();
+    public JSONObject robotStateObject = new JSONObject();
 
     private ProgramFetcher programFetcher = new ProgramFetcher(robot);
     private TeleopInterface teleopProgram;
@@ -46,7 +46,8 @@ public class TeleopObserver extends TestInterface{
     public void testDisable(){
         try {
             FileWriter file = new FileWriter("robotStateArray.json");
-            file.write(robotStateArray.toString());
+            file.write(robotStateArray.toJSONString());
+            file.flush();
             file.close();
         } catch (IOException e) {
             e.printStackTrace();
