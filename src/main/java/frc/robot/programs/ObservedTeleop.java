@@ -39,8 +39,11 @@ public class ObservedTeleop extends AutonomousInterface {
     @Override
     public void autonomousPeriodic() {
         JSONObject robotState = (JSONObject) robotStateArray.get(index);
-        
+
         robot.frontLeft.set((double) robotState.get("frontLeft"));
+        robot.frontRight.set((double) robotState.get("frontRight"));
+        robot.rearLeft.set((double) robotState.get("rearLeft"));
+        robot.rearRight.set((double) robotState.get("rearRight"));
     }
 
     @Override
