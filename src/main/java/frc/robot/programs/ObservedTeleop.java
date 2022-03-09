@@ -2,8 +2,7 @@ package frc.robot.programs;
 
 import java.io.*;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.simple.*;
 import org.json.simple.parser.*;
 
 import frc.robot.hardware.RobotHardware;
