@@ -21,7 +21,7 @@ public class ObservedTeleop extends AutonomousInterface {
 
     @Override
     public void autonomousInit() {
-        try (FileReader reader = new FileReader("employees.json")) {
+        try (FileReader reader = new FileReader("robotStateArray.json")) {
             // Read JSON file
             Object obj = jsonParser.parse(reader);
 
