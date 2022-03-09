@@ -46,8 +46,7 @@ public class TeleopObserver extends TestInterface {
 
     @Override
     public void testDisable() {
-        try {
-            FileWriter file = new FileWriter("robotStateArray.json");
+        try (FileWriter file = new FileWriter("robotStateArray.json");) {
             file.write(robotStateArray.toJSONString());
             file.flush();
             file.close();
