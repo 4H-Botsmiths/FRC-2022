@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 /**
  * Use this class to control all motors and sensors
@@ -38,7 +39,7 @@ public class RobotHardware {
     /** use this for the provided mecanum drive */
     public MecanumDrivetrain drivetrain;
     /** Climbing Motors */
-    public SparkMaxClimber climber = new SparkMaxClimber(new PWMSparkMax(1), new PWMSparkMax(2), 30);
+    public SparkMaxClimber climber = new SparkMaxClimber(new PWMSparkMax(8), new Spark(0), 30);
     /** Analog Gyro */
     // public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
     // public Gyro gyro = new Gyro();
@@ -102,16 +103,21 @@ public class RobotHardware {
      */
     public double setSafeCalcuater(double speed, double currentSpeed) {
         double multiplier = Math.pow(pdp.getVoltage() / targetVoltage, 2);
-        double multipliedSpeed = speed * multiplier;
-        if (multipliedSpeed == currentSpeed) {
-            return currentSpeed;
-        } else if (multipliedSpeed > currentSpeed && currentSpeed + 0.02 < multipliedSpeed) {
-            return currentSpeed + 0.02;
-        } else if (multipliedSpeed < currentSpeed && currentSpeed - 0.02 > multipliedSpeed) {
-            return currentSpeed - 0.02;
-        } else {
-            return multipliedSpeed;
-        }
+        return speed * multiplier;
+        /*
+         * double multipliedSpeed = speed * multiplier;
+         * if (multipliedSpeed == currentSpeed) {
+         * return currentSpeed;
+         * } else if (multipliedSpeed > currentSpeed && currentSpeed + 0.02 <
+         * multipliedSpeed) {
+         * return currentSpeed + 0.02;
+         * } else if (multipliedSpeed < currentSpeed && currentSpeed - 0.02 >
+         * multipliedSpeed) {
+         * return currentSpeed - 0.02;
+         * } else {
+         * return multipliedSpeed;
+         * }
+         */
     }
 
     public class Gyro extends ADXRS450_Gyro {
@@ -138,33 +144,45 @@ public class RobotHardware {
             super(frontLeftMotor, rearLeftMotor, frontRightMotor, rearRightMotor);
         }
 
+        private double lastInches = 0;
+        private double targetPosition = 0;
+
         public void Drive(double inches, double speed) {
             pcm.pistonIn(pcm.drivetrain);
-            if (inches > 0 && speed > 0) {
-                frontLeft.setSoftLimit(SoftLimitDirection.kForward,
-                        (float) (frontLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
-                frontRight.setSoftLimit(SoftLimitDirection.kForward,
-                        (float) (frontRight.getEncoder().getPosition() + (inches / wheelCircumference)));
-                rearLeft.setSoftLimit(SoftLimitDirection.kForward,
-                        (float) (rearLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
-                rearRight.setSoftLimit(SoftLimitDirection.kForward,
-                        (float) (rearRight.getEncoder().getPosition() + (inches / wheelCircumference)));
-            } else if (inches < 0 && speed < 0) {
-                frontLeft.setSoftLimit(SoftLimitDirection.kReverse,
-                        (float) (frontLeft.getEncoder().getPosition() - (inches / wheelCircumference)));
-                frontRight.setSoftLimit(SoftLimitDirection.kReverse,
-                        (float) (frontRight.getEncoder().getPosition() - (inches / wheelCircumference)));
-                rearLeft.setSoftLimit(SoftLimitDirection.kReverse,
-                        (float) (rearLeft.getEncoder().getPosition() - (inches / wheelCircumference)));
-                rearRight.setSoftLimit(SoftLimitDirection.kReverse,
-                        (float) (rearRight.getEncoder().getPosition() - (inches / wheelCircumference)));
+            if (lastInches == inches) {
+                if (frontLeft.getEncoder().getPosition() > targetPosition)
+                    Drive(0, 0, 0);
+                else 
+                    Drive(0, speed, 0);
+                /*frontLeft.setSafePosition(speed);
+                frontRight.setSafePosition(speed);
+                rearLeft.setSafePosition(speed);
+                rearRight.setSafePosition(speed);*/
             } else {
-                throw new Error("Error Setting Limits");
+                lastInches = inches;
+                targetPosition = frontLeft.getEncoder().getPosition() + (inches / wheelCircumference);
+                /*if (inches > 0 && speed > 0) {
+                    frontLeft.setSoftLimit(SoftLimitDirection.kForward,
+                            (float) (frontLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
+                    frontRight.setSoftLimit(SoftLimitDirection.kForward,
+                            (float) (frontRight.getEncoder().getPosition() + (inches / wheelCircumference)));
+                    rearLeft.setSoftLimit(SoftLimitDirection.kForward,
+                            (float) (rearLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
+                    rearRight.setSoftLimit(SoftLimitDirection.kForward,
+                            (float) (rearRight.getEncoder().getPosition() + (inches / wheelCircumference)));
+                } else if (inches < 0 && speed < 0) {
+                    frontLeft.setSoftLimit(SoftLimitDirection.kReverse,
+                            (float) (frontLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
+                    frontRight.setSoftLimit(SoftLimitDirection.kReverse,
+                            (float) (frontRight.getEncoder().getPosition() + (inches / wheelCircumference)));
+                    rearLeft.setSoftLimit(SoftLimitDirection.kReverse,
+                            (float) (rearLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
+                    rearRight.setSoftLimit(SoftLimitDirection.kReverse,
+                            (float) (rearRight.getEncoder().getPosition() + (inches / wheelCircumference)));
+                } else {
+                    throw new Error("Error Setting Limits");
+                }*/
             }
-            frontLeft.setSafePosition(speed);
-            frontRight.setSafePosition(speed);
-            rearLeft.setSafePosition(speed);
-            rearRight.setSafePosition(speed);
         }
 
         /**
@@ -248,13 +266,14 @@ public class RobotHardware {
         }
 
         public void setSafe(double speed) {
-            enableSoftLimit(SoftLimitDirection.kForward, false);
-            enableSoftLimit(SoftLimitDirection.kReverse, false);
+            //enableSoftLimit(SoftLimitDirection.kForward, false);
+            //enableSoftLimit(SoftLimitDirection.kReverse, false);
             set(setSafeCalcuater(speed, get()));
             drivetrain.feed();
         }
 
         public void setSafePosition(double speed) {
+            //enableSoftLimit(speed > 0 ? SoftLimitDirection.kForward : SoftLimitDirection.kReverse, true);
             set(setSafeCalcuater(speed, get()));
             drivetrain.feed();
         }
@@ -262,7 +281,7 @@ public class RobotHardware {
 
     public class SparkMaxClimber {
         public PWMSparkMax leftClimber;
-        public PWMSparkMax rightClimber;
+        public Spark rightClimber;
 
         /**
          * Use this class for controling 2 PWM Spark Max's
@@ -271,7 +290,7 @@ public class RobotHardware {
          * @param right   Right Motor
          * @param timeout Expiration in milliseconds
          */
-        public SparkMaxClimber(PWMSparkMax left, PWMSparkMax right, int timeout) {
+        public SparkMaxClimber(PWMSparkMax left, Spark right, int timeout) {
             leftClimber = left;
             rightClimber = right;
             leftClimber.setExpiration(timeout);
@@ -279,18 +298,18 @@ public class RobotHardware {
         }
 
         public void setSafe(double speed) {
-            leftClimber.set(setSafeCalcuater(speed, leftClimber.get()));
+            leftClimber.set(speed/* setSafeCalcuater(speed, leftClimber.get()) */);
             leftClimber.feed();
 
-            rightClimber.set(setSafeCalcuater(speed, rightClimber.get()));
+            rightClimber.set(speed/* setSafeCalcuater(speed, rightClimber.get()) */);
             rightClimber.feed();
         }
 
         public void setSafe(double leftSpeed, double rightSpeed) {
-            leftClimber.set(setSafeCalcuater(leftSpeed, leftClimber.get()));
+            leftClimber.set(leftSpeed/* setSafeCalcuater(leftSpeed, leftClimber.get()) */);
             leftClimber.feed();
 
-            rightClimber.set(setSafeCalcuater(rightSpeed, rightClimber.get()));
+            rightClimber.set(rightSpeed/* setSafeCalcuater(rightSpeed, rightClimber.get()) */);
             rightClimber.feed();
         }
     }

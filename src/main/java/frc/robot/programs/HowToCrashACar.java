@@ -1,5 +1,6 @@
 package frc.robot.programs;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.hardware.RobotHardware;
 import frc.robot.programs.interfaces.TeleopInterface;
@@ -19,21 +20,32 @@ public class HowToCrashACar extends TeleopInterface {
     @Override
     public void teleopInit() {
         SmartDashboard.putBoolean("Relative Drive", false);
+        //robot.pcm.pistonIn(2);
     }
 
     @Override
     public void teleopPeriodic() {
-
+        /*if(!gamepad2.getAButton()){
+            robot.pcm.pistonIn(2);
+        } else {
+            robot.pcm.pistonOut(2);
+        }*/
         if (SmartDashboard.getBoolean("Relative Drive", false)) {
             robot.pcm.pistonIn(robot.pcm.drivetrain);
             robot.drivetrain.RelativeDrive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX(),
                     robot.gyro.getYaw());
         } else {
-
-            if (gamepad1.getLeftTriggerAxis() > 0.5) {
+            if(robot.pcm.pistons[robot.pcm.drivetrain].get() == Value.kForward){
+                robot.drivetrain.Drive(0, gamepad1.getLeftY(), gamepad1.getRightX());
+                gamepad1.setRumble(1, 1);
+            }else {
+            robot.drivetrain.Drive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX());
+            gamepad1.setRumble(0, 0);
+            }
+            /*if (gamepad1.getLeftBumper()) {
                 robot.pcm.pistonIn(robot.pcm.drivetrain);
                 robot.drivetrain.Drive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX());
-            } else if (gamepad1.getLeftTriggerAxis() > 0) {
+            } else if (gamepad1.getRightBumper()) {
                 robot.pcm.pistonOut(robot.pcm.drivetrain);
                 robot.drivetrain.Drive(0, gamepad1.getLeftY(), gamepad1.getRightX());
             } else {
@@ -45,25 +57,35 @@ public class HowToCrashACar extends TeleopInterface {
                     robot.pcm.pistonIn(robot.pcm.drivetrain);
                     robot.drivetrain.Drive(gamepad1.getLeftX(), gamepad1.getLeftY(), gamepad1.getRightX());
                 }
-            }
+            }*/
         }
-
+        if(gamepad2.getAButton()){
+            robot.pcm.pistonOut(robot.pcm.drivetrain);
+        } else {
+            robot.pcm.pistonIn(robot.pcm.drivetrain);
+        }
         if (gamepad2.getPOV() == -1) {
             robot.climber.setSafe(gamepad2.getLeftY(), gamepad2.getRightY());
         } else {
+            robot.pcm.compressor.disable();
             if (gamepad2.getPOV() == 0) {
-                robot.climber.setSafe(1);
+                robot.climber.setSafe(0.5);
             } else if (gamepad2.getPOV() == 180) {
                 robot.climber.setSafe(-1);
             }
         }
-        gamepad2.setRumble(Math.abs(robot.climber.leftClimber.get()), Math.abs(robot.climber.rightClimber.get()));
+
+        //robot.climber.setSafe(gamepad2.getLeftY(), gamepad2.getRightY());
+        
+        //gamepad2.setRumble(Math.abs(robot.climber.leftClimber.get()), Math.abs(robot.climber.rightClimber.get()));
     }
 
     @Override
     public void teleopDisable() {
         robot.drivetrain.Drive(0, 0, 0);
         robot.climber.setSafe(0);
+        robot.pcm.pistonIn(robot.pcm.drivetrain);
+        //robot.pcm.pistonIn(2);
     }
 
 }
