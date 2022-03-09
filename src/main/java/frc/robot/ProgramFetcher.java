@@ -22,11 +22,13 @@ public class ProgramFetcher {
         AutonomousInterface[] programs = new AutonomousInterface[2];
         programs[0] = new WillAuto(robot);
         programs[1] = new SupersonicTrain(robot);
+        programs[2] = new ObservedTeleop(robot);
         return programs;
     }
     public TestInterface[] getTestPrograms(){
-        TestInterface[] programs = new TestInterface[1];
+        TestInterface[] programs = new TestInterface[2];
         programs[0] = new MotorTester(robot);
+        programs[1] = new TeleopObserver(robot);
         return programs;
     }
 }
