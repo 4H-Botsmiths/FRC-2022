@@ -1,5 +1,6 @@
 package frc.robot.programs;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.hardware.RobotHardware;
 import frc.robot.hardware.RobotHardware.SparkMax;
 import frc.robot.programs.interfaces.AutonomousInterface;
@@ -14,6 +15,7 @@ public class SupersonicTrain extends AutonomousInterface {
 
     @Override
     public void autonomousInit() {
+        robot.pcm.compressor.enable();
         //robot.drivetrain.Drive(0, -0.5, 0);
     }
 
@@ -25,7 +27,9 @@ public class SupersonicTrain extends AutonomousInterface {
             }
         }
         robot.drivetrain.Drive(0, done ? 0 : -0.5, 0);*/
-        robot.drivetrain.Drive(-112.4, -0.5);
+        robot.drivetrain.Drive(112.4*20, 0.5);
+        //robot.drivetrain.Drive(0, 1, 0);
+        SmartDashboard.putNumber("FrontLeft Encoder", robot.frontLeft.getEncoder().getPosition());
     }
 
     @Override

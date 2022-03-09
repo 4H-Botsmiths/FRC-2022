@@ -29,7 +29,8 @@ public class Robot extends TimedRobot {
   private RobotHardware robot = new RobotHardware(period);
   private ProgramFetcher programFetcher = new ProgramFetcher(robot);
   private Gamepad1 gamepad1 = new Gamepad1();
-  private String activeMode;
+  private Gamepad2 gamepad2 = new Gamepad2();
+  private String activeMode = "none";
   // private String selectedProgram;
   /**
    * This function is run when the robot is first started up and should be used
@@ -37,6 +38,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    robot.pcm.pistonOut(robot.pcm.drivetrain);
     for (TeleopInterface program : programFetcher.getTeleopPrograms()) {
       if (program.Default) {
         teleopPrograms.setDefaultOption(program.displayName, program.id);
@@ -93,18 +95,18 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Gyro Angle", robot.gyro.getYaw());
     //SmartDashboard.putNumber("Gyro Rotation", robot.gyro.getRotation2d2());
     //SmartDashboard.putBoolean("Gyro Connected?", robot.gyro.isConnected());
-    if(gamepad1.getStartButtonPressed()){
+    if(gamepad1.getStartButtonPressed() || gamepad2.getStartButtonPressed()){
       robot.pdp.clearStickyFaults();
       robot.pcm.clearStickyFaults();
       //robot.limelight.setLEDMode(0);
       robot.pcm.compressor.enable();
       //robot.gyro.calibrate();
       //robot.pcm.enableCompressorDigital();
-    }else if(gamepad1.getBackButtonPressed()){
+    }else if(gamepad1.getBackButtonPressed() || gamepad2.getBackButtonPressed()){
       //robot.limelight.setLEDMode(1);
       robot.pcm.compressor.disable();
       //robot.pcm.disableCompressor();
-    } else if(!gamepad1.getStartButton() && robot.pdp.getVoltage() < 9){
+    } else if((!gamepad1.getStartButton() && robot.pdp.getVoltage() < 9) || (!gamepad2.getStartButton() && robot.pdp.getVoltage() < 9)){
       robot.pcm.compressor.disable();
             //robot.pcm.disableCompressor();
     }
