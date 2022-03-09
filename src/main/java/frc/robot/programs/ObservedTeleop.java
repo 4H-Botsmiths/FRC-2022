@@ -3,6 +3,7 @@ package frc.robot.programs;
 import java.io.*;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
 import frc.robot.hardware.RobotHardware;
@@ -20,13 +21,12 @@ public class ObservedTeleop extends AutonomousInterface {
 
     @Override
     public void autonomousInit() {
-        try (FileReader reader = new FileReader("employees.json"))
-        {
-            //Read JSON file
+        try (FileReader reader = new FileReader("employees.json")) {
+            // Read JSON file
             Object obj = jsonParser.parse(reader);
- 
-            robotStateArray = (JSONArray) obj;             
- 
+
+            robotStateArray = (JSONArray) obj;
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -35,10 +35,14 @@ public class ObservedTeleop extends AutonomousInterface {
             e.printStackTrace();
         }
     }
-    @Override
-    public void autonomousPeriodic(){
 
+    @Override
+    public void autonomousPeriodic() {
+        JSONObject robotState = (JSONObject) robotStateArray.get(index);
+        
+        robot.frontLeft.set((double) robotState.get("frontLeft"));
     }
+
     @Override
     public void autonomousDisable() {
     }
