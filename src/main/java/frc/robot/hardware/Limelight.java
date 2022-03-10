@@ -86,13 +86,13 @@ public class Limelight implements Sendable {
      * Rotation(pitch,yaw,roll)
      */
     public Number[] get3D() {
-        Number[] position = new Number[6];
+        Number[] position = {0,0,0,0,0,0};/*new Number[6];
         position[0] = 0;
         position[1] = 0;
         position[2] = 0;
         position[3] = 0;
         position[4] = 0;
-        position[5] = 0;
+        position[5] = 0;*/
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getNumberArray(position);
     }
 
@@ -104,10 +104,10 @@ public class Limelight implements Sendable {
      * Get the average HSV color underneath the crosshair region as a NumberArray
      */
     public Number[] getColor() {
-        Number[] color = new Number[3];
+        Number[] color = {0,0,0};/*new Number[3];
         color[0] = 0;
         color[1] = 0;
-        color[2] = 0;
+        color[2] = 0;*/
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tc").getNumberArray(color);
     }
 
