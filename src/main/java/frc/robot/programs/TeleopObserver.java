@@ -1,6 +1,10 @@
 package frc.robot.programs;
 
-import java.io.*;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.*;
 
 import org.json.simple.*;
 
@@ -13,11 +17,13 @@ public class TeleopObserver extends TestInterface {
         super(Robot, "Teleop Observer", true);
     }
 
-    public JSONArray robotStateArray = new JSONArray();
+    /*public JSONArray robotStateArray = new JSONArray();
     public JSONObject robotStateObject = new JSONObject();
-
+*/
     private ProgramFetcher programFetcher = new ProgramFetcher(robot);
     private TeleopInterface teleopProgram;
+
+    ArrayList<RobotState> robotStateArray = new ArrayList<>();
 
     @Override
     public void testInit() {
@@ -30,28 +36,43 @@ public class TeleopObserver extends TestInterface {
         teleopProgram.teleopInit();
     }
 
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     @Override
     public void testPeriodic() {
         teleopProgram.teleopPeriodic();
         if (robotStateArray.size() > 1000)
             return;
+        robotStateArray.add(new RobotState(robot));/*
         robotStateObject.put("frontLeft", robot.frontLeft.get());
         robotStateObject.put("frontRight", robot.frontRight.get());
         robotStateObject.put("rearLeft", robot.rearLeft.get());
         robotStateObject.put("rearRight", robot.rearRight.get());
-        robotStateArray.add(robotStateObject);
+        robotStateArray.add(robotStateObject);*/
 
     }
 
     @Override
     public void testDisable() {
+        try {
+        
+            // create object mapper instance
+            ObjectMapper mapper = new ObjectMapper();
+        
+            // create an instance of DefaultPrettyPrinter
+            ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+        
+            // convert book object to JSON file
+            writer.writeValue(Paths.get("RobotStateArray.json").toFile(), robotStateArray);
+        
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }/*
         try (FileWriter file = new FileWriter("robotStateArray.json");) {
             file.write(robotStateArray.toJSONString());
             file.flush();
             file.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }
