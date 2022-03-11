@@ -25,6 +25,7 @@ public class TestInterface {
         * Use this when writing a Test program
         * 
         * @param Robot this variable must contain all motors and sensors to be used
+                * @param name display name for the smartdashboard
         */
        protected TestInterface(RobotHardware Robot, String name) {
               robot = Robot;

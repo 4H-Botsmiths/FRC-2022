@@ -25,6 +25,7 @@ public class TeleopInterface {
         * Use this when writing an teleop program
         * 
         * @param Robot this variable must contain all motors and sensors to be used
+                * @param name display name for the smartdashboard
         */
        protected TeleopInterface(RobotHardware Robot, String name) {
               robot = Robot;
