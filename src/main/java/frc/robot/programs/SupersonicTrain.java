@@ -2,7 +2,6 @@ package frc.robot.programs;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.hardware.RobotHardware;
-import frc.robot.hardware.RobotHardware.SparkMax;
 import frc.robot.programs.interfaces.AutonomousInterface;
 
 public class SupersonicTrain extends AutonomousInterface {

@@ -1,14 +1,10 @@
 package frc.robot.programs;
 
-import java.io.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.json.simple.*;
-import org.json.simple.parser.*;
 
 import frc.robot.hardware.RobotHardware;
 import frc.robot.programs.interfaces.AutonomousInterface;

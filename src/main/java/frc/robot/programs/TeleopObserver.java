@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.*;
 
-import org.json.simple.*;
-
 import frc.robot.ProgramFetcher;
 import frc.robot.hardware.RobotHardware;
 import frc.robot.programs.interfaces.*;
