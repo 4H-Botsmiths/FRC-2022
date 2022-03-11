@@ -3,7 +3,6 @@ package frc.robot.hardware;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.*;
@@ -39,7 +38,7 @@ public class RobotHardware {
     /** use this for the provided mecanum drive */
     public MecanumDrivetrain drivetrain;
     /** Climbing Motors */
-    public SparkMaxClimber climber = new SparkMaxClimber(new PWMSparkMax(8), new Spark(0), 30);
+    //public SparkMaxClimber climber = new SparkMaxClimber(new PWMSparkMax(8), new Spark(0), 30);
     /** Analog Gyro */
     // public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
     // public Gyro gyro = new Gyro();

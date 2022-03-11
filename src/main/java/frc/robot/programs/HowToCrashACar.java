@@ -65,13 +65,19 @@ public class HowToCrashACar extends TeleopInterface {
             robot.pcm.pistonIn(robot.pcm.drivetrain);
         }
         if (gamepad2.getPOV() == -1) {
-            robot.climber.setSafe(gamepad2.getLeftY(), gamepad2.getRightY());
+            //robot.climber.setSafe(gamepad2.getLeftY(), gamepad2.getRightY());
+            robot.pcm.pistonOff(robot.pcm.leftClimber);
+            robot.pcm.pistonOff(robot.pcm.rightClimber);
         } else {
             robot.pcm.compressor.disable();
             if (gamepad2.getPOV() == 0) {
-                robot.climber.setSafe(0.5);
+                robot.pcm.pistonOut(robot.pcm.leftClimber);
+                robot.pcm.pistonOut(robot.pcm.rightClimber);
+                //robot.climber.setSafe(0.5);
             } else if (gamepad2.getPOV() == 180) {
-                robot.climber.setSafe(-1);
+                robot.pcm.pistonIn(robot.pcm.leftClimber);
+                robot.pcm.pistonIn(robot.pcm.rightClimber);
+                //robot.climber.setSafe(-1);
             }
         }
 
@@ -83,7 +89,7 @@ public class HowToCrashACar extends TeleopInterface {
     @Override
     public void teleopDisable() {
         robot.drivetrain.Drive(0, 0, 0);
-        robot.climber.setSafe(0);
+        //robot.climber.setSafe(0);
         robot.pcm.pistonIn(robot.pcm.drivetrain);
         //robot.pcm.pistonIn(2);
     }
