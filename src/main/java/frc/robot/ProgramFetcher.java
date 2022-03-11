@@ -19,7 +19,7 @@ public class ProgramFetcher {
         return programs;
     }
     public AutonomousInterface[] getAutonomousPrograms(){
-        AutonomousInterface[] programs = new AutonomousInterface[2];
+        AutonomousInterface[] programs = new AutonomousInterface[3];
         programs[0] = new WillAuto(robot);
         programs[1] = new SupersonicTrain(robot);
         programs[2] = new ObservedTeleop(robot);
