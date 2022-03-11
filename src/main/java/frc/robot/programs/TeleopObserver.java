@@ -22,7 +22,7 @@ public class TeleopObserver extends TestInterface {
     private ProgramFetcher programFetcher = new ProgramFetcher(robot);
     private TeleopInterface teleopProgram;
 
-    List<RobotState> robotStateArray = new ArrayList<RobotState>;
+    List<RobotState> robotStateArray = new ArrayList<RobotState>();
 
     @Override
     public void testInit() {
