@@ -2,6 +2,7 @@ package frc.robot.programs;
 
 import java.io.File;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -22,7 +23,7 @@ public class TeleopObserver extends TestInterface {
     private ProgramFetcher programFetcher = new ProgramFetcher(robot);
     private TeleopInterface teleopProgram;
 
-    List<RobotState> robotStateArray;
+    List<RobotState> robotStateArray = Arrays.asList();
 
     @Override
     public void testInit() {
