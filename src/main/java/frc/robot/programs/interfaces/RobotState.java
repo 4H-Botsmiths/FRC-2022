@@ -3,10 +3,10 @@ package frc.robot.programs.interfaces;
 import frc.robot.hardware.RobotHardware;
 
 public class RobotState {
-    public double frontLeft = 0;
-    public double frontRight = 0;
-    public double rearLeft = 0;
-    public double rearRight = 0;
+    public double frontLeft;
+    public double frontRight;
+    public double rearLeft;
+    public double rearRight;
 
     public RobotState(){
         

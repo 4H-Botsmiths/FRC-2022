@@ -38,7 +38,8 @@ public class RobotHardware {
     /** use this for the provided mecanum drive */
     public MecanumDrivetrain drivetrain;
     /** Climbing Motors */
-    //public SparkMaxClimber climber = new SparkMaxClimber(new PWMSparkMax(8), new Spark(0), 30);
+    // public SparkMaxClimber climber = new SparkMaxClimber(new PWMSparkMax(8), new
+    // Spark(0), 30);
     /** Analog Gyro */
     // public ADXRS450_Gyro gyro = new ADXRS450_Gyro();
     // public Gyro gyro = new Gyro();
@@ -61,6 +62,7 @@ public class RobotHardware {
 
     /**
      * Use this class to control all motors and sensors See below for changes
+     * 
      * @param period what to set the motor expireation to
      * @changes
      *          <p>
@@ -267,7 +269,7 @@ public class RobotHardware {
 
         public void setSafe(double speed) {
             //enableSoftLimit(SoftLimitDirection.kForward, false);
-            //enableSoftLimit(SoftLimitDirection.kReverse, false);
+            // enableSoftLimit(SoftLimitDirection.kReverse, false);
             set(setSafeCalcuater(speed, get()));
             drivetrain.feed();
         }
@@ -275,6 +277,7 @@ public class RobotHardware {
         public void setSafePosition(double speed) {
             //enableSoftLimit(speed > 0 ? SoftLimitDirection.kForward : SoftLimitDirection.kReverse, true);
             set(setSafeCalcuater(speed, get()));
+            // 
             drivetrain.feed();
         }
     }
