@@ -1,8 +1,10 @@
 package frc.robot.programs;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -21,7 +23,7 @@ public class ObservedTeleop extends AutonomousInterface {
      * public JSONParser jsonParser = new JSONParser();
      */
     public int index = 0;
-    ArrayList<RobotState> robotStateArray;
+    List<RobotState> robotStateArray;
 
     @Override
     public void autonomousInit() {
@@ -30,43 +32,29 @@ public class ObservedTeleop extends AutonomousInterface {
             ObjectMapper mapper = new ObjectMapper();
 
             // convert JSON string to Book object
-            robotStateArray = (ArrayList<RobotState>) Arrays
-                    .asList(mapper.readValue(Paths.get("RobotStateArray.json").toFile(), RobotState[].class));
+            robotStateArray = Arrays
+                    .asList(mapper.readValue(new File("RobotStateArray.json")/*Paths.get("RobotStateArray.json").toFile()*/, RobotState[].class));
 
         } catch (Exception ex) {
             ex.printStackTrace();
+            System.out.println(ex.toString());
         }
-
-        /*
-         * try (FileReader reader = new FileReader("robotStateArray.json")) {
-         * // Read JSON file
-         * Object obj = jsonParser.parse(reader);
-         * 
-         * robotStateArray = (JSONArray) obj;
-         * 
-         * } catch (FileNotFoundException e) {
-         * e.printStackTrace();
-         * } catch (IOException e) {
-         * e.printStackTrace();
-         * } catch (ParseException e) {
-         * e.printStackTrace();
-         * }
-         */
+        index = 0;
     }
 
     @Override
     public void autonomousPeriodic() {
-        /*
-         * JSONObject robotState = (JSONObject) robotStateArray.get(index);
-         * 
-         * robot.frontLeft.set((double) robotState.get("frontLeft"));
-         * robot.frontRight.set((double) robotState.get("frontRight"));
-         * robot.rearLeft.set((double) robotState.get("rearLeft"));
-         * robot.rearRight.set((double) robotState.get("rearRight"));
-         */
+        if(index<robotStateArray.size()){
+        RobotState targetState = robotStateArray.get(index);
+        new RobotState(robot, targetState);
+        index++;
+        } else {
+            robot.drivetrain.Drive(0,0,0);
+        }
     }
 
     @Override
     public void autonomousDisable() {
+        robot.drivetrain.Drive(0,0,0);
     }
 }

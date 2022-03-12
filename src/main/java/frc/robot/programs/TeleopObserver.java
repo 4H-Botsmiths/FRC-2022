@@ -1,7 +1,8 @@
 package frc.robot.programs;
 
+import java.io.File;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.*;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.*;
@@ -21,7 +22,7 @@ public class TeleopObserver extends TestInterface {
     private ProgramFetcher programFetcher = new ProgramFetcher(robot);
     private TeleopInterface teleopProgram;
 
-    ArrayList<RobotState> robotStateArray = new ArrayList<>();
+    List<RobotState> robotStateArray = new ArrayList<RobotState>();
 
     @Override
     public void testInit() {
@@ -60,7 +61,7 @@ public class TeleopObserver extends TestInterface {
             ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         
             // convert book object to JSON file
-            writer.writeValue(Paths.get("RobotStateArray.json").toFile(), robotStateArray);
+            writer.writeValue(new File("RobotStateArray.json")/*Paths.get("RobotStateArray.json").toFile()*/, robotStateArray);
         
         } catch (Exception ex) {
             ex.printStackTrace();

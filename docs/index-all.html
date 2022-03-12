@@ -165,10 +165,6 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Pneumatics.html#clearStickyFaults()">clearStickyFaults()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Pneumatics.html" title="class in frc.robot.hardware">Pneumatics</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="frc/robot/hardware/RobotHardware.html#climber">climber</a></span> - Variable in class frc.robot.hardware.<a href="frc/robot/hardware/RobotHardware.html" title="class in frc.robot.hardware">RobotHardware</a></dt>
-<dd>
-<div class="block">Climbing Motors</div>
-</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/RobotHardware.html#clip(double,double,double)">clip(double, double, double)</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/RobotHardware.html" title="class in frc.robot.hardware">RobotHardware</a></dt>
 <dd>
 <div class="block">Clips the value to fit inbetween the minimum and maximum values</div>
@@ -325,33 +321,41 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#get3D()">get3D()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Results of a 3D position solution, 6 numbers: Translation (x,y,y)
+<div class="block">Results of a 3D position solution, 6 numbers: Translation (x,y,z)
  Rotation(pitch,yaw,roll)</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#get3DDouble()">get3DDouble()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">converts 3D positon Array to Double Array</div>
+</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/RobotHardware.Gyro.html#getAngle2()">getAngle2()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/RobotHardware.Gyro.html" title="class in frc.robot.hardware">RobotHardware.Gyro</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getArea()">getArea()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Target Area (0% of image to 100% of image)</div>
+<div class="block">Target Area</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/ProgramFetcher.html#getAutonomousPrograms()">getAutonomousPrograms()</a></span> - Method in class frc.robot.<a href="frc/robot/ProgramFetcher.html" title="class in frc.robot">ProgramFetcher</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getCamMode()">getCamMode()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Gets the Limelight's Operation Mode</div>
+</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getColor()">getColor()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
 <div class="block">Get the average HSV color underneath the crosshair region as a NumberArray</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getColorDouble()">getColorDouble()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">converts color array to double array</div>
+</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getHeight()">getHeight()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Vertical sidelength of the rough bounding box (0 - 320 pixels)</div>
+<div class="block">Vertical sidelength of the rough bounding box</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getLEDMode()">getLEDMode()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Get the Limelight's LED State</div>
+</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Gamepad1.html#getLeftY()">getLeftY()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Gamepad1.html" title="class in frc.robot.hardware">Gamepad1</a></dt>
 <dd>
 <div class="block">Get the inverted Y axis value of left side of the controller.</div>
@@ -362,11 +366,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getLongestSidelength()">getLongestSidelength()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Sidelength of longest side of the fitted bounding box (pixels)</div>
+<div class="block">Sidelength of longest side of the fitted bounding box</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getPipe()">getPipe()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">True active pipeline index of the camera (0 ..</div>
+<div class="block">True active pipeline index of the camera</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getRaw(java.lang.String)">getRaw(String)</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
@@ -382,33 +386,37 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getRotation()">getRotation()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Skew or rotation (-90 degrees to 0 degrees)</div>
+<div class="block">Skew or rotation</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/RobotHardware.Gyro.html#getRotation2d2()">getRotation2d2()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/RobotHardware.Gyro.html" title="class in frc.robot.hardware">RobotHardware.Gyro</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getShortestSidelength()">getShortestSidelength()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Sidelength of shortest side of the fitted bounding box (pixels)</div>
+<div class="block">Sidelength of shortest side of the fitted bounding box</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getSnapshot()">getSnapshot()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Get Wether Users Are Allowed Take Snapshots During A Match</div>
+</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getStream()">getStream()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Gets the Limelight's Streaming Mode</div>
+</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/ProgramFetcher.html#getTeleopPrograms()">getTeleopPrograms()</a></span> - Method in class frc.robot.<a href="frc/robot/ProgramFetcher.html" title="class in frc.robot">ProgramFetcher</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/ProgramFetcher.html#getTestPrograms()">getTestPrograms()</a></span> - Method in class frc.robot.<a href="frc/robot/ProgramFetcher.html" title="class in frc.robot">ProgramFetcher</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getWidth()">getWidth()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Horizontal sidelength of the rough bounding box (0 - 320 pixels)</div>
+<div class="block">Horizontal sidelength of the rough bounding box</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getX()">getX()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Horizontal Offset From Crosshair To Target (-29.8 to 29.8 degrees)</div>
+<div class="block">Horizontal Offset From Crosshair To Target</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#getY()">getY()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Vertical Offset From Crosshair To Target (-24.85 to 24.85 degrees)</div>
+<div class="block">Vertical Offset From Crosshair To Target</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/RobotHardware.html#gyro">gyro</a></span> - Variable in class frc.robot.hardware.<a href="frc/robot/hardware/RobotHardware.html" title="class in frc.robot.hardware">RobotHardware</a></dt>
 <dd>
@@ -450,7 +458,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#imageLatency()">imageLatency()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">The image capture latency (ms).</div>
+<div class="block">The image capture latency</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/programs/ObservedTeleop.html#index">index</a></span> - Variable in class frc.robot.programs.<a href="frc/robot/programs/ObservedTeleop.html" title="class in frc.robot.programs">ObservedTeleop</a></dt>
 <dd>&nbsp;</dd>
@@ -476,8 +484,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#latency()">latency()</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">The pipeline’s latency contribution (ms).</div>
+<div class="block">The pipeline’s latency contribution</div>
 </dd>
+<dt><span class="memberNameLink"><a href="frc/robot/hardware/Pneumatics.html#leftClimber">leftClimber</a></span> - Variable in class frc.robot.hardware.<a href="frc/robot/hardware/Pneumatics.html" title="class in frc.robot.hardware">Pneumatics</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/RobotHardware.SparkMaxClimber.html#leftClimber">leftClimber</a></span> - Variable in class frc.robot.hardware.<a href="frc/robot/hardware/RobotHardware.SparkMaxClimber.html" title="class in frc.robot.hardware">RobotHardware.SparkMaxClimber</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/RobotHardware.html#limelight">limelight</a></span> - Variable in class frc.robot.hardware.<a href="frc/robot/hardware/RobotHardware.html" title="class in frc.robot.hardware">RobotHardware</a></dt>
@@ -617,6 +627,8 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dd>
 <div class="block">Mecanum Drive using a Gyro for Relative Driving</div>
 </dd>
+<dt><span class="memberNameLink"><a href="frc/robot/hardware/Pneumatics.html#rightClimber">rightClimber</a></span> - Variable in class frc.robot.hardware.<a href="frc/robot/hardware/Pneumatics.html" title="class in frc.robot.hardware">Pneumatics</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/RobotHardware.SparkMaxClimber.html#rightClimber">rightClimber</a></span> - Variable in class frc.robot.hardware.<a href="frc/robot/hardware/RobotHardware.SparkMaxClimber.html" title="class in frc.robot.hardware">RobotHardware.SparkMaxClimber</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/ProgramFetcher.html#robot">robot</a></span> - Variable in class frc.robot.<a href="frc/robot/ProgramFetcher.html" title="class in frc.robot">ProgramFetcher</a></dt>
@@ -674,7 +686,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><a href="frc/robot/programs/interfaces/RobotState.html" title="class in frc.robot.programs.interfaces"><span class="typeNameLink">RobotState</span></a> - Class in <a href="frc/robot/programs/interfaces/package-summary.html">frc.robot.programs.interfaces</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="frc/robot/programs/interfaces/RobotState.html#%3Cinit%3E()">RobotState()</a></span> - Constructor for class frc.robot.programs.interfaces.<a href="frc/robot/programs/interfaces/RobotState.html" title="class in frc.robot.programs.interfaces">RobotState</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/programs/interfaces/RobotState.html#%3Cinit%3E(frc.robot.hardware.RobotHardware)">RobotState(RobotHardware)</a></span> - Constructor for class frc.robot.programs.interfaces.<a href="frc/robot/programs/interfaces/RobotState.html" title="class in frc.robot.programs.interfaces">RobotState</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="frc/robot/programs/interfaces/RobotState.html#%3Cinit%3E(frc.robot.hardware.RobotHardware,frc.robot.programs.interfaces.RobotState)">RobotState(RobotHardware, RobotState)</a></span> - Constructor for class frc.robot.programs.interfaces.<a href="frc/robot/programs/interfaces/RobotState.html" title="class in frc.robot.programs.interfaces">RobotState</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="frc/robot/programs/ObservedTeleop.html#robotStateArray">robotStateArray</a></span> - Variable in class frc.robot.programs.<a href="frc/robot/programs/ObservedTeleop.html" title="class in frc.robot.programs">ObservedTeleop</a></dt>
 <dd>&nbsp;</dd>
@@ -692,15 +708,15 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <dl>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#setCamMode(double)">setCamMode(double)</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Sets Limelight's Operation Mode</div>
+<div class="block">Sets the Limelight's Operation Mode</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#setLEDMode(double)">setLEDMode(double)</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Set Limelight's LED State</div>
+<div class="block">Set the Limelight's LED State</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#setPipeline(double)">setPipeline(double)</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Sets Limelight's Current Pipeline</div>
+<div class="block">Sets the Limelight's Current Pipeline</div>
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#setRaw(java.lang.String,double)">setRaw(String, double)</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
@@ -734,7 +750,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </dd>
 <dt><span class="memberNameLink"><a href="frc/robot/hardware/Limelight.html#setStream(double)">setStream(double)</a></span> - Method in class frc.robot.hardware.<a href="frc/robot/hardware/Limelight.html" title="class in frc.robot.hardware">Limelight</a></dt>
 <dd>
-<div class="block">Sets Limelight's Streaming Mode</div>
+<div class="block">Sets the Limelight's Streaming Mode</div>
 </dd>
 <dt><a href="frc/robot/programs/SimulationBoard.html" title="class in frc.robot.programs"><span class="typeNameLink">SimulationBoard</span></a> - Class in <a href="frc/robot/programs/package-summary.html">frc.robot.programs</a></dt>
 <dd>&nbsp;</dd>

@@ -184,26 +184,30 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <td class="colFirst"><code>java.lang.Number[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get3D()">get3D</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Results of a 3D position solution, 6 numbers: Translation (x,y,y)
+<div class="block">Results of a 3D position solution, 6 numbers: Translation (x,y,z)
  Rotation(pitch,yaw,roll)</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>double[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get3DDouble()">get3DDouble</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">converts 3D positon Array to Double Array</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getArea()">getArea</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Target Area (0% of image to 100% of image)</div>
+<div class="block">Target Area</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCamMode()">getCamMode</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Gets the Limelight's Operation Mode</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.Number[]</code></td>
@@ -215,32 +219,36 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>double[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getColorDouble()">getColorDouble</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">converts color array to double array</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getHeight()">getHeight</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Vertical sidelength of the rough bounding box (0 - 320 pixels)</div>
+<div class="block">Vertical sidelength of the rough bounding box</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLEDMode()">getLEDMode</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Get the Limelight's LED State</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLongestSidelength()">getLongestSidelength</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Sidelength of longest side of the fitted bounding box (pixels)</div>
+<div class="block">Sidelength of longest side of the fitted bounding box</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPipe()">getPipe</a></span>()</code></th>
 <td class="colLast">
-<div class="block">True active pipeline index of the camera (0 ..</div>
+<div class="block">True active pipeline index of the camera</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
@@ -254,52 +262,56 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRotation()">getRotation</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Skew or rotation (-90 degrees to 0 degrees)</div>
+<div class="block">Skew or rotation</div>
 </td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getShortestSidelength()">getShortestSidelength</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Sidelength of shortest side of the fitted bounding box (pixels)</div>
+<div class="block">Sidelength of shortest side of the fitted bounding box</div>
 </td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSnapshot()">getSnapshot</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Get Wether Users Are Allowed Take Snapshots During A Match</div>
+</td>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStream()">getStream</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Gets the Limelight's Streaming Mode</div>
+</td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWidth()">getWidth</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Horizontal sidelength of the rough bounding box (0 - 320 pixels)</div>
+<div class="block">Horizontal sidelength of the rough bounding box</div>
 </td>
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getX()">getX</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Horizontal Offset From Crosshair To Target (-29.8 to 29.8 degrees)</div>
+<div class="block">Horizontal Offset From Crosshair To Target</div>
 </td>
 </tr>
 <tr id="i17" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getY()">getY</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Vertical Offset From Crosshair To Target (-24.85 to 24.85 degrees)</div>
+<div class="block">Vertical Offset From Crosshair To Target</div>
 </td>
 </tr>
 <tr id="i18" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#imageLatency()">imageLatency</a></span>()</code></th>
 <td class="colLast">
-<div class="block">The image capture latency (ms).</div>
+<div class="block">The image capture latency</div>
 </td>
 </tr>
 <tr id="i19" class="rowColor">
@@ -311,7 +323,7 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#latency()">latency</a></span>()</code></th>
 <td class="colLast">
-<div class="block">The pipeline’s latency contribution (ms).</div>
+<div class="block">The pipeline’s latency contribution</div>
 </td>
 </tr>
 <tr id="i21" class="rowColor">
@@ -332,21 +344,21 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCamMode(double)">setCamMode</a></span>&#8203;(double&nbsp;mode)</code></th>
 <td class="colLast">
-<div class="block">Sets Limelight's Operation Mode</div>
+<div class="block">Sets the Limelight's Operation Mode</div>
 </td>
 </tr>
 <tr id="i24" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLEDMode(double)">setLEDMode</a></span>&#8203;(double&nbsp;mode)</code></th>
 <td class="colLast">
-<div class="block">Set Limelight's LED State</div>
+<div class="block">Set the Limelight's LED State</div>
 </td>
 </tr>
 <tr id="i25" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPipeline(double)">setPipeline</a></span>&#8203;(double&nbsp;pipeline)</code></th>
 <td class="colLast">
-<div class="block">Sets Limelight's Current Pipeline</div>
+<div class="block">Sets the Limelight's Current Pipeline</div>
 </td>
 </tr>
 <tr id="i26" class="altColor">
@@ -368,7 +380,7 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStream(double)">setStream</a></span>&#8203;(double&nbsp;mode)</code></th>
 <td class="colLast">
-<div class="block">Sets Limelight's Streaming Mode</div>
+<div class="block">Sets the Limelight's Streaming Mode</div>
 </td>
 </tr>
 <tr id="i29" class="rowColor">
@@ -429,6 +441,10 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <h4>targetVisible</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;targetVisible()</pre>
 <div class="block">Whether the limelight has any valid targets</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true or false</dd>
+</dl>
 </li>
 </ul>
 <a id="getX()">
@@ -438,7 +454,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getX</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getX()</pre>
-<div class="block">Horizontal Offset From Crosshair To Target (-29.8 to 29.8 degrees)</div>
+<div class="block">Horizontal Offset From Crosshair To Target</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>-29.8 to 29.8 degrees</dd>
+</dl>
 </li>
 </ul>
 <a id="getY()">
@@ -448,7 +468,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getY</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getY()</pre>
-<div class="block">Vertical Offset From Crosshair To Target (-24.85 to 24.85 degrees)</div>
+<div class="block">Vertical Offset From Crosshair To Target</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>-24.85 to 24.85 degrees</dd>
+</dl>
 </li>
 </ul>
 <a id="getArea()">
@@ -458,7 +482,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getArea</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getArea()</pre>
-<div class="block">Target Area (0% of image to 100% of image)</div>
+<div class="block">Target Area</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>0% of image to 100% of image</dd>
+</dl>
 </li>
 </ul>
 <a id="getRotation()">
@@ -468,7 +496,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getRotation</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getRotation()</pre>
-<div class="block">Skew or rotation (-90 degrees to 0 degrees)</div>
+<div class="block">Skew or rotation</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>-90 degrees to 0 degrees</dd>
+</dl>
 </li>
 </ul>
 <a id="latency()">
@@ -478,7 +510,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>latency</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;latency()</pre>
-<div class="block">The pipeline’s latency contribution (ms).</div>
+<div class="block">The pipeline’s latency contribution</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>latency in miliseconds</dd>
+</dl>
 </li>
 </ul>
 <a id="imageLatency()">
@@ -488,7 +524,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>imageLatency</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;imageLatency()</pre>
-<div class="block">The image capture latency (ms).</div>
+<div class="block">The image capture latency</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>capture latency in miliseconds</dd>
+</dl>
 </li>
 </ul>
 <a id="getShortestSidelength()">
@@ -498,7 +538,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getShortestSidelength</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getShortestSidelength()</pre>
-<div class="block">Sidelength of shortest side of the fitted bounding box (pixels)</div>
+<div class="block">Sidelength of shortest side of the fitted bounding box</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Sidelength in pixels</dd>
+</dl>
 </li>
 </ul>
 <a id="getLongestSidelength()">
@@ -508,7 +552,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getLongestSidelength</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getLongestSidelength()</pre>
-<div class="block">Sidelength of longest side of the fitted bounding box (pixels)</div>
+<div class="block">Sidelength of longest side of the fitted bounding box</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Sidelength in pixels</dd>
+</dl>
 </li>
 </ul>
 <a id="getWidth()">
@@ -518,7 +566,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getWidth</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getWidth()</pre>
-<div class="block">Horizontal sidelength of the rough bounding box (0 - 320 pixels)</div>
+<div class="block">Horizontal sidelength of the rough bounding box</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>0 to 320 pixels</dd>
+</dl>
 </li>
 </ul>
 <a id="getHeight()">
@@ -528,7 +580,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getHeight</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getHeight()</pre>
-<div class="block">Vertical sidelength of the rough bounding box (0 - 320 pixels)</div>
+<div class="block">Vertical sidelength of the rough bounding box</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>0 to 320 pixels</dd>
+</dl>
 </li>
 </ul>
 <a id="getPipe()">
@@ -538,7 +594,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getPipe</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getPipe()</pre>
-<div class="block">True active pipeline index of the camera (0 .. 9)</div>
+<div class="block">True active pipeline index of the camera</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>pipeline 0 to 9</dd>
+</dl>
 </li>
 </ul>
 <a id="get3D()">
@@ -548,8 +608,12 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>get3D</h4>
 <pre class="methodSignature">public&nbsp;java.lang.Number[]&nbsp;get3D()</pre>
-<div class="block">Results of a 3D position solution, 6 numbers: Translation (x,y,y)
+<div class="block">Results of a 3D position solution, 6 numbers: Translation (x,y,z)
  Rotation(pitch,yaw,roll)</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Number[x, y, z, pitch, yaw, roll]</dd>
+</dl>
 </li>
 </ul>
 <a id="get3DDouble()">
@@ -559,6 +623,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>get3DDouble</h4>
 <pre class="methodSignature">public&nbsp;double[]&nbsp;get3DDouble()</pre>
+<div class="block">converts 3D positon Array to Double Array</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>double[x, y, z, pitch, yaw, roll]</dd>
+</dl>
 </li>
 </ul>
 <a id="getColor()">
@@ -569,6 +638,10 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <h4>getColor</h4>
 <pre class="methodSignature">public&nbsp;java.lang.Number[]&nbsp;getColor()</pre>
 <div class="block">Get the average HSV color underneath the crosshair region as a NumberArray</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Number[hue, saturation, value]</dd>
+</dl>
 </li>
 </ul>
 <a id="getColorDouble()">
@@ -578,6 +651,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getColorDouble</h4>
 <pre class="methodSignature">public&nbsp;double[]&nbsp;getColorDouble()</pre>
+<div class="block">converts color array to double array</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>double[hue, saturation, value]</dd>
+</dl>
 </li>
 </ul>
 <a id="getRaw(java.lang.String)">
@@ -588,6 +666,12 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <h4>getRaw</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getRaw&#8203;(java.lang.String&nbsp;variable)</pre>
 <div class="block">Get value from network table</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>variable</code> - the value to get</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the value in the network table (default 0)</dd>
+</dl>
 </li>
 </ul>
 <a id="setRaw(java.lang.String,double)">
@@ -599,6 +683,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;setRaw&#8203;(java.lang.String&nbsp;variable,
                    double&nbsp;value)</pre>
 <div class="block">Set value in network table</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>variable</code> - the value to change</dd>
+<dd><code>value</code> - the new value</dd>
+</dl>
 </li>
 </ul>
 <a id="numberToDouble(java.lang.Number[])">
@@ -609,6 +698,12 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <h4>numberToDouble</h4>
 <pre class="methodSignature">public&nbsp;double[]&nbsp;numberToDouble&#8203;(java.lang.Number[]&nbsp;numbers)</pre>
 <div class="block">Converts number array into double array</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numbers</code> - the number array to convert</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the double array</dd>
+</dl>
 </li>
 </ul>
 <a id="round(double)">
@@ -619,6 +714,12 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <h4>round</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;round&#8203;(double&nbsp;numberToRound)</pre>
 <div class="block">Rounds input to the nearest hundereths place</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numberToRound</code> - the number to round</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the rounded number</dd>
+</dl>
 </li>
 </ul>
 <a id="setLEDMode(double)">
@@ -628,7 +729,7 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>setLEDMode</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setLEDMode&#8203;(double&nbsp;mode)</pre>
-<div class="block">Set Limelight's LED State</div>
+<div class="block">Set the Limelight's LED State</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>mode</code> - <p>
@@ -649,6 +750,18 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getLEDMode</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getLEDMode()</pre>
+<div class="block">Get the Limelight's LED State</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><p>
+             0: normal,
+             <p>
+             1: force off,
+             <p>
+             2: force blink,
+             <p>
+             3: force on</dd>
+</dl>
 </li>
 </ul>
 <a id="setCamMode(double)">
@@ -658,7 +771,7 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>setCamMode</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setCamMode&#8203;(double&nbsp;mode)</pre>
-<div class="block">Sets Limelight's Operation Mode</div>
+<div class="block">Sets the Limelight's Operation Mode</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>mode</code> - <p>
@@ -675,6 +788,14 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getCamMode</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getCamMode()</pre>
+<div class="block">Gets the Limelight's Operation Mode</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><p>
+             0: Vision Proccesing,
+             <p>
+             1: Driver Camera</dd>
+</dl>
 </li>
 </ul>
 <a id="setPipeline(double)">
@@ -684,7 +805,7 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>setPipeline</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setPipeline&#8203;(double&nbsp;pipeline)</pre>
-<div class="block">Sets Limelight's Current Pipeline</div>
+<div class="block">Sets the Limelight's Current Pipeline</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>pipeline</code> - <p>
@@ -699,7 +820,7 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>setStream</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setStream&#8203;(double&nbsp;mode)</pre>
-<div class="block">Sets Limelight's Streaming Mode</div>
+<div class="block">Sets the Limelight's Streaming Mode</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>mode</code> - <p>
@@ -718,6 +839,16 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getStream</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getStream()</pre>
+<div class="block">Gets the Limelight's Streaming Mode</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><p>
+             0: Standard (Side By Side),
+             <p>
+             1: PiP Main (Secoundary Stream In Lower Right Corner),
+             <p>
+             2: PiP Secoundary (Primary Stream In Lower Right Corner)</dd>
+</dl>
 </li>
 </ul>
 <a id="setSnapshot(double)">
@@ -744,6 +875,14 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <li class="blockList">
 <h4>getSnapshot</h4>
 <pre class="methodSignature">public&nbsp;double&nbsp;getSnapshot()</pre>
+<div class="block">Get Wether Users Are Allowed Take Snapshots During A Match</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><p>
+             0: Not Taking Snapshots
+             <p>
+             1: Taking Two Snapshots Per Second</dd>
+</dl>
 </li>
 </ul>
 <a id="initSendable(edu.wpi.first.util.sendable.SendableBuilder)">

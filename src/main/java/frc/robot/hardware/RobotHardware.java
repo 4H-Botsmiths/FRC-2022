@@ -61,7 +61,7 @@ public class RobotHardware {
 
     /**
      * Use this class to control all motors and sensors See below for changes
-     * 
+     * @param period what to set the motor expireation to
      * @changes
      *          <p>
      *          added 4 drive motors
@@ -190,7 +190,6 @@ public class RobotHardware {
          * @param x   the left/right affector
          * @param y   the forward/backward affector
          * @param z   the rotation affector
-         * @param cap the maximum speed
          */
         public void Drive(double x, double y, double z) {
             // r *= steeringMultiplier;
@@ -212,7 +211,6 @@ public class RobotHardware {
          * @param x    the left/right affector
          * @param y    the forward/backward affector
          * @param z    the rotation affector
-         * @param cap  the maximum speed
          * @param gyro the gyro
          */
         public void RelativeDrive(double x, double y, double z, /* double cap, */ double gyro) {
@@ -225,7 +223,10 @@ public class RobotHardware {
             }
         }
 
-        /** Tank Drive requireing a left and right input */
+        /** Tank Drive requireing a left and right input 
+        * @param left what to set the left side to
+        * @param right what to set the right side to
+        */
         public void TankDrive(double left, double right) {
             frontLeft.setSafe(left);
             rearLeft.setSafe(left);
