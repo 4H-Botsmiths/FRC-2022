@@ -101,7 +101,7 @@ options.memberLevel = JavadocMemberLevel.PRIVATE
         new File('docs/').deleteDir()
    }
    doLast {
-        new File(file('docs/'), "_config.yml").text = "theme: jekyll-theme-hacker"
+        new File(file('docs/'), ".nojekyll").text = "added this file to prevent GitHub Pages from using Jekyll."
         new File('docs/search.js').append '\n\n' +
 'getURLPrefix = function(ui) {\n' +
 '    return \'\';\n' +
