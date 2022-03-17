@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 
 /**
@@ -37,6 +36,13 @@ public class RobotHardware {
     // public SPX[] Motors = new SPX[4];
     /** use this for the provided mecanum drive */
     public MecanumDrivetrain drivetrain;
+    /** Spark Shooters */
+    public SparkPair shooters = new SparkPair(new PWMSpark(2), new PWMSpark(1));
+    /** Spark Cannon */
+    public SparkPair cannon = new SparkPair(new PWMSpark(3), new PWMSpark(0));
+    /** Spark Intake */
+    public PWMSpark intake = new PWMSpark(4);
+    /** Shooters */
     /** Climbing Motors */
     // public SparkMaxClimber climber = new SparkMaxClimber(new PWMSparkMax(8), new
     // Spark(0), 30);
@@ -149,49 +155,60 @@ public class RobotHardware {
         private double targetPosition = 0;
 
         public void Drive(double inches, double speed) {
-            pcm.pistonIn(pcm.drivetrain);
             if (lastInches == inches) {
                 if (frontLeft.getEncoder().getPosition() > targetPosition)
                     Drive(0, 0, 0);
-                else 
+                else
                     Drive(0, speed, 0);
-                /*frontLeft.setSafePosition(speed);
-                frontRight.setSafePosition(speed);
-                rearLeft.setSafePosition(speed);
-                rearRight.setSafePosition(speed);*/
+                /*
+                 * frontLeft.setSafePosition(speed);
+                 * frontRight.setSafePosition(speed);
+                 * rearLeft.setSafePosition(speed);
+                 * rearRight.setSafePosition(speed);
+                 */
             } else {
                 lastInches = inches;
                 targetPosition = frontLeft.getEncoder().getPosition() + (inches / wheelCircumference);
-                /*if (inches > 0 && speed > 0) {
-                    frontLeft.setSoftLimit(SoftLimitDirection.kForward,
-                            (float) (frontLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
-                    frontRight.setSoftLimit(SoftLimitDirection.kForward,
-                            (float) (frontRight.getEncoder().getPosition() + (inches / wheelCircumference)));
-                    rearLeft.setSoftLimit(SoftLimitDirection.kForward,
-                            (float) (rearLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
-                    rearRight.setSoftLimit(SoftLimitDirection.kForward,
-                            (float) (rearRight.getEncoder().getPosition() + (inches / wheelCircumference)));
-                } else if (inches < 0 && speed < 0) {
-                    frontLeft.setSoftLimit(SoftLimitDirection.kReverse,
-                            (float) (frontLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
-                    frontRight.setSoftLimit(SoftLimitDirection.kReverse,
-                            (float) (frontRight.getEncoder().getPosition() + (inches / wheelCircumference)));
-                    rearLeft.setSoftLimit(SoftLimitDirection.kReverse,
-                            (float) (rearLeft.getEncoder().getPosition() + (inches / wheelCircumference)));
-                    rearRight.setSoftLimit(SoftLimitDirection.kReverse,
-                            (float) (rearRight.getEncoder().getPosition() + (inches / wheelCircumference)));
-                } else {
-                    throw new Error("Error Setting Limits");
-                }*/
+                /*
+                 * if (inches > 0 && speed > 0) {
+                 * frontLeft.setSoftLimit(SoftLimitDirection.kForward,
+                 * (float) (frontLeft.getEncoder().getPosition() + (inches /
+                 * wheelCircumference)));
+                 * frontRight.setSoftLimit(SoftLimitDirection.kForward,
+                 * (float) (frontRight.getEncoder().getPosition() + (inches /
+                 * wheelCircumference)));
+                 * rearLeft.setSoftLimit(SoftLimitDirection.kForward,
+                 * (float) (rearLeft.getEncoder().getPosition() + (inches /
+                 * wheelCircumference)));
+                 * rearRight.setSoftLimit(SoftLimitDirection.kForward,
+                 * (float) (rearRight.getEncoder().getPosition() + (inches /
+                 * wheelCircumference)));
+                 * } else if (inches < 0 && speed < 0) {
+                 * frontLeft.setSoftLimit(SoftLimitDirection.kReverse,
+                 * (float) (frontLeft.getEncoder().getPosition() + (inches /
+                 * wheelCircumference)));
+                 * frontRight.setSoftLimit(SoftLimitDirection.kReverse,
+                 * (float) (frontRight.getEncoder().getPosition() + (inches /
+                 * wheelCircumference)));
+                 * rearLeft.setSoftLimit(SoftLimitDirection.kReverse,
+                 * (float) (rearLeft.getEncoder().getPosition() + (inches /
+                 * wheelCircumference)));
+                 * rearRight.setSoftLimit(SoftLimitDirection.kReverse,
+                 * (float) (rearRight.getEncoder().getPosition() + (inches /
+                 * wheelCircumference)));
+                 * } else {
+                 * throw new Error("Error Setting Limits");
+                 * }
+                 */
             }
         }
 
         /**
          * Classic Mecanum Drive
          * 
-         * @param x   the left/right affector
-         * @param y   the forward/backward affector
-         * @param z   the rotation affector
+         * @param x the left/right affector
+         * @param y the forward/backward affector
+         * @param z the rotation affector
          */
         public void Drive(double x, double y, double z) {
             // r *= steeringMultiplier;
@@ -225,10 +242,12 @@ public class RobotHardware {
             }
         }
 
-        /** Tank Drive requireing a left and right input 
-        * @param left what to set the left side to
-        * @param right what to set the right side to
-        */
+        /**
+         * Tank Drive requireing a left and right input
+         * 
+         * @param left  what to set the left side to
+         * @param right what to set the right side to
+         */
         public void TankDrive(double left, double right) {
             frontLeft.setSafe(left);
             rearLeft.setSafe(left);
@@ -266,54 +285,52 @@ public class RobotHardware {
             super(deviceId, type);
             enableExternalUSBControl(true);
         }
+        // public RelativeEncoder encoder = getEncoder(Type.kQuadrature, 1);
 
         public void setSafe(double speed) {
-            //enableSoftLimit(SoftLimitDirection.kForward, false);
+            // enableSoftLimit(SoftLimitDirection.kForward, false);
             // enableSoftLimit(SoftLimitDirection.kReverse, false);
             set(setSafeCalcuater(speed, get()));
             drivetrain.feed();
         }
 
         public void setSafePosition(double speed) {
-            //enableSoftLimit(speed > 0 ? SoftLimitDirection.kForward : SoftLimitDirection.kReverse, true);
+            // enableSoftLimit(speed > 0 ? SoftLimitDirection.kForward :
+            // SoftLimitDirection.kReverse, true);
             set(setSafeCalcuater(speed, get()));
-            // 
+            //
             drivetrain.feed();
         }
     }
 
-    public class SparkMaxClimber {
-        public PWMSparkMax leftClimber;
-        public Spark rightClimber;
-
-        /**
-         * Use this class for controling 2 PWM Spark Max's
-         * 
-         * @param left    Left Motor
-         * @param right   Right Motor
-         * @param timeout Expiration in milliseconds
-         */
-        public SparkMaxClimber(PWMSparkMax left, Spark right, int timeout) {
-            leftClimber = left;
-            rightClimber = right;
-            leftClimber.setExpiration(timeout);
-            rightClimber.setExpiration(timeout);
+    public class PWMSpark extends Spark {
+        public PWMSpark(int channel) {
+            super(channel);
         }
 
         public void setSafe(double speed) {
-            leftClimber.set(speed/* setSafeCalcuater(speed, leftClimber.get()) */);
-            leftClimber.feed();
+            set(setSafeCalcuater(speed, get()));
+        }
 
-            rightClimber.set(speed/* setSafeCalcuater(speed, rightClimber.get()) */);
-            rightClimber.feed();
+    }
+
+    public class SparkPair {
+        public PWMSpark left;
+        public PWMSpark right;
+
+        public SparkPair(PWMSpark leftMotor, PWMSpark rightMotor) {
+            left = leftMotor;
+            right = rightMotor;
         }
 
         public void setSafe(double leftSpeed, double rightSpeed) {
-            leftClimber.set(leftSpeed/* setSafeCalcuater(leftSpeed, leftClimber.get()) */);
-            leftClimber.feed();
+            left.setSafe(leftSpeed);
+            right.setSafe(rightSpeed);
+        }
 
-            rightClimber.set(rightSpeed/* setSafeCalcuater(rightSpeed, rightClimber.get()) */);
-            rightClimber.feed();
+        public void setSafe(double speed) {
+            left.setSafe(speed);
+            right.setSafe(speed);
         }
     }
 }

@@ -10,9 +10,8 @@ public class Pneumatics extends PneumaticsControlModule {
     /** true for out, false for in */
     public boolean[] pistonValues = new boolean[7];
     private int moduleIndex = -1;
-    public int drivetrain = 0;
-    public int leftClimber = 3;
-    public int rightClimber = 3;
+    public int climber = 0;
+    public int intake = 2;
 
     public Pneumatics() {
         super();

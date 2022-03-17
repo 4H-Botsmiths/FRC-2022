@@ -38,7 +38,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    robot.pcm.pistonOut(robot.pcm.drivetrain);
     for (TeleopInterface program : programFetcher.getTeleopPrograms()) {
       if (program.Default) {
         teleopPrograms.setDefaultOption(program.displayName, program.id);

@@ -199,18 +199,7 @@
               ]
             }
           },
-          "0,3": {
-            "size": [
-              3,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Gyro Dummy",
-              "_title": "Gyro Dummy"
-            }
-          },
-          "3,3": {
+          "3,2": {
             "size": [
               2,
               1
@@ -221,7 +210,7 @@
               "_title": "Relative Drive"
             }
           },
-          "3,2": {
+          "8,4": {
             "size": [
               1,
               1
@@ -232,7 +221,7 @@
               "_title": "Gyro Angle"
             }
           },
-          "0,4": {
+          "0,3": {
             "size": [
               5,
               3
@@ -478,11 +467,17 @@
                 {
                   "_type": "Gyro",
                   "_source0": "network_table:///LiveWindow/Ungrouped/navX-Sensor[0]",
-                  "_title": "/LiveWindow/Ungrouped/navX-Sensor[0]",
+                  "_title": "navX-Sensor[0]",
                   "Visuals/Major tick spacing": 45.0,
                   "Visuals/Starting angle": 180.0,
                   "Visuals/Show tick mark ring": true,
                   "Visuals/Counter clockwise": false
+                },
+                {
+                  "_type": "Mecanum Drivebase",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/MecanumDrive[1]",
+                  "_title": "LiveWindow/Ungrouped/MecanumDrive[1]",
+                  "Visuals/Show velocity vectors": true
                 }
               ]
             }
