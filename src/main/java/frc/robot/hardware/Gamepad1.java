@@ -42,4 +42,31 @@ public class Gamepad1 extends XboxController {
   public double getRightY() {
     return -getRawAxis(Axis.kRightY.value);
   }
+
+    /**
+   * Read the value of the guide button on the controller.
+   *
+   * @return The state of the button.
+   */
+  /*public boolean getGuideButton() {
+    return getRawButton(0);
+  }
+
+  /**
+   * Whether the guide button was pressed since the last check.
+   *
+   * @return Whether the button was pressed since the last check.
+   */
+  /*public boolean getGuideButtonPressed() {
+    return getRawButtonPressed(0);
+  }
+
+  /**
+   * Whether the guide button was released since the last check.
+   *
+   * @return Whether the button was released since the last check.
+   */
+  /*public boolean getGuideButtonReleased() {
+    return getRawButtonReleased(0);
+  }*/
 }
