@@ -61,6 +61,8 @@ public class HowToCrashACar extends TeleopInterface {
             robot.pcm.pistonOut(robot.pcm.intake);
         } else if (gamepad2.getBButton()) {
             robot.pcm.pistonIn(robot.pcm.intake);
+        } else {
+            robot.pcm.pistonOff(robot.pcm.intake);
         }
         robot.intake.setSafe(gamepad2.getRightY());
         robot.cannon.setSafe(gamepad1.getLeftY());
@@ -86,7 +88,7 @@ public class HowToCrashACar extends TeleopInterface {
                 // robot.climber.setSafe(-1);
             }
         }
-
+        SmartDashboard.putBoolean("Air Compressor", robot.pcm.compressor.enabled());
 
         // robot.climber.setSafe(gamepad2.getLeftY(), gamepad2.getRightY());
 
