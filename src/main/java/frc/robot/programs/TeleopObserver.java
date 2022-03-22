@@ -60,7 +60,7 @@ public class TeleopObserver extends TestInterface {
             ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
         
             // convert book object to JSON file
-            writer.writeValue(new File("RobotStateArray.json")/*Paths.get("RobotStateArray.json").toFile()*/, robotStateArray);
+            writer.writeValue(new File("~/RobotStateArray.json")/*Paths.get("RobotStateArray.json").toFile()*/, robotStateArray);
         
         } catch (Exception ex) {
             ex.printStackTrace();

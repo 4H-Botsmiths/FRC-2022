@@ -332,5 +332,17 @@ public class RobotHardware {
             left.setSafe(speed);
             right.setSafe(speed);
         }
+
+        public void set(double speed){
+            left.set(speed);
+            right.set(speed);
+        }
+
+        public double get(){
+            return (left.get()+right.get())/2;
+        }
+    }
+    public class ElapsedTime extends Timer{
+        
     }
 }

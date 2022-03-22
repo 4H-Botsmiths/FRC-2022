@@ -21,6 +21,7 @@ public class HowToCrashACar extends TeleopInterface {
         SmartDashboard.putBoolean("Relative Drive", false);
         // robot.pcm.pistonIn(2);
         robot.pcm.pistonIn(robot.pcm.climber);
+        robot.pcm.compressor.enable();
     }
 
     @Override
@@ -78,7 +79,7 @@ public class HowToCrashACar extends TeleopInterface {
         } else {
             robot.shooters.setSafe(0);
             robot.cannon.setSafe(gamepad2.getLeftY());
-            robot.intake.setSafe(gamepad2.getLeftStickButton() ? 0.5 : gamepad2.getAButton() ? -0.25 : gamepad2.getRightY());
+            robot.intake.setSafe((gamepad2.getLeftStickButton() || gamepad2.getLeftBumper()) ? 1 : gamepad2.getAButton() ? -0.75 : gamepad2.getRightY());
         }
         if (gamepad2.getPOV() == -1) {
             // robot.climber.setSafe(gamepad2.getLeftY(), gamepad2.getRightY());

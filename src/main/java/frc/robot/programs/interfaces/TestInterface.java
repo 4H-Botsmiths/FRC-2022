@@ -1,5 +1,6 @@
 package frc.robot.programs.interfaces;
 
+import edu.wpi.first.wpilibj.Timer;
 import frc.robot.hardware.*;
 
 /**
@@ -20,12 +21,14 @@ public class TestInterface {
        public String displayName;
        /** Is the defualt Test Program */
        public boolean Default = false;
+       /** Used to get the elapsed time */
+       public Timer elapsedTime = new Timer();
 
        /**
         * Use this when writing a Test program
         * 
         * @param Robot this variable must contain all motors and sensors to be used
-                * @param name display name for the smartdashboard
+        * @param name  display name for the smartdashboard
         */
        protected TestInterface(RobotHardware Robot, String name) {
               robot = Robot;

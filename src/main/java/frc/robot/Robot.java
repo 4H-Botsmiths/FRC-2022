@@ -31,6 +31,7 @@ public class Robot extends TimedRobot {
   private Gamepad1 gamepad1 = new Gamepad1();
   private Gamepad2 gamepad2 = new Gamepad2();
   private String activeMode = "none";
+
   // private String selectedProgram;
   /**
    * This function is run when the robot is first started up and should be used
@@ -85,29 +86,36 @@ public class Robot extends TimedRobot {
      * SmartDashboard.putNumber("Right Rear Temperature",
      * robot.rearRight.getMotorTemperature());
      */
-    //robot.limelight.updateSmartDashboard();
+    // robot.limelight.updateSmartDashboard();
     SmartDashboard.putNumber("Voltage", robot.pdp.getVoltage());
-    SmartDashboard.putNumber("Temperature", (int)(robot.pdp.getTemperature() * 1.8 + 32));
-    /*for (int i = 0; i < robot.spxMotors.length; i++) {
-      SmartDashboard.putNumber("Voltage Port: " + i, robot.spxMotors[i].getBusVoltage());
-    }*/
+    SmartDashboard.putNumber("Temperature", (int) (robot.pdp.getTemperature() * 1.8 + 32));
+    /*
+     * for (int i = 0; i < robot.spxMotors.length; i++) {
+     * SmartDashboard.putNumber("Voltage Port: " + i,
+     * robot.spxMotors[i].getBusVoltage());
+     * }
+     */
     SmartDashboard.putNumber("Gyro Angle", robot.gyro.getYaw());
-    //SmartDashboard.putNumber("Gyro Rotation", robot.gyro.getRotation2d2());
-    //SmartDashboard.putBoolean("Gyro Connected?", robot.gyro.isConnected());
-    if(gamepad1.getStartButtonPressed() || gamepad2.getStartButtonPressed()){
+    // SmartDashboard.putNumber("Gyro Rotation", robot.gyro.getRotation2d2());
+    // SmartDashboard.putBoolean("Gyro Connected?", robot.gyro.isConnected());
+    if (gamepad1.getStartButtonPressed() || gamepad2.getStartButtonPressed()) {
       robot.pdp.clearStickyFaults();
       robot.pcm.clearStickyFaults();
-      //robot.limelight.setLEDMode(0);
+      // robot.limelight.setLEDMode(0);
       robot.pcm.compressor.enable();
-      //robot.gyro.calibrate();
-      //robot.pcm.enableCompressorDigital();
-    }else if(gamepad1.getBackButtonPressed() || gamepad2.getBackButtonPressed()){
-      //robot.limelight.setLEDMode(1);
+      // robot.gyro.calibrate();
+      // robot.pcm.enableCompressorDigital();
+      gamepad2.setRumble(0, 0);
+    } else if (gamepad1.getBackButtonPressed() || gamepad2.getBackButtonPressed()) {
+      // robot.limelight.setLEDMode(1);
       robot.pcm.compressor.disable();
-      //robot.pcm.disableCompressor();
-    } else if((!gamepad1.getStartButton() && robot.pdp.getVoltage() < 9) || (!gamepad2.getStartButton() && robot.pdp.getVoltage() < 9)){
-      robot.pcm.compressor.disable();
-            //robot.pcm.disableCompressor();
+      // robot.pcm.disableCompressor();
+      gamepad2.setRumble(1, 1);
+    } else if ((!gamepad1.getStartButton() && robot.pdp.getVoltage() < 9)
+        || (!gamepad2.getStartButton() && robot.pdp.getVoltage() < 9)) {
+      // robot.pcm.compressor.disable();
+      // robot.pcm.disableCompressor();
+      // gamepad2.setRumble(1, 1);
     }
   }
 
@@ -134,6 +142,8 @@ public class Robot extends TimedRobot {
       }
     }
     activeMode = "Autonomous";
+    autonomousProgram.elapsedTime.reset();
+    autonomousProgram.elapsedTime.start();
     autonomousProgram.autonomousInit();
   }
 
@@ -156,6 +166,8 @@ public class Robot extends TimedRobot {
       }
     }
     activeMode = "Teleop";
+    teleopProgram.elapsedTime.reset();
+    teleopProgram.elapsedTime.start();
     teleopProgram.teleopInit();
   }
 
@@ -178,6 +190,8 @@ public class Robot extends TimedRobot {
       }
     }
     activeMode = "Test";
+    testProgram.elapsedTime.reset();
+    testProgram.elapsedTime.start();
     testProgram.testInit();
   }
 
@@ -188,22 +202,24 @@ public class Robot extends TimedRobot {
     testProgram.testPeriodic();
   }
 
-  
   /** This function is called once when the robot is disabled. */
   @Override
   public void disabledInit() {
     switch (activeMode) {
       case "Test":
+        testProgram.elapsedTime.stop();
         testProgram.testDisable();
         break;
       case "Teleop":
+        teleopProgram.elapsedTime.stop();
         teleopProgram.teleopDisable();
         break;
       case "Autonomous":
+        autonomousProgram.elapsedTime.stop();
         autonomousProgram.autonomousDisable();
         break;
       default:
-        //do nothing
+        // do nothing
     }
   }
 
