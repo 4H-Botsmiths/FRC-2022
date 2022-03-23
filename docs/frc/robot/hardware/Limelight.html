@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -87,7 +87,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -145,6 +145,34 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<section role="region">
+<ul class="blockList">
+<li class="blockList"><a id="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<table class="memberSummary">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="Limelight.Color.html" title="class in frc.robot.hardware">Limelight.Color</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="Limelight.Position.html" title="class in frc.robot.hardware">Limelight.Position</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section role="region">
 <ul class="blockList">
@@ -181,7 +209,7 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>java.lang.Number[]</code></td>
+<td class="colFirst"><code><a href="Limelight.Position.html" title="class in frc.robot.hardware">Limelight.Position</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get3D()">get3D</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Results of a 3D position solution, 6 numbers: Translation (x,y,z)
@@ -189,179 +217,165 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>double[]</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get3DDouble()">get3DDouble</a></span>()</code></th>
-<td class="colLast">
-<div class="block">converts 3D positon Array to Double Array</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getArea()">getArea</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Target Area</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCamMode()">getCamMode</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Gets the Limelight's Operation Mode</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>java.lang.Number[]</code></td>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="Limelight.Color.html" title="class in frc.robot.hardware">Limelight.Color</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getColor()">getColor</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the average HSV color underneath the crosshair region as a NumberArray</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>double[]</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getColorDouble()">getColorDouble</a></span>()</code></th>
-<td class="colLast">
-<div class="block">converts color array to double array</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getHeight()">getHeight</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Vertical sidelength of the rough bounding box</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLEDMode()">getLEDMode</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get the Limelight's LED State</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLongestSidelength()">getLongestSidelength</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Sidelength of longest side of the fitted bounding box</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPipe()">getPipe</a></span>()</code></th>
 <td class="colLast">
 <div class="block">True active pipeline index of the camera</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRaw(java.lang.String)">getRaw</a></span>&#8203;(java.lang.String&nbsp;variable)</code></th>
 <td class="colLast">
 <div class="block">Get value from network table</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRotation()">getRotation</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Skew or rotation</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getShortestSidelength()">getShortestSidelength</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Sidelength of shortest side of the fitted bounding box</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSnapshot()">getSnapshot</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Get Wether Users Are Allowed Take Snapshots During A Match</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getStream()">getStream</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Gets the Limelight's Streaming Mode</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWidth()">getWidth</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Horizontal sidelength of the rough bounding box</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getX()">getX</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Horizontal Offset From Crosshair To Target</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getY()">getY</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Vertical Offset From Crosshair To Target</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#imageLatency()">imageLatency</a></span>()</code></th>
 <td class="colLast">
 <div class="block">The image capture latency</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#initSendable(edu.wpi.first.util.sendable.SendableBuilder)">initSendable</a></span>&#8203;(edu.wpi.first.util.sendable.SendableBuilder&nbsp;builder)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#latency()">latency</a></span>()</code></th>
 <td class="colLast">
 <div class="block">The pipeline’s latency contribution</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>double[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#numberToDouble(java.lang.Number%5B%5D)">numberToDouble</a></span>&#8203;(java.lang.Number[]&nbsp;numbers)</code></th>
 <td class="colLast">
 <div class="block">Converts number array into double array</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#round(double)">round</a></span>&#8203;(double&nbsp;numberToRound)</code></th>
 <td class="colLast">
 <div class="block">Rounds input to the nearest hundereths place</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCamMode(double)">setCamMode</a></span>&#8203;(double&nbsp;mode)</code></th>
 <td class="colLast">
 <div class="block">Sets the Limelight's Operation Mode</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setLEDMode(double)">setLEDMode</a></span>&#8203;(double&nbsp;mode)</code></th>
 <td class="colLast">
 <div class="block">Set the Limelight's LED State</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPipeline(double)">setPipeline</a></span>&#8203;(double&nbsp;pipeline)</code></th>
 <td class="colLast">
 <div class="block">Sets the Limelight's Current Pipeline</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setRaw(java.lang.String,double)">setRaw</a></span>&#8203;(java.lang.String&nbsp;variable,
       double&nbsp;value)</code></th>
@@ -369,21 +383,21 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <div class="block">Set value in network table</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setSnapshot(double)">setSnapshot</a></span>&#8203;(double&nbsp;mode)</code></th>
 <td class="colLast">
 <div class="block">Allows Users To Take Snapshots During A Match</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setStream(double)">setStream</a></span>&#8203;(double&nbsp;mode)</code></th>
 <td class="colLast">
 <div class="block">Sets the Limelight's Streaming Mode</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#targetVisible()">targetVisible</a></span>()</code></th>
 <td class="colLast">
@@ -607,26 +621,12 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>get3D</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Number[]&nbsp;get3D()</pre>
+<pre class="methodSignature">public&nbsp;<a href="Limelight.Position.html" title="class in frc.robot.hardware">Limelight.Position</a>&nbsp;get3D()</pre>
 <div class="block">Results of a 3D position solution, 6 numbers: Translation (x,y,z)
  Rotation(pitch,yaw,roll)</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Number[x, y, z, pitch, yaw, roll]</dd>
-</dl>
-</li>
-</ul>
-<a id="get3DDouble()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>get3DDouble</h4>
-<pre class="methodSignature">public&nbsp;double[]&nbsp;get3DDouble()</pre>
-<div class="block">converts 3D positon Array to Double Array</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>double[x, y, z, pitch, yaw, roll]</dd>
+<dd>Number[[x, y, z],[pitch, yaw, roll]]</dd>
 </dl>
 </li>
 </ul>
@@ -636,25 +636,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getColor</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Number[]&nbsp;getColor()</pre>
+<pre class="methodSignature">public&nbsp;<a href="Limelight.Color.html" title="class in frc.robot.hardware">Limelight.Color</a>&nbsp;getColor()</pre>
 <div class="block">Get the average HSV color underneath the crosshair region as a NumberArray</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Number[hue, saturation, value]</dd>
-</dl>
-</li>
-</ul>
-<a id="getColorDouble()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getColorDouble</h4>
-<pre class="methodSignature">public&nbsp;double[]&nbsp;getColorDouble()</pre>
-<div class="block">converts color array to double array</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>double[hue, saturation, value]</dd>
 </dl>
 </li>
 </ul>
@@ -754,13 +740,13 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><p>
-             0: normal,
-             <p>
-             1: force off,
-             <p>
-             2: force blink,
-             <p>
-             3: force on</dd>
+         0: normal,
+         <p>
+         1: force off,
+         <p>
+         2: force blink,
+         <p>
+         3: force on</dd>
 </dl>
 </li>
 </ul>
@@ -792,9 +778,9 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><p>
-             0: Vision Proccesing,
-             <p>
-             1: Driver Camera</dd>
+         0: Vision Proccesing,
+         <p>
+         1: Driver Camera</dd>
 </dl>
 </li>
 </ul>
@@ -843,11 +829,11 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><p>
-             0: Standard (Side By Side),
-             <p>
-             1: PiP Main (Secoundary Stream In Lower Right Corner),
-             <p>
-             2: PiP Secoundary (Primary Stream In Lower Right Corner)</dd>
+         0: Standard (Side By Side),
+         <p>
+         1: PiP Main (Secoundary Stream In Lower Right Corner),
+         <p>
+         2: PiP Secoundary (Primary Stream In Lower Right Corner)</dd>
 </dl>
 </li>
 </ul>
@@ -879,9 +865,9 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><p>
-             0: Not Taking Snapshots
-             <p>
-             1: Taking Two Snapshots Per Second</dd>
+         0: Not Taking Snapshots
+         <p>
+         1: Taking Two Snapshots Per Second</dd>
 </dl>
 </li>
 </ul>
@@ -949,7 +935,7 @@ implements edu.wpi.first.util.sendable.Sendable</pre>
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
