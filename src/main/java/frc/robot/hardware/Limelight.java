@@ -10,12 +10,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * limelight
  */
 public class Limelight implements Sendable {
-    public Limelight(){
+    public Limelight() {
         SmartDashboard.putData("Limelight", this);
     }
-    /** 
-    *Whether the limelight has any valid targets
-    * @return true or false
+
+    /**
+     * Whether the limelight has any valid targets
+     * 
+     * @return true or false
      */
     public boolean targetVisible() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0) == 1;
@@ -23,36 +25,43 @@ public class Limelight implements Sendable {
 
     /**
      * Horizontal Offset From Crosshair To Target
-         * @return -29.8 to 29.8 degrees
-         */
+     * 
+     * @return -29.8 to 29.8 degrees
+     */
     public double getX() {
         return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tx").getDouble(0));
     }
 
     /**
      * Vertical Offset From Crosshair To Target
+     * 
      * @return -24.85 to 24.85 degrees
      */
     public double getY() {
         return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("ty").getDouble(0));
     }
 
-    /** Target Area
-    * @return 0% of image to 100% of image
+    /**
+     * Target Area
+     * 
+     * @return 0% of image to 100% of image
      */
     public double getArea() {
         return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("ta").getDouble(0));
     }
 
-    /** Skew or rotation 
-    * @return -90 degrees to 0 degrees
+    /**
+     * Skew or rotation
+     * 
+     * @return -90 degrees to 0 degrees
      */
     public double getRotation() {
         return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("ts").getDouble(0));
     }
 
     /**
-     * The pipeline’s latency contribution 
+     * The pipeline’s latency contribution
+     * 
      * @return latency in miliseconds
      */
     public double latency() {
@@ -60,111 +69,146 @@ public class Limelight implements Sendable {
     }
 
     /**
-     * The image capture latency 
+     * The image capture latency
+     * 
      * @return capture latency in miliseconds
      */
     public double imageLatency() {
         return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tl").getDouble(-11) + 11);
     }
 
-    /** Sidelength of shortest side of the fitted bounding box 
-    * @return Sidelength in pixels
+    /**
+     * Sidelength of shortest side of the fitted bounding box
+     * 
+     * @return Sidelength in pixels
      */
     public double getShortestSidelength() {
         return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tshort").getDouble(0));
     }
 
-    /** Sidelength of longest side of the fitted bounding box 
-    * @return Sidelength in pixels
+    /**
+     * Sidelength of longest side of the fitted bounding box
+     * 
+     * @return Sidelength in pixels
      */
     public double getLongestSidelength() {
         return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tlong").getDouble(0));
     }
 
-    /** Horizontal sidelength of the rough bounding box
-    * @return 0 to 320 pixels
+    /**
+     * Horizontal sidelength of the rough bounding box
+     * 
+     * @return 0 to 320 pixels
      */
     public double getWidth() {
         return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("thor").getDouble(0));
     }
 
-    /** Vertical sidelength of the rough bounding box 
-    * @return 0 to 320 pixels
+    /**
+     * Vertical sidelength of the rough bounding box
+     * 
+     * @return 0 to 320 pixels
      */
     public double getHeight() {
         return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tvert").getDouble(0));
     }
 
-    /** True active pipeline index of the camera 
-    * @return pipeline 0 to 9
+    /**
+     * True active pipeline index of the camera
+     * 
+     * @return pipeline 0 to 9
      */
     public double getPipe() {
         return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry("getpipe").getDouble(0));
     }
 
+    public class Position {
+        public double x;
+        public double y;
+        public double z;
+
+        public double pitch;
+        public double yaw;
+        public double roll;
+
+        public Position(Number[] array) {
+            this.x = array[0].doubleValue();
+            this.y = array[1].doubleValue();
+            this.z = array[2].doubleValue();
+
+            this.pitch = array[3].doubleValue();
+            this.yaw = array[4].doubleValue();
+            this.roll = array[5].doubleValue();
+        }
+
+        public double[][] toArray() {
+            return new double[][] { { x, y, z }, { pitch, yaw, roll } };
+        }
+    }
+
     /**
      * Results of a 3D position solution, 6 numbers: Translation (x,y,z)
      * Rotation(pitch,yaw,roll)
-     * @return Number[x, y, z, pitch, yaw, roll]
+     * 
+     * @return Number[[x, y, z],[pitch, yaw, roll]]
      */
-    public Number[] get3D() {
-        Number[] position = {0,0,0,0,0,0};/*new Number[6];
-        position[0] = 0;
-        position[1] = 0;
-        position[2] = 0;
-        position[3] = 0;
-        position[4] = 0;
-        position[5] = 0;*/
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran").getNumberArray(position);
+    public Position get3D() {
+        return new Position(NetworkTableInstance.getDefault().getTable("limelight").getEntry("camtran")
+                .getNumberArray(new Number[] { 0, 0, 0, 0, 0, 0 }));
     }
-    /**
-    * converts 3D positon Array to Double Array
-    * @return double[x, y, z, pitch, yaw, roll]
-     */
-    public double[] get3DDouble() {
-        return numberToDouble(get3D());
+
+    public class Color {
+        public double hue;
+        public double saturation;
+        public double value;
+
+        public Color(Number[] array) {
+            this.hue = array[0].doubleValue();
+            this.saturation = array[1].doubleValue();
+            this.value = array[2].doubleValue();
+        }
+
+        public double[] toArray() {
+            return new double[] { hue, saturation, value };
+        }
     }
 
     /**
      * Get the average HSV color underneath the crosshair region as a NumberArray
+     * 
      * @return Number[hue, saturation, value]
      */
-    public Number[] getColor() {
-        Number[] color = {0,0,0};/*new Number[3];
-        color[0] = 0;
-        color[1] = 0;
-        color[2] = 0;*/
-        return NetworkTableInstance.getDefault().getTable("limelight").getEntry("tc").getNumberArray(color);
+    public Color getColor() {
+        return new Color(NetworkTableInstance.getDefault().getTable("limelight").getEntry("tc")
+                .getNumberArray(new Number[] { 0, 0, 0 }));
     }
 
     /**
-    * converts color array to double array
-    * @return double[hue, saturation, value]
+     * Get value from network table
+     * 
+     * @param variable the value to get
+     * @return the value in the network table (default 0)
      */
-    public double[] getColorDouble() {
-        return numberToDouble(getColor());
-    }
-
-    /** Get value from network table 
-    * @param variable the value to get
-    * @return the value in the network table (default 0)
-    */
     public double getRaw(String variable) {
         return round(NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).getDouble(0));
     }
 
-    /** Set value in network table 
-    * @param variable the value to change
-    * @param value the new value
-    */
+    /**
+     * Set value in network table
+     * 
+     * @param variable the value to change
+     * @param value    the new value
+     */
     public void setRaw(String variable, double value) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry(variable).setNumber(value);
     }
 
-    /** Converts number array into double array 
-    * @param numbers the number array to convert
-    * @return the double array
-    */
+    /**
+     * Converts number array into double array
+     * 
+     * @param numbers the number array to convert
+     * @return the double array
+     */
     public double[] numberToDouble(Number[] numbers) {
         double[] doubles = new double[numbers.length];
         int i = 0;
@@ -174,12 +218,15 @@ public class Limelight implements Sendable {
         }
         return doubles;
     }
-    /** Rounds input to the nearest hundereths place 
-    * @param numberToRound the number to round
-    * @return the rounded number
-    */
-    public double round(double numberToRound){
-        return ((int)(numberToRound*100))/100;
+
+    /**
+     * Rounds input to the nearest hundereths place
+     * 
+     * @param numberToRound the number to round
+     * @return the rounded number
+     */
+    public double round(double numberToRound) {
+        return ((int) (numberToRound * 100)) / 100;
     }
 
     /**
@@ -200,19 +247,19 @@ public class Limelight implements Sendable {
     }
 
     /**
-    * Get the Limelight's LED State
+     * Get the Limelight's LED State
      * 
      * @return
-     *             <p>
-     *             0: normal,
-     *             <p>
-     *             1: force off,
-     *             <p>
-     *             2: force blink,
-     *             <p>
-     *             3: force on
+     *         <p>
+     *         0: normal,
+     *         <p>
+     *         1: force off,
+     *         <p>
+     *         2: force blink,
+     *         <p>
+     *         3: force on
      */
-    public double getLEDMode(){
+    public double getLEDMode() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").getNumber(0).intValue();
     }
 
@@ -228,16 +275,17 @@ public class Limelight implements Sendable {
     public void setCamMode(double mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(mode);
     }
+
     /**
      * Gets the Limelight's Operation Mode
      * 
      * @return
-     *             <p>
-     *             0: Vision Proccesing,
-     *             <p>
-     *             1: Driver Camera
+     *         <p>
+     *         0: Vision Proccesing,
+     *         <p>
+     *         1: Driver Camera
      */
-    public double getCamMode(){
+    public double getCamMode() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").getNumber(0).intValue();
     }
 
@@ -266,18 +314,19 @@ public class Limelight implements Sendable {
     public void setStream(double mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(mode);
     }
+
     /**
      * Gets the Limelight's Streaming Mode
      * 
      * @return
-     *             <p>
-     *             0: Standard (Side By Side),
-     *             <p>
-     *             1: PiP Main (Secoundary Stream In Lower Right Corner),
-     *             <p>
-     *             2: PiP Secoundary (Primary Stream In Lower Right Corner)
+     *         <p>
+     *         0: Standard (Side By Side),
+     *         <p>
+     *         1: PiP Main (Secoundary Stream In Lower Right Corner),
+     *         <p>
+     *         2: PiP Secoundary (Primary Stream In Lower Right Corner)
      */
-    public double getStream(){
+    public double getStream() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").getNumber(0).intValue();
     }
 
@@ -293,16 +342,17 @@ public class Limelight implements Sendable {
     public void setSnapshot(double mode) {
         NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(mode);
     }
-        /**
+
+    /**
      * Get Wether Users Are Allowed Take Snapshots During A Match
      * 
      * @return
-     *             <p>
-     *             0: Not Taking Snapshots
-     *             <p>
-     *             1: Taking Two Snapshots Per Second
+     *         <p>
+     *         0: Not Taking Snapshots
+     *         <p>
+     *         1: Taking Two Snapshots Per Second
      */
-    public double getSnapshot(){
+    public double getSnapshot() {
         return NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").getNumber(0).intValue();
     }
 
@@ -312,9 +362,12 @@ public class Limelight implements Sendable {
 
         builder.addDoubleProperty("LED Mode (0:normal, 1:off, 2:blink, 3:on)", this::getLEDMode, this::setLEDMode);
         builder.addDoubleProperty("Pipeline (0 to 9)", this::getPipe, this::setPipeline);
-        builder.addDoubleProperty("Limelight Operation Mode (0:vision proccesing, 1:driver camera)", this::getCamMode, this::setCamMode);
-        builder.addDoubleProperty("Limelight Stream Mode (0:Standard, 1:PiP Main, 2:PiP Secoundary)", this::getStream, this::setStream);
-        builder.addDoubleProperty("Limelight Snapshot Mode (0:off, 1:twice/second)", this::getSnapshot, this::setSnapshot);
+        builder.addDoubleProperty("Limelight Operation Mode (0:vision proccesing, 1:driver camera)", this::getCamMode,
+                this::setCamMode);
+        builder.addDoubleProperty("Limelight Stream Mode (0:Standard, 1:PiP Main, 2:PiP Secoundary)", this::getStream,
+                this::setStream);
+        builder.addDoubleProperty("Limelight Snapshot Mode (0:off, 1:twice/second)", this::getSnapshot,
+                this::setSnapshot);
 
         builder.addBooleanProperty("Target Visible", this::targetVisible, null);
         builder.addDoubleProperty("Target x (-29.8 to 29.8 degrees)", this::getX, null);
@@ -327,8 +380,12 @@ public class Limelight implements Sendable {
         builder.addDoubleProperty("Longest Sidelength (pixels)", this::getLongestSidelength, null);
         builder.addDoubleProperty("Horizontal Sidelength (0 to 320 pixels)", this::getWidth, null);
         builder.addDoubleProperty("Vertical Sidelength (0 to 320 pixels)", this::getHeight, null);
-        builder.addDoubleArrayProperty("Avergae HSV Color", this::getColorDouble, null);
+        builder.addDoubleArrayProperty("Avergae HSV Color", () -> getColor().toArray(), null);
         builder.addDoubleArrayProperty("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))",
-                this::get3DDouble, null);
+                () -> {
+                    double[][] array = get3D().toArray();
+                    return new double[] { array[0][0], array[0][1], array[0][2], array[1][0], array[1][1],
+                            array[1][2] };
+                }, null);
     }
 }
