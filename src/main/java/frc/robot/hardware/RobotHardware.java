@@ -342,7 +342,4 @@ public class RobotHardware {
             return (left.get()+right.get())/2;
         }
     }
-    public class ElapsedTime extends Timer{
-        
-    }
 }
