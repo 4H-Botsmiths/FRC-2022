@@ -141,8 +141,18 @@ public class Limelight implements Sendable {
             this.roll = array[5].doubleValue();
         }
 
-        public double[][] toArray() {
-            return new double[][] { { x, y, z }, { pitch, yaw, roll } };
+        /*
+         * public double[][] toArray() {
+         * return new double[][] { { x, y, z }, { pitch, yaw, roll } };
+         * }
+         */
+        /**
+         * Converts the object to an array
+         * 
+         * @return [ x, y, z, pitch, yaw, roll ]
+         */
+        public double[] toArray() {
+            return new double[] { x, y, z, pitch, yaw, roll };
         }
     }
 
@@ -382,10 +392,13 @@ public class Limelight implements Sendable {
         builder.addDoubleProperty("Vertical Sidelength (0 to 320 pixels)", this::getHeight, null);
         builder.addDoubleArrayProperty("Avergae HSV Color", () -> getColor().toArray(), null);
         builder.addDoubleArrayProperty("3D Position (Translation: (x,y,y) Rotation: (pitch,yaw,roll))",
-                () -> {
-                    double[][] array = get3D().toArray();
-                    return new double[] { array[0][0], array[0][1], array[0][2], array[1][0], array[1][1],
-                            array[1][2] };
-                }, null);
+                () -> get3D().toArray()/*
+                                        * {
+                                        * double[][] array = get3D().toArray();
+                                        * return new double[] { array[0][0], array[0][1], array[0][2], array[1][0],
+                                        * array[1][1],
+                                        * array[1][2] };
+                                        * }
+                                        */, null);
     }
 }
