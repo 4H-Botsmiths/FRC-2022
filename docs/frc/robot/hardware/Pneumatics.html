@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -136,11 +136,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><code>edu.wpi.first.wpilibj.PneumaticsBase</code>, <code>java.lang.AutoCloseable</code></dd>
+<dd><code>edu.wpi.first.util.sendable.Sendable</code>, <code>edu.wpi.first.wpilibj.PneumaticsBase</code>, <code>java.lang.AutoCloseable</code></dd>
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">Pneumatics</span>
-extends edu.wpi.first.wpilibj.PneumaticsControlModule</pre>
+extends edu.wpi.first.wpilibj.PneumaticsControlModule
+implements edu.wpi.first.util.sendable.Sendable</pre>
 </li>
 </ul>
 </div>
@@ -265,26 +266,31 @@ extends edu.wpi.first.wpilibj.PneumaticsControlModule</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#initSendable(edu.wpi.first.util.sendable.SendableBuilder)">initSendable</a></span>&#8203;(edu.wpi.first.util.sendable.SendableBuilder&nbsp;builder)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="Pneumatics.Compressor2.html" title="class in frc.robot.hardware">Pneumatics.Compressor2</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#makeCompressor2()">makeCompressor2</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pistonIn(int)">pistonIn</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pistonOff(int)">pistonOff</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#pistonOut(int)">pistonOut</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>edu.wpi.first.wpilibj.DoubleSolenoid.Value</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#togglePiston(int)">togglePiston</a></span>&#8203;(int&nbsp;index)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -461,10 +467,23 @@ extends edu.wpi.first.wpilibj.PneumaticsControlModule</pre>
 <a id="makeCompressor2()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>makeCompressor2</h4>
 <pre class="methodSignature">public&nbsp;<a href="Pneumatics.Compressor2.html" title="class in frc.robot.hardware">Pneumatics.Compressor2</a>&nbsp;makeCompressor2()</pre>
+</li>
+</ul>
+<a id="initSendable(edu.wpi.first.util.sendable.SendableBuilder)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>initSendable</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;initSendable&#8203;(edu.wpi.first.util.sendable.SendableBuilder&nbsp;builder)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>initSendable</code>&nbsp;in interface&nbsp;<code>edu.wpi.first.util.sendable.Sendable</code></dd>
+</dl>
 </li>
 </ul>
 </li>
