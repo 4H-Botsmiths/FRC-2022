@@ -93,7 +93,6 @@ public class HowToCrashACar extends TeleopInterface {
                 // robot.climber.setSafe(-1);
             }
         }
-        SmartDashboard.putBoolean("Air Compressor", robot.pcm.compressor.enabled());
 
         // robot.climber.setSafe(gamepad2.getLeftY(), gamepad2.getRightY());
 

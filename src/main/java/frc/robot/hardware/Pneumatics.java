@@ -1,9 +1,12 @@
 package frc.robot.hardware;
 
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Pneumatics extends PneumaticsControlModule {
+public class Pneumatics extends PneumaticsControlModule implements Sendable {
     // public PneumaticsControlModule pcm = new PneumaticsControlModule();
     public Compressor2 compressor = makeCompressor2();
     public DoubleSolenoid[] pistons = new DoubleSolenoid[7];
@@ -21,6 +24,7 @@ public class Pneumatics extends PneumaticsControlModule {
             pistonValues[index] = false;
             index++;
         }
+        SmartDashboard.putData("Pneumatics", this);
     }
 
     public Pneumatics(int module) {
@@ -32,25 +36,30 @@ public class Pneumatics extends PneumaticsControlModule {
             index++;
         }
         moduleIndex = module;
+        SmartDashboard.putData("Pneumatics", this);
     }
 
     public void pistonOut(int index) {
-        /*if (pistonValues[index] != true) {
-            pistons[index].set(Value.kForward);
-            pistonValues[index] = true;
-        } else {
-            pistons[index].set(Value.kOff);
-        }*/
+        /*
+         * if (pistonValues[index] != true) {
+         * pistons[index].set(Value.kForward);
+         * pistonValues[index] = true;
+         * } else {
+         * pistons[index].set(Value.kOff);
+         * }
+         */
         pistons[index].set(Value.kForward);
     }
 
     public void pistonIn(int index) {
-        /*if (pistonValues[index] != false) {
-            pistons[index].set(Value.kReverse);
-            pistonValues[index] = false;
-        } else {
-            pistons[index].set(Value.kOff);
-        }*/
+        /*
+         * if (pistonValues[index] != false) {
+         * pistons[index].set(Value.kReverse);
+         * pistonValues[index] = false;
+         * } else {
+         * pistons[index].set(Value.kOff);
+         * }
+         */
         pistons[index].set(Value.kReverse);
     }
 
@@ -99,8 +108,22 @@ public class Pneumatics extends PneumaticsControlModule {
             enableDigital();
         }
 
+        public void enable(boolean enable){
+            if(enable){
+                enable();
+            }else{
+                disable();
+            }
+        }
+
         public void enable(double min, double max) {
             enableAnalog(min, max);
         }
+    }
+
+    @Override
+    public void initSendable(SendableBuilder builder) {
+        builder.setSmartDashboardType("Pneumatics");
+        builder.addBooleanProperty("Air Compressor", compressor::enabled, compressor::enable);
     }
 }
