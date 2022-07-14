@@ -1,19 +1,20 @@
 package frc.robot.programs;
 
-import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import edu.wpi.first.util.datalog.DataLog;
 import edu.wpi.first.util.datalog.StringLogEntry;
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.ProgramFetcher;
 import frc.robot.hardware.RobotHardware;
-import frc.robot.programs.interfaces.*;
+import frc.robot.programs.interfaces.RobotState;
+import frc.robot.programs.interfaces.TeleopInterface;
+import frc.robot.programs.interfaces.TestInterface;
 
 public class TeleopObserver extends TestInterface {
     public TeleopObserver(RobotHardware Robot) {
@@ -43,11 +44,6 @@ public class TeleopObserver extends TestInterface {
             }
         }
         teleopProgram.teleopInit();
-        DataLogManager.start();
-
-        // Set up custom log entries
-        DataLog log = DataLogManager.getLog();
-        robotStateArrayLog = new StringLogEntry(log, "/ObservedTeleops/" + teleopProgram.displayName);
     }
 
     // @SuppressWarnings("unchecked")
@@ -69,6 +65,9 @@ public class TeleopObserver extends TestInterface {
 
     @Override
     public void testDisable() {
+        // Set up custom log entries
+        robotStateArrayLog = new StringLogEntry(DataLogManager.getLog(),
+                "/ObservedTeleops/" + teleopProgram.displayName, "", "json");
         try {
 
             // create object mapper instance
@@ -77,7 +76,7 @@ public class TeleopObserver extends TestInterface {
             // create an instance of DefaultPrettyPrinter
             // ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
 
-            robotStateArrayLog.append(mapper.writeValueAsString(robotStateArray));
+            robotStateArrayLog.append(mapper.writer(new DefaultPrettyPrinter()).writeValueAsString(robotStateArray));
             // convert book object to JSON file
             /*
              * writer.writeValue(new File("~/RobotStateArray.json"),
@@ -86,6 +85,8 @@ public class TeleopObserver extends TestInterface {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            robotStateArrayLog.finish();
         } /*
            * try (FileWriter file = new FileWriter("robotStateArray.json");) {
            * file.write(robotStateArray.toJSONString());
