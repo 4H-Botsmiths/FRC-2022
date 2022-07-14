@@ -160,3 +160,8 @@ bin/
 
 # Simulation GUI and other tools window save file
 *-window.json
+
+
+# Robot logs from simulations
+**.wpilog
+**FRC_*.csv

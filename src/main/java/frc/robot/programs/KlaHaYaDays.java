@@ -6,7 +6,7 @@ import frc.robot.programs.interfaces.TeleopInterface;
 
 public class KlaHaYaDays extends TeleopInterface {
 
-  protected KlaHaYaDays(RobotHardware Robot) {
+  public KlaHaYaDays(RobotHardware Robot) {
     super(Robot, "Kla Ha Ya Days");
   }
 
