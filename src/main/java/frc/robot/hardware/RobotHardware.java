@@ -109,8 +109,8 @@ public class RobotHardware {
      * @return then new speed
      */
     public double setSafeCalcuater(double speed, double currentSpeed) {
-        double multiplier = Math.pow(pdp.getVoltage() / targetVoltage, 2);
-        return speed * multiplier;
+        // double multiplier = Math.pow(pdp.getVoltage() / targetVoltage, 2);
+        return Math.pow(speed, 3); // * multiplier;
         /*
          * double multipliedSpeed = speed * multiplier;
          * if (multipliedSpeed == currentSpeed) {
@@ -333,13 +333,13 @@ public class RobotHardware {
             right.setSafe(speed);
         }
 
-        public void set(double speed){
+        public void set(double speed) {
             left.set(speed);
             right.set(speed);
         }
 
-        public double get(){
-            return (left.get()+right.get())/2;
+        public double get() {
+            return (left.get() + right.get()) / 2;
         }
     }
 }

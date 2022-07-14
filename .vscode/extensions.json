@@ -1,9 +1,0 @@
-{
-    "recommendations": [
-        "wpilibsuite.vscode-wpilib",
-        "tabnine.tabnine-vscode",
-        "vscjava.vscode-java-dependency",
-        "redhat.java",
-        "vscjava.vscode-java-debug"
-    ]
-}
